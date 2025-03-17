@@ -17,6 +17,18 @@ header {
     padding: 12 50px;
     height: 70px;
     align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.3);
+}
+header.sticky {
+    background: rgba(255, 255, 255, 1);
+}
+header:hover {
+    background: rgba(255, 255, 255, 1);
 }
 .menu {
     flex: 3;
@@ -28,17 +40,18 @@ header {
 }
 .menu > li:hover .sub-menu {
     visibility: visible;
-    top: 30px;
+    top: 45px;
 }
 .sub-menu {
     position: absolute;
     border: 1px solid #ccc;
     padding: 10px 0 10px 20px;
     width: 150px;
-    left: 10px;
     visibility: hidden;
-    top: 50px;
+    top: 60px;
     transition: 0.3s;
+    z-index: 1;
+    background: white;
 }
 .sub-menu ul {
     padding-left: 20px;
@@ -59,6 +72,21 @@ header {
 }
 .oders > li {
     padding: 0 12px;
+    position: relative;
+}
+.oders > li::after {
+    content: "";
+    width: 1px;
+    display: block;
+    height: 50%;
+    background: #dddddd;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.oders > li:last-child::after {
+    display: none;
 }
 .oders > li:first-child {
     position: relative;
@@ -67,6 +95,8 @@ header {
    width: 100%;
    border: none;
    border-bottom: 1px solid #333;
+   background: transparent;
+   outline: none;
 }
 .oders > li:first-child i {
     position: absolute;

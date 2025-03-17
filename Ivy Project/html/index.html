@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://kit.fontawesome.com/1147679ae7.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="style.css">
-        <title>Jolliboi - Phụ kiện máy tính</title>
+        <title>Jolliboi - Bán giày chính hãng</title>
     </head>
     <body>
         <header>
@@ -63,8 +63,8 @@
             <div class="dot"></div>
             <div class="dot"></div>
         </div>
-
         </section>
+        <br><br><br>
 <!-- footer -->
         <footer class="footer mt-5">
             <div class="container">
@@ -86,7 +86,7 @@
                             </li>
                             <li class="mb-2">
                                 <i class="fas fa-envelope me-3"></i>
-                                Jolliboi@gmail.com
+                                <u>Jolliboi@gmail.com</u>
                             </li>
                             <li class="mb-2">
                                 <i class="fas fa-phone me-3"></i>
@@ -136,6 +136,21 @@
 
     </body>
     <script>
+      const header = document.querySelector("header");
+    window.addEventListener("scroll", function(){
+        x = window.pageYOffset;
+            if (x>0){
+                header.classList.add("sticky")
+            }
+            else{
+                header.classList.remove("sticky")
+            }
+        })
+        
+
+
+
+
     const imgPosition = document.querySelectorAll(".aspect-ratio-169 img");
     const imgContainer = document.querySelector(".aspect-ratio-169");
     const dotItem = document.querySelectorAll(".dot");

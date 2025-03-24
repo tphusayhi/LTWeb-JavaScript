@@ -2,16 +2,18 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://kit.fontawesome.com/1147679ae7.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script type="text/javascript" src="csript.js"></script>
         <title>Jolliboi - Bán giày chính hãng</title>
     </head>
     <body>
         <header>
             <div class="logo">
                 <a href="index.html">
-                <img src="../giaodien/images/logo.png" alt="logo" height="70px" width="70px"></a>
+                <img src="giaodien/images/logo.png" alt="logo" height="70px" width="70px"></a>
             </div>
             <div class="menu">
                 <li><a href="">DANH MỤC SẢN PHẨM</a>
@@ -48,24 +50,114 @@
                 <li> <a class="fa fa-shopping-bag" href="" ></a></li>
             </div>
         </header>
-        <section id="Slider">
-        <div class="aspect-ratio-169">
-            <img src="../giaodien/images/slide1.jpg" alt="slider1">
-            <img src="../giaodien/images/slide2.jpg" alt="slider2">
-            <img src="../giaodien/images/slide3.jpg" alt="slider3">
-            <img src="../giaodien/images/slide4.jpg" alt="slider4">
-            <img src="../giaodien/images/slide5.jpg" alt="slider5">
-        </div>
-        <div class="dot-container">
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
+       
+
+        <!--category-->
+        <section class="cartegory">
+            <div class="container">
+                <div class="cartegory-top row">
+                    <p>Trang chủ</p> <span>&#10509;</span> <p>Nữ</p> <span>&#10509;</span> <p>Hàng nữ mới về</p>
+                </div>
+            </div>
+            <div class="contaimer">
+                <div class="row">
+                    <div class="cartegory-left">
+                        <ul>
+                            <li class="cartegory-left-li"><a href="">HÀNG MỚI</a></li>
+                            <li class="cartegory-left-li"><a href="">TẾT 2025</a></li>
+                            <li class="cartegory-left-li"><a href="#">NAM</a>
+                            <ul>
+                                <li><a href="">Giày thể thao</a></li>
+                                <li><a href="">Giày thời trang</a></li>
+                                <li><a href="">Phụ kiện khác</a></li>
+                                
+                            </ul>
+                            </li>
+                            <li class="cartegory-left-li"><a href="#">NỮ</a>
+                                <ul>
+                                    <li><a href="">Giày thể thao</a></li>
+                                    <li><a href="">Giày thời trang</a></li>
+                                    <li><a href="">Phụ kiện khác</a></li>
+                                    
+                                </ul>
+                            </li>
+                            <li class="cartegory-left-li"><a href="">ƯU ĐÃI</a></li>
+                            <li class="cartegory-left-li"><a href="">BỘ SƯU TẬP</a></li>
+                            <li class="cartegory-left-li"><a href="">THÔNG TIN</a></li>
+                        </ul>
+                    </div>
+                    <div class="cartegory-right row">
+                        <div class="cartegory-right-top-item">
+                            <p>HÀNG MỚI VỀ</P>
+                        </div>
+                        <div class="cartegory-right-top-item">
+                            <button><span>Bộ lọc</span><i class="fas fa-sort-down"></i></button>
+                        </div>
+                        <div class="cartegory-right-top-item">
+                            <select name="" id="">
+                                <option value="">Sắp xếp</option>
+                                <option value="">Giá cao đến thấp</option>
+                                <option value="">Giá thấp đến cao</option>
+                            </select>
+                        </div>
+                        <div class="cartegory-right-content row">
+                            <div class="cartegory-right-content-item">
+                                <img src="giaodien/images/sp1.jpg" alt="Balo thể thao thời trang">
+                                <h1>Balo thể thao thời trang</h1>
+                                <p>790.000<sup>đ</sup></p>
+                            </div>
+                            <div class="cartegory-right-content-item">
+                                <img src="giaodien/images/sp2.jpg" alt="Balo thể thao thời trang">
+                                <h1>Balo thể thao thời trang</h1>
+                                <p>790.000<sup>đ</sup></p>
+                            </div>
+                            <div class="cartegory-right-content-item">
+                                <img src="giaodien/images/sp3.jpg" alt="Balo thể thao thời trang">
+                                <h1>Balo thể thao thời trang</h1>
+                                <p>790.000<sup>đ</sup></p>
+                            </div>
+                            <div class="cartegory-right-content-item">
+                                <img src="giaodien/images/sp4.jpg" alt="Balo thể thao thời trang">
+                                <h1>Balo thể thao thời trang</h1>
+                                <p>790.000<sup>đ</sup></p>
+                            </div>
+                            <div class="cartegory-right-content-item">
+                                <img src="giaodien/images/sp5.jpg" alt="Balo thể thao thời trang">
+                                <h1>Balo thể thao thời trang</h1>
+                                <p>790.000<sup>đ</sup></p>
+                            </div>
+                            <div class="cartegory-right-content-item">
+                                <img src="giaodien/images/sp6.jpg" alt="Balo thể thao thời trang">
+                                <h1>Balo thể thao thời trang</h1>
+                                <p>790.000<sup>đ</sup></p>
+                            </div>
+                            <div class="cartegory-right-content-item">
+                                <img src="giaodien/images/sp7.jpg" alt="Balo thể thao thời trang">
+                                <h1>Balo thể thao thời trang</h1>
+                                <p>790.000<sup>đ</sup></p>
+                            </div>
+                            <div class="cartegory-right-content-item">
+                                <img src="giaodien/images/sp8.jpg" alt="Balo thể thao thời trang">
+                                <h1>Balo thể thao thời trang</h1>
+                                <p>790.000<sup>đ</sup></p>
+                            </div>
+                        </div>
+                        <div class="cartegory-right-bottom row">
+                            <div class="cartegory-right-bottom-items">
+                                <p>Hiển thị 2 <span>|</span> 4 sản phẩm</p>
+                            </div>
+                            <div class="cartegory-right-bottom-items">
+                                <p><span>&#171;</span> 1 2 3 4 5 <span>&#187;</span> Trang cuối</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </section>
-        <br><br><br>
-<!-- footer -->
+
+
+        <!-- footer -->
         <footer class="footer mt-5">
             <div class="container">
                 <div class="row">
@@ -73,7 +165,7 @@
                         <h5 class="text-uppercase mb-4">Về Chúng Tôi</h5>
                         <p>Jolliboi - Chuyên bán giày thời trang chính hãng, giá tốt.</p>
                         <a class="navbar-brand" href="index.html">
-                        <img src="../giaodien/images/logo.png" alt="Logo" style="width: 100px;">
+                        <img src="giaodien/images/logo.png" alt="Logo" style="width: 100px;">
                         </a>
                     </div>
                     

@@ -1,5 +1,5 @@
 <?php
-require "database.php";
+require "../../models/database.php";
 
 if (isset($_POST['btn-register'])) {
     $username = trim($_POST['username']);

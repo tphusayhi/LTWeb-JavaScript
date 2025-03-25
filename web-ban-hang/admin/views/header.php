@@ -90,8 +90,8 @@
     <div class="sidebar">
         <h3 class="text-center">Admin Panel</h3>
         <a href="#"><i class="fas fa-home"></i> Trang chủ</a>
-        <a href="#"><i class="fas fa-box"></i> Sản phẩm</a>
-        <a href="#"><i class="fas fa-list"></i> Danh mục</a>
+        <a href="indexs.php?act=sanpham"><i class="fas fa-box"></i> Sản phẩm</a>
+        <a href="indexs.php?act=danhmuc"><i class="fas fa-list"></i> Danh mục</a>
         <a href="#"><i class="fas fa-users"></i> Khách hàng</a>
         <a href="#"><i class="fas fa-shopping-cart"></i> Đơn hàng</a>
         <a href="#"><i class="fas fa-cogs"></i> Cài đặt</a>

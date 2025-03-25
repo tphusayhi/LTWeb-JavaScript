@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý danh mục</title>
+    <title>Cập nhật danh mục</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -92,23 +92,43 @@
                 transform: translateY(0);
             }
         }
+        /* Hiệu ứng cho danh mục đang chỉnh sửa */
+        .highlight {
+            background-color: #fff3cd !important;
+            transition: background-color 0.5s ease-in-out;
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             document.querySelector(".main").classList.add("fade-in");
+
+            // Lấy ID từ URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const editingId = urlParams.get('id');
+
+            if (editingId) {
+                const row = document.getElementById("dm-" + editingId);
+                if (row) {
+                    row.classList.add("highlight");
+                }
+            }
         });
     </script>
 </head>
 <body>
     <div class="main">
-        <h2>Danh mục sản phẩm</h2>
-        <?php
-        echo var_dump($kqone);
-        ?>
-        <form action="indexs.php?act=themdm" method="post">
-        <input type="text" name="tendm" placeholder="Nhập tên danh mục">
-            <input type="submit" name="them" value="Thêm">
+        <h2>Cập nhật danh mục sản phẩm</h2>
+
+        <?php if (isset($kqone) && !empty($kqone)) : ?>
+        <form action="indexs.php?act=update_dm" method="post">
+            <input type="text" name="tendm" value="<?= htmlspecialchars($kqone['tendm']) ?>" placeholder="Nhập tên danh mục" required>
+            <input type="hidden" name="id" value="<?= (int)$kqone['id'] ?>">
+            <input type="submit" name="capnhat" value="Cập nhật">
         </form>
+        <?php else : ?>
+            <p style="color: red; text-align: center;">Không tìm thấy danh mục!</p>
+        <?php endif; ?>
+
         <table>
             <tr>
                 <th>STT</th>
@@ -118,15 +138,14 @@
                 <th>Thao tác</th>
             </tr>
             <?php
-               //var_dump($kq);
-               if(isset($kq)&&(count($kq)>0)){
-                $i=1;
-                foreach ($kq as $dm ) {
-                    echo "<tr>";
-                    echo "<td>".($i)."</td>";
-                    echo "<td>".$dm['tendm']."</td>";
-                    echo "<td>".$dm['uutien']."</td>";
-                    echo "<td>".$dm['hienthi']."</td>";
+            if (isset($kq) && count($kq) > 0) {
+                $i = 1;
+                foreach ($kq as $dm) {
+                    echo "<tr id='dm-" . (int)$dm['id'] . "'>";
+                    echo "<td>" . $i . "</td>";
+                    echo "<td>" . htmlspecialchars($dm['tendm']) . "</td>";
+                    echo "<td>" . htmlspecialchars($dm['uutien'] ?? '-') . "</td>";
+                    echo "<td>" . htmlspecialchars($dm['hienthi'] ?? '-') . "</td>";
                     echo "<td>
                             <a href='indexs.php?act=update_dm&id=" . (int) $dm['id'] . "'>Sửa</a> |
                             <a href='indexs.php?act=delete_dm&id=" . (int) $dm['id'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa không?\")'>Xóa</a>
@@ -134,11 +153,8 @@
                     echo "</tr>";
                     $i++;
                 }
-
-               }            ?>
-            
-
-            
+            }
+            ?>
         </table>
     </div>
 </body>

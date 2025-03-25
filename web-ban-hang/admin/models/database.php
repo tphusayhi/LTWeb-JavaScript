@@ -1,21 +1,17 @@
 <?php
-     
-          $host = "localhost";
-          $username = "root";
-          $password = "";
-          $dbname = "user_database";
+function connectdb() {
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "user_database";
 
-
-          $conn = new mysqli($host, $username, $password, $dbname);
-          if ($conn->connect_error) {
-          die("Kết nối thất bại: " . $conn->connect_error);
-          }
-          echo "Kết nối thành công";
-          
-
-
-
-
-
- 
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
+        // Cấu hình chế độ báo lỗi
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conn; // Trả về đối tượng kết nối để sử dụng
+    } catch (PDOException $e) {
+        die("Lỗi kết nối CSDL: " . $e->getMessage()); // Dừng chương trình nếu kết nối thất bại
+    }
+}
 ?>

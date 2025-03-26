@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý danh mục</title>
+    <title>Quản lý sản phẩm</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -101,20 +101,34 @@
 </head>
 <body>
     <div class="main">
-        <h2>Danh mục sản phẩm</h2>
-        <?php
-        echo var_dump($kqone);
-        ?>
-        <form action="indexs.php?act=themdm" method="post">
-        <input type="text" name="tendm" placeholder="Nhập tên danh mục">
-            <input type="submit" name="them" value="Thêm">
+        <h2>Sản phẩm</h2>
+        
+
+        <form action="indexs.php?act=themsp" method="post" enctype="multipart/form-data">
+        <select name="iddm" id="">
+            <option value="0">Chọn danh mục</option>
+            <?php
+                if(isset($dsdm)){
+                    foreach ($dsdm as $dm) {
+                        echo "<option value='" . $dm['id'] . "'>" . $dm['tendm'] . "</option>";
+                    }
+                }                
+                
+            ?>
+        </select>
+        <input type="text" name="tensp"id="">
+        <input type="file" name="img"id="">
+        <input type="text" name="gia"id="">
+        <input type="submit" name="them" value="Thêm">
+
+        
         </form>
         <table>
             <tr>
                 <th>STT</th>
-                <th>Tên danh mục</th>
-                <th>Ưu Tiên</th>
-                <th>Hiển Thị</th>
+                <th>Tên san phẩm</th>
+                <th>Hình </th>
+                <th>Giá</th>
                 <th>Thao tác</th>
             </tr>
             <?php
@@ -124,9 +138,9 @@
                 foreach ($kq as $dm ) {
                     echo "<tr>";
                     echo "<td>".($i)."</td>";
-                    echo "<td>".$dm['tendm']."</td>";
-                    echo "<td>".$dm['uutien']."</td>";
-                    echo "<td>".$dm['hienthi']."</td>";
+                    echo "<td>".$dm['tensp']."</td>";
+                    echo "<td>".$dm['']."</td>";
+                    echo "<td>".$dm['gia']."</td>";
                     echo "<td>
                             <a href='indexs.php?act=update_dm&id=" . (int) $dm['id'] . "'>Sửa</a> |
                             <a href='indexs.php?act=delete_dm&id=" . (int) $dm['id'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa không?\")'>Xóa</a>

@@ -71,7 +71,7 @@
             include "views/danhmuc.php";
             break; 
           // Sản Phẩm  
-          case 'sanpham' :
+         case 'sanpham' :
             // load danh sách danh mục 
             $dsdm=getall_danhmuc();
 
@@ -85,37 +85,48 @@
             $dsdm = getall_danhmuc();
          
             if (isset($_POST['them'])) {
-                  $iddm = $_POST['iddm'];
-                  $tensp = $_POST['tensp'];
-                  $gia = $_POST['gia'];
-                  $img = "";
+               $iddm = $_POST['iddm'];
+               $tensp = $_POST['tensp'];
+               $gia = $_POST['gia'];
+               $img = "";
+
+               // if($_FILES['img']['name']!="") $img=$_FILES['img']['name']; else $img="";
+            
+            //Kiểm tra xem có ảnh được tải lên không
+            
+
+               $target_dir = "../img/";
+               $target_file = $target_dir . basename($_FILES["img"]["name"]);
+               $img=$target_file;
+               $uploadOk = 1;
+               $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+               if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+               && $imageFileType != "gif" ) {
+               //echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                 $uploadOk = 0;
+               }
+               move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+
+
+               // if($_FILES['img']['name']!="") $img=$_FILES['img']['name']; else $img="";
+                  
+               
+      
+
+      
+               // Gọi hàm thêm sản phẩm
+               insert_sanpham($iddm, $tensp, $img, $gia);
+      
+               // Chuyển hướng sau khi thêm thành công
+               header("Location: indexs.php?act=sanpham");
+               exit();
          
-                  // Kiểm tra upload file ảnh
-                  if (isset($_FILES['img']) && $_FILES['img']['error'] == 0) {
-                     $target_dir = "uploads/";
-                     $target_file = $target_dir . basename($_FILES['img']['name']);
-         
-                     if (move_uploaded_file($_FILES['img']['tmp_name'], $target_file)) {
-                        $img = $target_file;
-                     } else {
-                        echo "Lỗi tải ảnh lên!";
-                     }
-                  }
-         
-                  // Gọi hàm thêm sản phẩm
-                  insert_sanpham($iddm, $tensp, $img, $gia);
-         
-                  // Chuyển hướng sau khi thêm thành công
-                  header("Location: indexs.php?act=sanpham");
-                  exit();
+            
             }
-         
             // Load danh sách sản phẩm
             $kq = getall_sanpham();
             include "views/sanpham.php";
             break;
-              
-      
               
          default:
          

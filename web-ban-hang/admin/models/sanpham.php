@@ -1,7 +1,7 @@
 <?php 
      function insert_sanpham($iddm, $tensp, $img, $gia) {
+        $conn = connectdb();
       try {
-          $conn = connectdb();
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           
           $sql = "INSERT INTO tbl_sanpham (iddm, tensp, img, gia) VALUES (:iddm, :tensp, :img, :gia)";

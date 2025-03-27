@@ -7,15 +7,16 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 10px;
             background-color: #f4f4f4;
+            width: 100%;
         }
         .main {
             background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
+            max-width: 800px;
             margin: auto;
             transition: transform 0.3s ease-in-out;
         }
@@ -130,15 +131,17 @@
             <?php
                 if(isset($kq) && count($kq) > 0){
                     $i = 1;
-                    foreach ($kq as $dm) {
+                    foreach ($kq as $item) {
                         echo "<tr>";
                         echo "<td>" . $i . "</td>";
-                        echo "<td>" . htmlspecialchars($dm['tensp']) . "</td>";
-                        echo "<td><img src='" . htmlspecialchars($dm['img']) . "' alt='Hình sản phẩm' width='50'></td>";
-                        echo "<td>" . htmlspecialchars($dm['gia']) . "</td>";
+                        echo "<td>" . htmlspecialchars($item['tensp']) . "</td>";
+                        echo '<td><img src="' . htmlspecialchars($item['img']) . '" width="80px" onerror="this.src=\'img/default.png\'"></td>';
+
+                        //echo '<td><img src="' . $item['img'] . '" width="80px"></td>';
+                        echo "<td>" . htmlspecialchars($item['gia']) . "</td>";
                         echo "<td>
-                                <a href='indexs.php?act=update_dm&id=" . (int) $dm['id'] . "'>Sửa</a> |
-                                <a href='indexs.php?act=delete_dm&id=" . (int) $dm['id'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa không?\")'>Xóa</a>
+                                <a href='indexs.php?act=update_dm&id=" . (int) $item['id'] . "'>Sửa</a> | <a href='indexs.php?act=delete_dm&id=" . (int) $item['id'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa không?\")'>Xóa</a>
+                                
                               </td>";
                         echo "</tr>";
                         $i++;

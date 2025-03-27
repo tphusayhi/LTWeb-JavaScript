@@ -70,8 +70,8 @@
             $kq = getall_danhmuc();
             include "views/danhmuc.php";
             break; 
-          // Sản Phẩm   
-         case 'sanpham' :
+          // Sản Phẩm  
+          case 'sanpham' :
             // load danh sách danh mục 
             $dsdm=getall_danhmuc();
 
@@ -79,7 +79,44 @@
             //load danh sách sản phẩm
             $kq=getall_sanpham();
                include "views/sanpham.php";
-               break;  
+               break;   
+         case 'themsp':
+            // Load danh sách danh mục
+            $dsdm = getall_danhmuc();
+         
+            if (isset($_POST['them'])) {
+                  $iddm = $_POST['iddm'];
+                  $tensp = $_POST['tensp'];
+                  $gia = $_POST['gia'];
+                  $img = "";
+         
+                  // Kiểm tra upload file ảnh
+                  if (isset($_FILES['img']) && $_FILES['img']['error'] == 0) {
+                     $target_dir = "uploads/";
+                     $target_file = $target_dir . basename($_FILES['img']['name']);
+         
+                     if (move_uploaded_file($_FILES['img']['tmp_name'], $target_file)) {
+                        $img = $target_file;
+                     } else {
+                        echo "Lỗi tải ảnh lên!";
+                     }
+                  }
+         
+                  // Gọi hàm thêm sản phẩm
+                  insert_sanpham($iddm, $tensp, $img, $gia);
+         
+                  // Chuyển hướng sau khi thêm thành công
+                  header("Location: indexs.php?act=sanpham");
+                  exit();
+            }
+         
+            // Load danh sách sản phẩm
+            $kq = getall_sanpham();
+            include "views/sanpham.php";
+            break;
+              
+      
+              
          default:
          
          

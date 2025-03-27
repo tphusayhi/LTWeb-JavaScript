@@ -28,14 +28,15 @@
         }
         form {
             display: flex;
+            flex-direction: column;
             gap: 10px;
             justify-content: center;
         }
-        input[type="text"] {
+        select, input[type="text"], input[type="file"] {
             padding: 8px;
-            width: 60%;
             border: 1px solid #ccc;
             border-radius: 5px;
+            width: 100%;
             transition: border-color 0.3s;
         }
         input[type="text"]:focus {
@@ -102,57 +103,50 @@
 <body>
     <div class="main">
         <h2>Sản phẩm</h2>
-        
-
         <form action="indexs.php?act=themsp" method="post" enctype="multipart/form-data">
-        <select name="iddm" id="">
-            <option value="0">Chọn danh mục</option>
-            <?php
-                if(isset($dsdm)){
-                    foreach ($dsdm as $dm) {
-                        echo "<option value='" . $dm['id'] . "'>" . $dm['tendm'] . "</option>";
+            <select name="iddm" required>
+                <option value="0">Chọn danh mục</option>
+                <?php
+                    if(isset($dsdm)){
+                        foreach ($dsdm as $dm) {
+                            echo "<option value='" . htmlspecialchars($dm['id']) . "'>" . htmlspecialchars($dm['tendm']) . "</option>";
+                        }
                     }
-                }                
-                
-            ?>
-        </select>
-        <input type="text" name="tensp"id="">
-        <input type="file" name="img"id="">
-        <input type="text" name="gia"id="">
-        <input type="submit" name="them" value="Thêm">
-
-        
+                ?>
+            </select>
+            <input type="text" name="tensp" placeholder="Nhập tên sản phẩm" required>
+            <input type="file" name="img" accept="image/*" required>
+            <input type="text" name="gia" placeholder="Nhập giá sản phẩm" required>
+            <input type="submit" name="them" value="Thêm">
         </form>
         <table>
             <tr>
                 <th>STT</th>
-                <th>Tên san phẩm</th>
-                <th>Hình </th>
+                <th>Tên sản phẩm</th>
+                <th>Hình ảnh</th>
                 <th>Giá</th>
                 <th>Thao tác</th>
             </tr>
             <?php
-               //var_dump($kq);
-               if(isset($kq)&&(count($kq)>0)){
-                $i=1;
-                foreach ($kq as $dm ) {
-                    echo "<tr>";
-                    echo "<td>".($i)."</td>";
-                    echo "<td>".$dm['tensp']."</td>";
-                    echo "<td>".$dm['']."</td>";
-                    echo "<td>".$dm['gia']."</td>";
-                    echo "<td>
-                            <a href='indexs.php?act=update_dm&id=" . (int) $dm['id'] . "'>Sửa</a> |
-                            <a href='indexs.php?act=delete_dm&id=" . (int) $dm['id'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa không?\")'>Xóa</a>
-                          </td>";
-                    echo "</tr>";
-                    $i++;
+                if(isset($kq) && count($kq) > 0){
+                    $i = 1;
+                    foreach ($kq as $dm) {
+                        echo "<tr>";
+                        echo "<td>" . $i . "</td>";
+                        echo "<td>" . htmlspecialchars($dm['tensp']) . "</td>";
+                        echo "<td><img src='" . htmlspecialchars($dm['img']) . "' alt='Hình sản phẩm' width='50'></td>";
+                        echo "<td>" . htmlspecialchars($dm['gia']) . "</td>";
+                        echo "<td>
+                                <a href='indexs.php?act=update_dm&id=" . (int) $dm['id'] . "'>Sửa</a> |
+                                <a href='indexs.php?act=delete_dm&id=" . (int) $dm['id'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa không?\")'>Xóa</a>
+                              </td>";
+                        echo "</tr>";
+                        $i++;
+                    }
+                } else {
+                    echo "<tr><td colspan='5'>Không có sản phẩm nào</td></tr>";
                 }
-
-               }            ?>
-            
-
-            
+            ?>
         </table>
     </div>
 </body>

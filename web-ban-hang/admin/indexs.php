@@ -79,7 +79,7 @@
             //load danh sách sản phẩm
             $kq=getall_sanpham();
                include "views/sanpham.php";
-               break;   
+               break; 
          case 'themsp':
             // Load danh sách danh mục
             $dsdm = getall_danhmuc();
@@ -88,47 +88,112 @@
                $iddm = $_POST['iddm'];
                $tensp = $_POST['tensp'];
                $gia = $_POST['gia'];
-               $img = "";
-
-               // if($_FILES['img']['name']!="") $img=$_FILES['img']['name']; else $img="";
-            
-            //Kiểm tra xem có ảnh được tải lên không
-            
-
-               $target_dir = "../img/";
-               $target_file = $target_dir . basename($_FILES["img"]["name"]);
-               $img=$target_file;
-               $uploadOk = 1;
-               $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-               if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-               && $imageFileType != "gif" ) {
-               //echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-                 $uploadOk = 0;
-               }
-               move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
-
-
-               // if($_FILES['img']['name']!="") $img=$_FILES['img']['name']; else $img="";
-                  
+               $img = "";  
+           
+               if (isset($_FILES['img']) && $_FILES['img']['error'] == 0) {
+                   $target_dir = "assets/img/";
+                   if (!is_dir($target_dir)) {
+                       mkdir($target_dir, 0777, true);
+                   }
                
-      
-
-      
-               // Gọi hàm thêm sản phẩm
-               insert_sanpham($iddm, $tensp, $img, $gia);
-      
-               // Chuyển hướng sau khi thêm thành công
-               header("Location: indexs.php?act=sanpham");
-               exit();
-         
-            
-            }
-            // Load danh sách sản phẩm
+                   $imageFileType = strtolower(pathinfo($_FILES["img"]["name"], PATHINFO_EXTENSION));
+                   $allowed_types = ["jpg", "jpeg", "png", "gif"];
+               
+                   if (in_array($imageFileType, $allowed_types)) {
+                       $newFileName = uniqid() . "." . $imageFileType;  // Tránh trùng tên file
+                       $target_file = $target_dir . $newFileName;
+               
+                       if (move_uploaded_file($_FILES['img']['tmp_name'], $target_file)) {
+                           $img = $newFileName; // Chỉ lưu tên file vào CSDL
+                       } else {
+                           echo "<script>alert('Lỗi: Không thể di chuyển file! Kiểm tra quyền thư mục.');</script>";
+                           $img = "";
+                       }
+                   } else {
+                       echo "<script>alert('Lỗi: Chỉ chấp nhận định dạng JPG, JPEG, PNG, GIF!');</script>";
+                       $img = "";
+                   }
+               } else {
+                   echo "<script>alert('Lỗi: Không có file hoặc lỗi khi tải lên!');</script>";
+               }
+           
+               // ✅ Gọi hàm thêm sản phẩm vào CSDL
+               if ($tensp != "" && $gia != "" && $iddm != "") {
+                   insert_sanpham($iddm, $tensp, $img, $gia);  
+                   echo "<script>alert('Thêm sản phẩm thành công!');</script>";
+                   header("Location: indexs.php?act=sanpham");
+                   exit();
+               } else {
+                   echo "<script>alert('Lỗi: Vui lòng nhập đầy đủ thông tin sản phẩm!');</script>";
+               }
+           }
+           
             $kq = getall_sanpham();
             include "views/sanpham.php";
             break;
+         case 'delete_sp':
+            $dsdm=getall_danhmuc();
+            if(isset($_GET['id'])){
+                  $id=$_GET['id'];
+                  delete_sp($id);
+            }
+            //load danh sách sản phẩm
+            $kq=getall_sanpham();
+               include "views/sanpham.php";;
+            break;
+         case 'update_sp': 
+            //load danh sách danh mục 
+            $dsdm=getall_danhmuc();
+
+            if(isset($_GET['capnhat'])&&($_GET['capnhat'])){
+               //$spct=getone_sp($_GET['id']);
+               $iddm = $_POST['iddm'];
+               $tensp = $_POST['tensp'];
+               $gia = $_POST['gia'];
+               $id = $_POST['id'];
+               if($_FILES["img"]["name"]!=""){
+                  $target_dir = "assets/img/";
+                  if (!is_dir($target_dir)) {
+                      mkdir($target_dir, 0777, true);
+                  }
               
-         default:
+                  $imageFileType = strtolower(pathinfo($_FILES["img"]["name"], PATHINFO_EXTENSION));
+                  $allowed_types = ["jpg", "jpeg", "png", "gif"];
+              
+                  if (in_array($imageFileType, $allowed_types)) {
+                      $newFileName = uniqid() . "." . $imageFileType;  // Tránh trùng tên file
+                      $target_file = $target_dir . $newFileName;
+              
+                      if (move_uploaded_file($_FILES['img']['tmp_name'], $target_file)) {
+                          $img = $newFileName; // Chỉ lưu tên file vào CSDL
+                      } else {
+                          echo "<script>alert('Lỗi: Không thể di chuyển file! Kiểm tra quyền thư mục.');</script>";
+                          $img = "";
+                      }
+                  } else {
+                      echo "<script>alert('Lỗi: Chỉ chấp nhận định dạng JPG, JPEG, PNG, GIF!');</script>";
+                      $img = "";
+                  }
+              } else {
+                  echo "<script>alert('Lỗi: Không có file hoặc lỗi khi tải lên!');</script>";
+              }else{
+                $img=""
+              }
+              update_sp($id, $tendsp, $img, $gia, $iddm)
+
+            }else{
+               $spct= null;
+            }
+               
+
+            
+            //load danh sách sản phẩm
+            
+            $kq=getall_sanpham();
+               include "views/sanpham.php";
+               break; 
+      
+      default:
          
          
 

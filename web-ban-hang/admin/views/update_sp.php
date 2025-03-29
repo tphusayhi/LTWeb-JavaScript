@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý sản phẩm</title>
+    <title>Cập nhật sản phẩm</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -103,23 +103,42 @@
 </head>
 <body>
     <div class="main">
-        <h2>Sản phẩm</h2>
-        <form action="indexs.php?act=themsp" method="post" enctype="multipart/form-data">
-            <select name="iddm" required>
-                <option value="0">Chọn danh mục</option>
-                <?php
-                    if(isset($dsdm)){
-                        foreach ($dsdm as $dm) {
-                            echo "<option value='" . htmlspecialchars($dm['id']) . "'>" . htmlspecialchars($dm['tendm']) . "</option>";
-                        }
-                    }
-                ?>
-            </select>
-            <input type="text" name="tensp" placeholder="Nhập tên sản phẩm" required>
-            <input type="file" name="img"  required>
-            <input type="text" name="gia" placeholder="Nhập giá sản phẩm" required>
-            <input type="submit" name="them" value="Thêm">
-        </form>
+        <h2>Cập nhật sản phẩm</h2>
+        <form action="indexs.php?act=update_sp" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<?= isset($spct['id']) ? htmlspecialchars($spct['id']) : '' ?>">
+    
+    <!-- Chọn danh mục -->
+    <select name="iddm" required>
+        <option value="0">Chọn danh mục</option>
+        <?php
+            $iddmcur = isset($spct['iddm']) ? $spct['iddm'] : 0;
+            if (isset($dsdm)) {
+                foreach ($dsdm as $dm) {
+                    $selected = ($dm['id'] == $iddmcur) ? "selected" : "";
+                    echo "<option value='" . htmlspecialchars($dm['id']) . "' $selected>" . htmlspecialchars($dm['tendm']) . "</option>";
+                }
+            }
+        ?>
+    </select>
+
+    <!-- Nhập tên sản phẩm -->
+    <input type="text" name="tensp" placeholder="Nhập tên sản phẩm" value="<?= isset($spct['tensp']) ? htmlspecialchars($spct['tensp']) : '' ?>" required>
+
+    <!-- Hiển thị hình ảnh hiện tại -->
+    <?php if (!empty($spct['img'])): ?>
+        <img src="assets/img/<?= htmlspecialchars($spct['img']) ?>" width="100px">
+        <p>Ảnh hiện tại: <?= htmlspecialchars($spct['img']) ?></p>
+    <?php endif; ?>
+
+    <!-- Chọn ảnh mới -->
+    <input type="file" name="img">
+
+    <!-- Nhập giá sản phẩm -->
+    <input type="text" name="gia" placeholder="Nhập giá sản phẩm" value="<?= isset($spct['gia']) ? htmlspecialchars($spct['gia']) : '' ?>" required>
+
+    <input type="submit" name="capnhat" value="Cập nhật">
+</form>
+
         <table>
             <tr>
                 <th>STT</th>

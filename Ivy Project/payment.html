@@ -50,135 +50,92 @@
                 <li> <a class="fa fa-shopping-bag" href="cart.html" ></a></li>
             </div>
         </header>
-<!---------------------product------------------------------------->
-<section class="product">
+<!--------------------------------------------Payment----------------------------------->
+<section class="payment">
     <div class="container">
-        <div class="product-top row">
-            <p>Trang chủ</p> <span>&#10509;</span> <p>Nữ</p> <span>&#10509;</span> <p>Hàng nữ mới về</p><span> &#10509;</span><p> Giày thể thao</p>
-        </div>
-        <div class="product-content row">
-            <div class="product-content-left row">
-                <div class="product-content-left-big-img">
-                    <img src="giaodien/images/sp1.jpg" alt="sản phẩm">         
-                </div>
-                <div class="product-content-left-small-img">
-                    <img src="giaodien/images/sp1.jpg" alt="sản phẩm">
-                    <img src="giaodien/images/sp2.jpg" alt="sản phẩm">
-                    <img src="giaodien/images/sp3.jpg" alt="sản phẩm">
-                    <img src="giaodien/images/sp4.jpg" alt="sản phẩm">
-                </div>
+        <div class="payment-top-wrap"></div>
+        <div class="payment-top">
+            <div class="payment-top-delivery payment-top-item">
+                <i class="fas fa-shopping-cart"></i>
             </div>
-            <div class="product-content-right">
-                <div class="product-content-right-product-name">
-                    <h1>Balo thời trang</h1>
-                    <p>MSP: 001</p>
-                </div>
-                <div class="product-content-right-product-price">
-                    <p>790.000<sup>đ</sup></p>
-                </div>
-                <div class="product-content-right-product-color">
-                    <p><span style="font-weight:bold;">Màu sắc</span>: Xanh cổ vịt nhạt<span style="color:red">*</span></p>
-                    <div class="product-content-right-product-color-img">
-                        <img src="giaodien/images/red.jpg" alt="màu sắc">
+            <div class="payment-top-adress payment-top-item">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="payment-top-payment payment-top-item">
+                <i class="fas fa-money-check-alt"></i>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="payment-content row">
+            <div class="payment-content-left">
+                <div class="payment-content-left-method-delivery">
+                    <p style="font-weight:bold;">Phương thức giao hàng</p>
+                    <div class="payment-content-left-method-delivery-item">
+                        <input checked type="radio">
+                        <label for="">Giao hàng chuyển phát nhanh</label>
                     </div>
                 </div>
-                <div class="product-content-right-product-size">
-                    <p style="font-weight:bold;">Size: </p>
-                    <div class="size">
-                        <span>XS</span>
-                        <span>S</span>
-                        <span>M</span>
-                        <span>L</span>
-                        <span>XL</span>
-                    </div>
+            
+            <div class="payment-content-left-method-payment">
+                <p style="font-weight:bold;">Phương thức thanh toán</p>
+                <p>Mọi thông tin sẽ được bảo mật.</p>
+                <div class="payment-content-left-method-payment-item">
+                    <input name="method-payment" type="radio">
+                    <label for="">Thanh toán bằng thẻ tín dụng(OnePay)</label>
                 </div>
-                <div class="quantity">
-                    <p style="font-weight:bold;">Số lượng: </p>
-                    <input type="number" min="0" value="1">
+                <div class="payment-content-left-method-payment-item-img">
+                    <img src="giaodien/images/visa.jpg" alt="thanh toán" height="30px" width="70px">
                 </div>
-                <p style="color:red;">*Vui lòng chọn size*</p>
-                <div class="product-content-right-product-button">
-                    <button><i class="fas fa-shopping-cart"></i><p>Thêm vào giỏ hàng</p></button>
-                    <button><p>Tìm tại cửa hàng</p></button>
+                <div class="payment-content-left-method-payment-item">
+                    <input checked name="method-payment" type="radio">
+                    <label for="">Thanh toán bằng thẻ ATM(OnePay)</label>
                 </div>
-                <div class="product-content-right-product-icon">
-                    <div class="product-content-right-product-icon-item">
-                        <i class="fas fa-phone-alt"></i><p>Hotline</p>
-                    </div>
-                    <div class="product-content-right-product-icon-item">
-                        <i class="fas fa-comments"></i><p>Chat</p>
-                    </div>
-                    <div class="product-content-right-product-icon-item">
-                        <i class="fas fa-envelope"></i><p>Mail</p>
-                    </div>
+                <div class="payment-content-left-method-payment-item-img">
+                    <img src="giaodien/images/vcb.jpg" alt="thanh toán" height="100px" width="250px">
                 </div>
-                <div class="product-content-right-product-QR">
-                    <img src="giaodien/images/QR.jpg" alt="QR" width="100px" height="100px">
+                <div class="payment-content-left-method-payment-item">
+                    <input name="method-payment" type="radio">
+                    <label for="">Thanh toán bằng Momo</label>
                 </div>
-                <div class="product-content-right-bottom">
-                    <div class="product-content-right-bottom-top">
-                        &#8744;
-                    </div>
-                    <div class="product-content-right-bottom-content-big">
-                        <div class="product-content-right-bottom-content-title row">
-                            <div class="product-content-right-bottom-content-title-item chitiet">
-                                <p>Chi tiết</p>
-                            </div>
-                            <div class="product-content-right-bottom-content-title-item baoquan">
-                                <p>Bảo quản</p>
-                            </div>
-                            <div class="product-content-right-bottom-content-title-item">
-                                <p>Tham khảo size</p>
-                            </div>
-                        </div>
-                        <div class="product-content-right-bottom-content">
-                            <div class="product-content-right-bottom-content-chitiet">
-                                Balo tuyệt vời
-                            </div>
-                            <div class="product-content-right-bottom-content-baoquan">
-                                Đừng bỏ thùng rác là được
-                            </div>
-                        </div>
-    
+                <div class="payment-content-left-method-payment-item-img">
+                    <img src="giaodien/images/logo-momo.png" alt="thanh toán" height="40px" width="40px">
+                </div>
+                <div class="payment-content-left-method-payment-item">
+                    <input name="method-payment" type="radio">
+                    <label for="">Thanh toán khi nhận hàng</label>
+                </div>
+                <div class="payment-content-left-method-payment-item-img">
+                    <img src="giaodien/images/unnamed.png" alt="thanh toán" height="50px" width="50px">
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-------------------------------------------product-related----------------------------->
-<section class="product-related container">
-    <div class="product-related-title">
-        <p>SẢN PHẨM LIÊN QUAN</p>
-    </div>
-    <div class="row product-content">
-        <div class="product-related-item">
-            <img src="giaodien/images/sp2.jpg" alt="sản phẩm">
-            <h1>Balo thời trang</h1>
-            <p>790.000<sup>đ</sup></p>
+            <div class="payment-content-right">
+                <div class="payment-content-right-button">
+                    <input type="text" placeholder="Mã giảm giá/Quà tặng">
+                    <button><i class="fas fa-check"></i></button>
+                </div>
+                <div class="payment-content-right-button">
+                    <input type="text" placeholder="Mã cộng tác viên">
+                    <button><i class="fas fa-check"></i></button>
+                </div>
+                <div class="payment-content-right-mnv">
+                    <select name="" id="">
+                        <option value="">Chọn mã nhân viên thân thiết</option>
+                        <option value="">MT15</option>
+                        <option value="">MT16</option>
+                        <option value="">MT17</option>
+                        <option value="">MT18</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        <div class="product-related-item">
-            <img src="giaodien/images/sp3.jpg" alt="sản phẩm">
-            <h1>Balo thời trang</h1>
-            <p>790.000<sup>đ</sup></p>
-        </div>
-        <div class="product-related-item">
-            <img src="giaodien/images/sp4.jpg" alt="sản phẩm">
-            <h1>Balo thời trang</h1>
-            <p>790.000<sup>đ</sup></p>
-        </div>
-        <div class="product-related-item">
-            <img src="giaodien/images/sp5.jpg" alt="sản phẩm">
-            <h1>Balo thời trang</h1>
-            <p>790.000<sup>đ</sup></p>
-        </div>
-        <div class="product-related-item">
-            <img src="giaodien/images/sp6.jpg" alt="sản phẩm">
-            <h1>Balo thời trang</h1>
-            <p>790.000<sup>đ</sup></p>
+        <div class="payment-content-right-payment">
+            <button>ĐẶT HÀNG</button>
         </div>
     </div>
 </section>
-
 <!---------------------------- footer ----------------------------->
 <footer class="footer mt-5">
     <div class="container">

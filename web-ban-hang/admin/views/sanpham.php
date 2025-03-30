@@ -140,7 +140,7 @@
                         //echo '<td><img src="../../assets/img/' . $item['img'] . '" width="80px"></td>';
                         echo "<td>" . htmlspecialchars($item['gia']) . "</td>";
                         echo "<td>
-                                <a href='indexs.php?act=update_sp&id=" . (int) $item['id'] . "'>Sửa</a> | <a href='indexs.php?act=delete_sp&id=" . (int) $item['id'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa không?\")'>Xóa</a>
+                                <a href='indexs.php?act=chon_sp&id=" . (int) $item['id'] . "'>Sửa</a> | <a href='indexs.php?act=delete_sp&id=" . (int) $item['id'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa không?\")'>Xóa</a>
                                 
                               </td>";
                         echo "</tr>";

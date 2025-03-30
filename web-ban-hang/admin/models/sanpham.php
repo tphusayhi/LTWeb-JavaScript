@@ -1,5 +1,5 @@
 <?php 
-    function update_sp($id, $tendsp, $img, $gia, $iddm) {
+    function update_sp($id, $tensp, $img, $gia, $iddm) {
         $conn=connectdb();
         if($img==""){
 
@@ -9,6 +9,14 @@
 
 
         }
+        // $stmt->bindParam(':tensp', $tensp, PDO::PARAM_STR);
+        // $stmt->bindParam(':gia', $gia, PDO::PARAM_INT);
+        // $stmt->bindParam(':iddm', $iddm, PDO::PARAM_INT);
+        // $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        // if ($img != "") {
+        //     $stmt->bindParam(':img', $img, PDO::PARAM_STR);
+        // }
 
         // Prepare statement
         $stmt = $conn->prepare($sql);

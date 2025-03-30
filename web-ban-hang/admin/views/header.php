@@ -95,7 +95,7 @@
         <a href="#"><i class="fas fa-users"></i> Khách hàng</a>
         <a href="#"><i class="fas fa-shopping-cart"></i> Đơn hàng</a>
         <a href="#"><i class="fas fa-cogs"></i> Cài đặt</a>
-        <a href="#"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+        <a href="indexs.php?act=dangxuat"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
     </div>
     <div class="content">
         <div class="container">

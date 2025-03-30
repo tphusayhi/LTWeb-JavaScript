@@ -33,14 +33,14 @@
             gap: 10px;
             justify-content: center;
         }
-        select, input[type="text"], input[type="file"] {
+        select, input[type="text"], input[type="file"], input[type="number"] {
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 5px;
             width: 100%;
             transition: border-color 0.3s;
         }
-        input[type="text"]:focus {
+        input:focus {
             border-color: #007bff;
             outline: none;
         }
@@ -97,7 +97,10 @@
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.querySelector(".main").classList.add("fade-in");
+            let mainElement = document.querySelector(".main");
+            if (mainElement) {
+                mainElement.classList.add("fade-in");
+            }
         });
     </script>
 </head>
@@ -105,71 +108,34 @@
     <div class="main">
         <h2>Cập nhật sản phẩm</h2>
         <form action="indexs.php?act=update_sp" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="<?= isset($spct['id']) ? htmlspecialchars($spct['id']) : '' ?>">
-    
-    <!-- Chọn danh mục -->
-    <select name="iddm" required>
-        <option value="0">Chọn danh mục</option>
-        <?php
-            $iddmcur = isset($spct['iddm']) ? $spct['iddm'] : 0;
-            if (isset($dsdm)) {
-                foreach ($dsdm as $dm) {
-                    $selected = ($dm['id'] == $iddmcur) ? "selected" : "";
-                    echo "<option value='" . htmlspecialchars($dm['id']) . "' $selected>" . htmlspecialchars($dm['tendm']) . "</option>";
-                }
-            }
-        ?>
-    </select>
-
-    <!-- Nhập tên sản phẩm -->
-    <input type="text" name="tensp" placeholder="Nhập tên sản phẩm" value="<?= isset($spct['tensp']) ? htmlspecialchars($spct['tensp']) : '' ?>" required>
-
-    <!-- Hiển thị hình ảnh hiện tại -->
-    <?php if (!empty($spct['img'])): ?>
-        <img src="assets/img/<?= htmlspecialchars($spct['img']) ?>" width="100px">
-        <p>Ảnh hiện tại: <?= htmlspecialchars($spct['img']) ?></p>
-    <?php endif; ?>
-
-    <!-- Chọn ảnh mới -->
-    <input type="file" name="img">
-
-    <!-- Nhập giá sản phẩm -->
-    <input type="text" name="gia" placeholder="Nhập giá sản phẩm" value="<?= isset($spct['gia']) ? htmlspecialchars($spct['gia']) : '' ?>" required>
-
-    <input type="submit" name="capnhat" value="Cập nhật">
-</form>
-
-        <table>
-            <tr>
-                <th>STT</th>
-                <th>Tên sản phẩm</th>
-                <th>Hình ảnh</th>
-                <th>Giá</th>
-                <th>Thao tác</th>
-            </tr>
-            <?php
-                if(isset($kq) && count($kq) > 0){
-                    $i = 1;
-                    foreach ($kq as $item) {
-                        echo "<tr>";
-                        echo "<td>" . $i . "</td>";
-                        echo "<td>" . htmlspecialchars($item['tensp']) . "</td>";
-                        echo '<td><img src="assets/img/' . htmlspecialchars($item['img']) . '" width="80px"></td>';
-
-                        //echo '<td><img src="../../assets/img/' . $item['img'] . '" width="80px"></td>';
-                        echo "<td>" . htmlspecialchars($item['gia']) . "</td>";
-                        echo "<td>
-                                <a href='indexs.php?act=update_sp&id=" . (int) $item['id'] . "'>Sửa</a> | <a href='indexs.php?act=delete_sp&id=" . (int) $item['id'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa không?\")'>Xóa</a>
-                                
-                              </td>";
-                        echo "</tr>";
-                        $i++;
+            <input type="hidden" name="id" value="<?= isset($spct['id']) ? htmlspecialchars($spct['id']) : '' ?>">
+            
+            <select name="iddm" required>
+                <option value="0">Chọn danh mục</option>
+                <?php
+                    $iddmcur = isset($spct['iddm']) ? $spct['iddm'] : 0;
+                    if (!empty($dsdm)) {
+                        foreach ($dsdm as $dm) {
+                            $selected = ($dm['id'] == $iddmcur) ? "selected" : "";
+                            echo "<option value='" . htmlspecialchars($dm['id']) . "' $selected>" . htmlspecialchars($dm['tendm']) . "</option>";
+                        }
+                    } else {
+                        echo "<option value='0'>Không có danh mục</option>";
                     }
-                } else {
-                    echo "<tr><td colspan='5'>Không có sản phẩm nào</td></tr>";
-                }
-            ?>
-        </table>
+                ?>
+            </select>
+
+            <input type="text" name="tensp" placeholder="Nhập tên sản phẩm" value="<?= isset($spct['tensp']) ? htmlspecialchars($spct['tensp']) : '' ?>" required>
+
+            <?php if (!empty($spct['img']) && file_exists("assets/img/" . $spct['img'])): ?>
+                <img src="assets/img/<?= htmlspecialchars($spct['img']) ?>" width="100px">
+                <p>Ảnh hiện tại: <?= htmlspecialchars($spct['img']) ?></p>
+            <?php endif; ?>
+
+            <input type="file" name="img">
+            <input type="number" name="gia" placeholder="Nhập giá sản phẩm" value="<?= isset($spct['gia']) ? htmlspecialchars($spct['gia']) : '' ?>" required min="0">
+            <input type="submit" name="capnhat" value="Cập nhật">
+        </form>
     </div>
 </body>
 </html>

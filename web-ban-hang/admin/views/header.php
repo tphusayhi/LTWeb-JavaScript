@@ -97,7 +97,7 @@
         <a href="#"><i class="fas fa-cogs"></i> Cài đặt</a>
         <a href="indexs.php?act=dangxuat"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
     </div>
-    <div class="content">
+    <!-- <div class="content">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -120,6 +120,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </body>
 </html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Showcase</title>
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .product {
+      background: #fff;
+      padding: 15px;
+      text-align: center;
+      border-radius: 8px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .product img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product h3 {
+      margin: 10px 0 5px;
+      font-size: 1.2rem;
+    }
+
+    .product p {
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="section">
+    <h2 class="section-title">Top View</h2>
+    <div class="product-grid">
+        <div class="card">
+			<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class='bx bx-heart'></i></span>
+			<span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class='bx bx-cart-alt' ></i></span>
+			<div class="card__img">
+				<img src="Nike Zoom KD 12.png" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" alt="" />
+			</div>
+			<h2 class="card__title">Nike Zoom KD 12</h2>
+			<p class="card__price">$99</p>
+			<div class="card__size">
+				<h3>Size:</h3>
+				<span>6</span>
+				<span>7</span>
+				<span>8</span>
+				<span>9</span>
+			</div>
+			<div class="card__color">
+				<h3>Color:</h3>
+				<span class="green"></span>
+				<span class="red"></span>
+				<span class="black"></span>
+			</div>
+			<div class="card__action">
+				<button>Buy now</button>
+				<button>Add cart</button>
+			</div>
+		</div>
+        <div class="card">
+			<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class='bx bx-heart'></i></span>
+			<span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class='bx bx-cart-alt' ></i></span>
+			<div class="card__img">
+				<img src="Nike Zoom KD 12.png" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" alt="" />
+			</div>
+			<h2 class="card__title">Nike Zoom KD 12</h2>
+			<p class="card__price">$99</p>
+			<div class="card__size">
+				<h3>Size:</h3>
+				<span>6</span>
+				<span>7</span>
+				<span>8</span>
+				<span>9</span>
+			</div>
+			<div class="card__color">
+				<h3>Color:</h3>
+				<span class="green"></span>
+				<span class="red"></span>
+				<span class="black"></span>
+			</div>
+			<div class="card__action">
+				<button>Buy now</button>
+				<button>Add cart</button>
+			</div>
+		</div>
+        <div class="card">
+			<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class='bx bx-heart'></i></span>
+			<span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class='bx bx-cart-alt' ></i></span>
+			<div class="card__img">
+				<img src="Nike Zoom KD 12.png" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" alt="" />
+			</div>
+			<h2 class="card__title">Nike Zoom KD 12</h2>
+			<p class="card__price">$99</p>
+			<div class="card__size">
+				<h3>Size:</h3>
+				<span>6</span>
+				<span>7</span>
+				<span>8</span>
+				<span>9</span>
+			</div>
+			<div class="card__color">
+				<h3>Color:</h3>
+				<span class="green"></span>
+				<span class="red"></span>
+				<span class="black"></span>
+			</div>
+			<div class="card__action">
+				<button>Buy now</button>
+				<button>Add cart</button>
+			</div>
+		</div>
+        <div class="card">
+			<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class='bx bx-heart'></i></span>
+			<span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class='bx bx-cart-alt' ></i></span>
+			<div class="card__img">
+				<img src="Nike Zoom KD 12.png" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" alt="" />
+			</div>
+			<h2 class="card__title">Nike Zoom KD 12</h2>
+			<p class="card__price">$99</p>
+			<div class="card__size">
+				<h3>Size:</h3>
+				<span>6</span>
+				<span>7</span>
+				<span>8</span>
+				<span>9</span>
+			</div>
+			<div class="card__color">
+				<h3>Color:</h3>
+				<span class="green"></span>
+				<span class="red"></span>
+				<span class="black"></span>
+			</div>
+			<div class="card__action">
+				<button>Buy now</button>
+				<button>Add cart</button>
+			</div>
+		</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Sản phẩm mới</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="https://via.placeholder.com/200" alt="New Product 1">
+        <h3>New Product 1</h3>
+        <p>Just released</p>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/200" alt="New Product 2">
+        <h3>New Product 2</h3>
+        <p>Limited stock</p>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/200" alt="New Product 3">
+        <h3>New Product 3</h3>
+        <p>Exclusive offer</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

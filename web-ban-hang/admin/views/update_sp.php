@@ -134,6 +134,10 @@
 
             <input type="file" name="img">
             <input type="number" name="gia" placeholder="Nhập giá sản phẩm" value="<?= isset($spct['gia']) ? htmlspecialchars($spct['gia']) : '' ?>" required min="0">
+            <input type="number" name="view" placeholder="Nhập lượt" value="<?= isset($spct['view']) ? htmlspecialchars($spct['view']) : '' ?>" required min="0">
+            <input type="text" name="detail" placeholder="Nhập thông tin sản phẩm" value="<?= isset($spct['detail']) ? htmlspecialchars($spct['detail']) : '' ?>" required>
+
+
             <input type="submit" name="capnhat" value="Cập nhật">
         </form>
     </div>

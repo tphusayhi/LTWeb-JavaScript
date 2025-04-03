@@ -4,12 +4,16 @@ require_once "models/database.php"; // Nạp file kết nối CSDL
 $conn = connectdb(); // Kết nối CSDL
 $message = ""; // Biến để lưu thông báo lỗi hoặc thành công
 
-if (isset($_POST['btn-register'])) {
+if (!$conn) {
+    die("Lỗi kết nối CSDL.");
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn-register'])) {
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
     $confirmPassword = trim($_POST['confirmPassword']);
-    $role = 0; // Mặc định là 0 (Người dùng)
+    $role = 1; // Mặc định là 0 (Người dùng)
 
     if (!empty($username) && !empty($email) && !empty($password) && !empty($confirmPassword)) {
         if ($password !== $confirmPassword) {
@@ -19,39 +23,33 @@ if (isset($_POST['btn-register'])) {
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $message = "Email không hợp lệ.";
         } else {
-            // tạo tài khoản trực tiếp cho admin username: admin, pass: admin123
-            // $admin_username = "admin";
-            // $admin_email = "admin@example.com";
-            // $admin_password = password_hash("admin123", PASSWORD_DEFAULT);
-            // $admin_role = 1;
-            
-            // $sql = "INSERT INTO users (username, email, password, role) 
-            //         VALUES (:username, :email, :password, :role) 
-            //         ON DUPLICATE KEY UPDATE username=username"; 
-            
-            // $stmt = $conn->prepare($sql);
-            // $stmt->bindParam(":username", $admin_username, PDO::PARAM_STR);
-            // $stmt->bindParam(":email", $admin_email, PDO::PARAM_STR);
-            // $stmt->bindParam(":password", $admin_password, PDO::PARAM_STR);
-            // $stmt->bindParam(":role", $admin_role, PDO::PARAM_INT);
-            // $stmt->execute();
-            
-             
-
             try {
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                $sql = "INSERT INTO users (username, email, password, role) VALUES (:username, :email, :password, :role)";
-                $stmt = $conn->prepare($sql);
+                // Kiểm tra xem tên đăng nhập hoặc email đã tồn tại chưa
+                $stmt = $conn->prepare("SELECT id FROM users WHERE username = :username OR email = :email");
                 $stmt->bindParam(":username", $username, PDO::PARAM_STR);
                 $stmt->bindParam(":email", $email, PDO::PARAM_STR);
-                $stmt->bindParam(":password", $hashed_password, PDO::PARAM_STR);
-                $stmt->bindParam(":role", $role, PDO::PARAM_INT);
-                
-                if ($stmt->execute()) {
-                    header("Location: login.php"); 
-                    exit;
+                $stmt->execute();
+
+                if ($stmt->rowCount() > 0) {
+                    $message = "Tên đăng nhập hoặc email đã tồn tại.";
                 } else {
-                    $message = "Lỗi: Không thể đăng ký.";
+                    // Mã hóa mật khẩu trước khi lưu
+                    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+                    // Chèn dữ liệu vào cơ sở dữ liệu
+                    $sql = "INSERT INTO users (username, email, password, role) VALUES (:username, :email, :password, :role)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+                    $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+                    $stmt->bindParam(":password", $hashed_password, PDO::PARAM_STR);
+                    $stmt->bindParam(":role", $role, PDO::PARAM_INT);
+                    
+                    if ($stmt->execute()) {
+                        header("Location: login.php?success=1"); 
+                        exit;
+                    } else {
+                        $message = "Lỗi: Không thể đăng ký.";
+                    }
                 }
             } catch (PDOException $e) {
                 $message = "Lỗi: " . $e->getMessage();
@@ -95,6 +93,7 @@ if (isset($_POST['btn-register'])) {
                     </div>
                     <input type="submit" class="btn btn-primary w-100" name="btn-register" value="Đăng Ký">
                 </form>
+                <p class="text-center mt-3">Đã có tài khoản? <a href="login.php">Đăng nhập</a></p>
             </div>
         </div>
     </div>

@@ -24,7 +24,7 @@
                     <div class="col-md-4 mb-4">
                         <h5 class="text-uppercase mb-4">Về Chúng Tôi</h5>
                         <p>Jolliboi - Chuyên bán giày thời trang chính hãng, giá tốt.</p>
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="trangchu.php">
                         <img src="assets/images/logo.png" alt="Logo" style="width: 100px;">
                         </a>
                     </div>
@@ -82,7 +82,7 @@
             
             <div class="text-center p-3" align="center" style="background-color: rgba(32, 41, 143, 0.2);">
                 © 2025 Copyright:
-                <a class="text-white" href="index.html"><u>Jolliboi.com.vn</u></a>
+                <a class="text-white" href="trangchu.php"><u>Jolliboi.com.vn</u></a>
             </div>
         </footer>
         <script src="" async defer></script>

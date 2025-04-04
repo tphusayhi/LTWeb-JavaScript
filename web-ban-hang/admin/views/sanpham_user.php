@@ -90,7 +90,8 @@
                         <ul>
 						<li class="cartegory-left-li"><a href=""><label class="custom-checkbox">
 											<input type="checkbox">
-											<span class="checkmark" href="trangchu.php?act=sanpham_user"></span>Tất cả sản phẩm
+											<span class="checkmark"><a href="trangchu.php?act=sanpham_user">
+                                            </span>Tất cả sản phẩm
 										</label></a></li>
 							<?php
 							     foreach($dsdm as $dm){
@@ -143,6 +144,7 @@
 						<?php
 							foreach($dssp_dm as $item){
 								echo '<div class="card">
+                            <form action="trangchu.php?act="
 								<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-heart\"></i></span>
 								<span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-cart-alt\"></i></span>
 								<div class="card__img">
@@ -163,11 +165,15 @@
 									<span class="red"></span>
 									<span class="black"></span>
 								</div>
-								<div class="card__action">
-									<button>Buy now</button>
-									<button>Add cart</button>
-								</div>
+                                <div class="card__action">
+            <a href="trangchu.php?act=sanpham_ct&id= ' . $item['id'] . '">
+                <button>Buy now</button>
+            </a>
+            <button>Add cart</button>
+        </div>
+
 							</div>';
+
 							}
 
 

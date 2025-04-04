@@ -34,7 +34,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 1)) {
             
                 include "views/sanpham_user.php";
                 break;
-            case 'sanphame_ct':
+            case 'sanpham_ct':
                 $dsdm = getall_danhmuc();
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $spct = getone_sp($_GET['id']);

@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="css/style.css">
-        <script type="text/javascript" src="js/script.js" defer></script>
+        <link rel="stylesheet" href="assets/css/style.css">
+        <script type="text/javascript" src="assets/js/script.js" defer></script>
         <title>Jolliboi - Bán giày chính hãng</title>
     </head>
     <body>
@@ -20,29 +20,20 @@
         <div class="product-content row">
             <div class="product-content-left row">
                 <div class="product-content-left-big-img">
-                    <img src="giaodien/images/sp1.jpg" alt="sản phẩm">         
-                </div>
-                <div class="product-content-left-small-img">
-                    <img src="giaodien/images/sp1.jpg" alt="sản phẩm">
-                    <img src="giaodien/images/sp2.jpg" alt="sản phẩm">
-                    <img src="giaodien/images/sp3.jpg" alt="sản phẩm">
-                    <img src="giaodien/images/sp4.jpg" alt="sản phẩm">
+                <?php if (!empty($spct['img']) && file_exists("assets/img/" . $spct['img'])): ?>
+                <img src="assets/img/<?= htmlspecialchars($spct['img']) ?>"  >
+            <?php endif; ?>         
                 </div>
             </div>
             <div class="product-content-right">
                 <div class="product-content-right-product-name">
-                    <h1>Balo thời trang</h1>
-                    <p>MSP: 001</p>
+                    <h1 ><?= isset($spct['tensp']) ? htmlspecialchars($spct['tensp']) : '' ?>"</h1>
+                    
                 </div>
                 <div class="product-content-right-product-price">
-                    <p>790.000<sup>đ</sup></p>
+                    <p><?= isset($spct['gia']) ? htmlspecialchars($spct['gia']) : '' ?> $</p>
                 </div>
-                <div class="product-content-right-product-color">
-                    <p><span style="font-weight:bold;">Màu sắc</span>: Xanh cổ vịt nhạt<span style="color:red">*</span></p>
-                    <div class="product-content-right-product-color-img">
-                        <img src="giaodien/images/red.jpg" alt="màu sắc">
-                    </div>
-                </div>
+                
                 <div class="product-content-right-product-size">
                     <p style="font-weight:bold;">Size: </p>
                     <div class="size">
@@ -57,7 +48,6 @@
                     <p style="font-weight:bold;">Số lượng: </p>
                     <input type="number" min="0" value="1">
                 </div>
-                <p style="color:red;">*Vui lòng chọn size*</p>
                 <div class="product-content-right-product-button">
                     <button><i class="fas fa-shopping-cart"></i><p>Thêm vào giỏ hàng</p></button>
                     <button><p>Tìm tại cửa hàng</p></button>
@@ -73,9 +63,7 @@
                         <i class="fas fa-envelope"></i><p>Mail</p>
                     </div>
                 </div>
-                <div class="product-content-right-product-QR">
-                    <img src="giaodien/images/QR.jpg" alt="QR" width="100px" height="100px">
-                </div>
+               
                 <div class="product-content-right-bottom">
                     <div class="product-content-right-bottom-top">
                         &#8744;
@@ -84,23 +72,15 @@
                         <div class="product-content-right-bottom-content-title row">
                             <div class="product-content-right-bottom-content-title-item chitiet">
                                 <p>Chi tiết</p>
-                            </div>
-                            <div class="product-content-right-bottom-content-title-item baoquan">
-                                <p>Bảo quản</p>
-                            </div>
-                            <div class="product-content-right-bottom-content-title-item">
-                                <p>Tham khảo size</p>
-                            </div>
-                        </div>
-                        <div class="product-content-right-bottom-content">
+                                <div class="product-content-right-bottom-content">
                             <div class="product-content-right-bottom-content-chitiet">
-                                Balo tuyệt vời
+                            <?= isset($spct['detail']) ? htmlspecialchars($spct['detail']) : '' ?>
                             </div>
-                            <div class="product-content-right-bottom-content-baoquan">
-                                Đừng bỏ thùng rác là được
                             </div>
+                           
+                            
+                            
                         </div>
-    
                 </div>
             </div>
         </div>

@@ -1,4 +1,32 @@
-<?php
+<?php   
+        function getone_sp($id) {
+            $conn = connectdb();
+            try {
+                $stmt = $conn->prepare("SELECT * FROM tbl_sanpham WHERE id = :id");
+                $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+                $stmt->execute();
+                
+                // Cập nhật lượt xem sản phẩm
+                $updateView = $conn->prepare("UPDATE tbl_sanpham SET view = view + 1 WHERE id = :id");
+                $updateView->bindParam(":id", $id, PDO::PARAM_INT);
+                $updateView->execute();
+                
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo "Lỗi khi lấy sản phẩm: " . $e->getMessage();
+                return false;
+            }
+            // try {
+            //     $stmt = $conn->prepare("SELECT * FROM tbl_sanpham WHERE id = :id");
+            //     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+            //     $stmt->execute();
+            //     return $stmt->fetch(PDO::FETCH_ASSOC); // Lấy 1 dòng duy nhất
+            // } catch (PDOException $e) {
+            //     echo "Lỗi khi lấy sản phẩm: " . $e->getMessage();
+            //     return false;
+            // }
+        }
+        
         function getall_sanpham($iddm = 0, $view = 1){
             $conn = connectdb();
             $sql = "SELECT * FROM tbl_sanpham WHERE 1";

@@ -19,7 +19,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <footer class="footer mt-5" >
-            <div class="container" style="height: 300px; width:100%;" >
+            <div class="container" style="height: 100%; width:100%;" >
                 <div class="row">
                     <div class="col-md-4 mb-4">
                         <h5 class="text-uppercase mb-4">Về Chúng Tôi</h5>

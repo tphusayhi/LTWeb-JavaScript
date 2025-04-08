@@ -18,11 +18,7 @@
       box-sizing: border-box;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      padding: 20px;
-    }
+  
 
     .section {
       max-width: 1200px;
@@ -75,47 +71,6 @@
     }
   </style>
     <body>
-        <header>
-            <div class="logo">
-                <a href="home.php">
-                <img src="assets/images/logo.png" alt="logo" height="70px" width="70px"></a>
-            </div>
-            <div class="menu">
-                <li><a href="cartegory.html">DANH MỤC SẢN PHẨM</a>
-                    <ul class="sub-menu">
-                        <li><a href="">Hàng mới</a></li>
-                        <li><a href="">Tết 2025</a></li>
-                        <li><a href="">Nam</a>
-                            <ul>
-                                <li><a href="">Giày thể thao</a></li>
-                                <li><a href="">Giày thời trang</a></li>
-                                <li><a href="">Phụ kiện khác</a></li>
-                                
-                            </ul>
-                        </li>
-                        <li><a href="">Nữ</a>
-                            <ul>    
-                                <li><a href="">Giày thể thao</a></li>
-                                <li><a href="">Giày thời trang</a></li>
-                                <li><a href="">Phụ kiện khác</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="">Giày trẻ em</a></li>
-                    </ul>
-                </li>
-                <li><a href="">ƯU ĐÃI</a></li>
-                <li><a href="">SỬA CHỮA</a></li>
-                <li><a href="trangchu.php?act=sanpham_user">BỘ SƯU TẬP</a></li>
-                <li><a href="">THÔNG TIN</a></li>
-                <li><a href="trangchu.php?act=dangxuat">Đăng Xuất</a></li>
-            </div>
-            <div class="oders">
-                <li><input placeholder="Tìm kiếm" type="text"> <i class="fas fa-search"></i></li>
-                <li> <a class="fa fa-paw" href="" ></a></li>
-                <li> <a class="fa fa-user" href="" ></a></li>
-                <li> <a class="fa fa-shopping-bag" href="cart.html" ></a></li>
-            </div>
-        </header>
 <!-- slider -->
         <section id="Slider">
         <div class="aspect-ratio-169">

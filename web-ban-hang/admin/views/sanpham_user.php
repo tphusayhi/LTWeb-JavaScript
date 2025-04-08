@@ -73,17 +73,17 @@
 }
 
 
+
+
+
+
+
 		</style>
     <body>
        
 
         <!--category-->
         <section class="cartegory">
-            <div class="container">
-                <div class="cartegory-top row">
-                    <p>Trang chủ</p> <span>&#10509;</span> <p>Nữ</p> <span>&#10509;</span> <p>Hàng nữ mới về</p>
-                </div>
-            </div>
             <div class="contaimer">
                 <div class="row">
                     <div class="cartegory-left">
@@ -142,39 +142,97 @@
                         <div class="cartegory-right-content row">
 						
 						<?php
-							foreach($dssp_dm as $item){
-								echo '<div class="card">
-                            <form action="trangchu.php?act="
-								<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-heart\"></i></span>
-								<span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-cart-alt\"></i></span>
-								<div class="card__img">
-									<img src="assets/img/'. htmlspecialchars($item['img']) . '" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" alt="" />
-								</div>
-								<h2 class="card__title">'. htmlspecialchars($item['tensp']) . '</h2>
-								<p class="card__price">'.htmlspecialchars($item['gia']) . ' $</p>
-								<div class="card__size">
-									<h3>Size:</h3>
-									<span>6</span>
-									<span>7</span>
-									<span>8</span>
-									<span>9</span>
-								</div>
-								<div class="card__color">
-									<h3>Color:</h3>
-									<span class="green"></span>
-									<span class="red"></span>
-									<span class="black"></span>
-								</div>
-                                <div class="card__action">
-            <a href="trangchu.php?act=sanpham_ct&id= ' . $item['id'] . '">
-                <button>Buy now</button>
-            </a>
-            <button>Add cart</button>
-        </div>
+							// foreach($dssp_dm as $item){
+							// 	echo '<div class="card">
+                            // <form action="trangchu.php?act=addcart" method="post">
+							// 	<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-heart\"></i></span>
+							// 	<span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-cart-alt\"></i></span>
+							// 	<div class="card__img">
+							// 		<img src="assets/img/'. htmlspecialchars($item['img']) . '" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" alt="" />
+							// 	</div>
+							// 	<h2 class="card__title">'. htmlspecialchars($item['tensp']) . '</h2>
+							// 	<p class="card__price">'.htmlspecialchars($item['gia']) . ' $</p>
+							// 	<div class="card__size">
+							// 		<h3>Size:</h3>
+							// 		<span>6</span>
+							// 		<span>7</span>
+							// 		<span>8</span>
+							// 		<span>9</span>
+							// 	</div>
+							// 	<div class="card__color">
+							// 		<h3>Color:</h3>
+							// 		<span class="green"></span>
+							// 		<span class="red"></span>
+							// 		<span class="black"></span>
+							// 	</div>
+                            //     <div class="card__action">
+             
+                            //     <input type"submit" value="view" href="trangchu.php?act=sanpham_ct&id= ' . $item['id'] . '">
+                
+                                
+                            //     <input type="submit" value="Mua hàng" name="addtocart" >
+                            //     </div>
+                            //     <input type="hidden" value="'. htmlspecialchars($item['id']) . '" name="id">
+                            //     <input type="hidden" value="'. htmlspecialchars($item['tensp']) . '" name="tensp">
+                            //     <input type="hidden" value="'. htmlspecialchars($item['img']) . '" name="img">
+                            //     <input type="hidden" value="'. htmlspecialchars($item['gia']) . '" name="gia">
+                            // </form>
+							// </div>';
 
-							</div>';
+							// }
+                            
+                        foreach($dssp_dm as $item) {
+                            // Giải mã JSON để lấy các size
+                            $sizes = json_decode($item['sizes'], true);
+                            
+                            echo '<div class="card">
+                                <form action="trangchu.php?act=addcart" method="post">
+                                    <span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class="bx bx-heart"></i></span>
+                                    <span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class="bx bx-cart-alt"></i></span>
+                                    <a href="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
+                                    <div class="card__img">
+                                        <img src="assets/img/'. htmlspecialchars($item['img']) . '" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+                                    </div>
+                                    </a>
+                                    <a href="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
+                                    <h2 class="card__title">'. htmlspecialchars($item['tensp']) . '</h2></a>
+                                    <p class="card__price">'.htmlspecialchars($item['gia']) . ' $</p>
+                                    <div class="card__size">
+                                    
+                                        <h3>Size:</h3>';
 
-							}
+                            // Kiểm tra và hiển thị size
+                                        if (is_array($sizes) && count($sizes) > 0) {
+                                            // Hiển thị các size dưới dạng chuỗi cách nhau dấu phẩy
+                                            echo "<p>" . implode('|| ', array_map('htmlspecialchars', $sizes)) . "</p>";
+                                        } else {
+                                            // Nếu không có size
+                                            echo "<p>Không có size</p>";
+                                        }
+                                    
+                        
+                            
+                            
+                            
+                            
+
+                            echo '  </div>
+                                    
+                                    <div class="card__action">
+                                        <input type="submit" value="View" formaction="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
+                                        <input type="submit" value="Mua hàng" name="addtocart" >
+                                    </div>
+                                    <input type="hidden" value="'. htmlspecialchars($item['id']) . '" name="id">
+                                    <input type="hidden" value="'. htmlspecialchars($item['tensp']) . '" name="tensp">
+                                    <input type="hidden" value="'. htmlspecialchars($item['img']) . '" name="img">
+                                    <input type="hidden" value="'. htmlspecialchars($item['gia']) . '" name="gia">
+                                </form>
+                            </div>';
+                        }
+
+
+
+
 
 
 						?>

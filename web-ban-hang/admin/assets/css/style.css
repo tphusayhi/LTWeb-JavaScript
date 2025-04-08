@@ -155,7 +155,7 @@ header:hover {
 .footer {
   background-color: #3f51b5;
   color: white;
-  padding-top: 40px;
+  padding-top: 0px;
 }
 
 .footer h5 {
@@ -395,14 +395,7 @@ header:hover {
     font-size: 12px;
     cursor: pointer;
 }
-.quantity {
-    display: flex;
-    margin-bottom: 20px;
-}
-.quantity input {
-    width: 35px;
-    padding-left: 3px;
-}
+
 .product-content-right-product-button button {
     width: 150px;
     height: 40px;
@@ -672,6 +665,10 @@ header:hover {
     font-size: 14px;
     color: #333;
 }
+
+
+
+
 /*-------------------------------Delivery----------------------------*/
 .delivery {
     padding: 100px 50px;

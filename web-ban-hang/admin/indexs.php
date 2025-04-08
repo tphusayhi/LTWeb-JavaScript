@@ -9,7 +9,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
     include "models/sanpham.php";
     $conn = connectdb();
 
-    include "views/header.php";
+    include "views/admin_home.php";
 
     if (isset($_GET['act'])) {
         switch ($_GET['act']) {
@@ -89,6 +89,8 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
                     $view = $_POST['view'];
                     $detail = $_POST['detail'];
                     $img = "";  
+                    $sizes = isset($_POST['sizes']) ? json_encode($_POST['sizes']) : json_encode([]);
+
                 
                     if (isset($_FILES['img']) && $_FILES['img']['error'] == 0) {
                         $target_dir = "assets/img/";
@@ -119,7 +121,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
                 
                     // ✅ Gọi hàm thêm sản phẩm vào CSDL
                     if ($tensp != "" && $gia != "" && $iddm != "") {
-                        insert_sanpham($iddm, $tensp, $img, $gia, $view, $detail);  
+                        insert_sanpham($iddm, $tensp, $img, $gia, $view, $detail, $sizes);  
                         echo "<script>alert('Thêm sản phẩm thành công!');</script>";
                         header("Location: indexs.php?act=sanpham");
                         exit();
@@ -161,6 +163,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
                             $view = $_POST['view'];
                             $detail = $_POST['detail'];
                             $id = $_POST['id'];
+                            $sizes = isset($_POST['sizes']) ? json_encode($_POST['sizes']) : json_encode([]);
                     
                             if ($_FILES["img"]["name"] != "") {
                                 $target_dir = "assets/img/";
@@ -189,7 +192,8 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
                                 $img = ""; // Nếu không có file mới, giữ nguyên ảnh cũ
                             }
                     
-                            update_sp($id, $tensp, $img, $gia, $view, $detail, $iddm);
+                            update_sp($id, $tensp, $img, $gia, $view, $detail, $iddm, $sizes);
+                            echo "<script>alert('Cập nhật sản phẩm thành công!');</script>";
                         } else {
                             $spct = null;
                         }

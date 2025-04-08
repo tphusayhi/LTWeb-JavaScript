@@ -135,8 +135,27 @@
             <input type="file" name="img">
             <input type="number" name="gia" placeholder="Nhập giá sản phẩm" value="<?= isset($spct['gia']) ? htmlspecialchars($spct['gia']) : '' ?>" required min="0">
             <input type="number" name="view" placeholder="Nhập lượt" value="<?= isset($spct['view']) ? htmlspecialchars($spct['view']) : '' ?>" required min="0">
+            
             <input type="text" name="detail" placeholder="Nhập thông tin sản phẩm" value="<?= isset($spct['detail']) ? htmlspecialchars($spct['detail']) : '' ?>" required>
 
+            <h4>Cập nhật size sản phẩm:</h4>
+            <div>
+                <?php
+                    // Lấy danh sách các size đã lưu (giả sử chúng được lưu dưới dạng JSON trong cơ sở dữ liệu)
+                    $sizes = isset($spct['sizes']) ? json_decode($spct['sizes'], true) : [];
+                ?>
+                <label><input type="checkbox" name="sizes[]" value="EU 35.5" <?= in_array("EU 35.5", $sizes) ? "checked" : "" ?>> EU 35.5</label><br>
+                <label><input type="checkbox" name="sizes[]" value="EU 36" <?= in_array("EU 36", $sizes) ? "checked" : "" ?>> EU 36</label><br>
+                <label><input type="checkbox" name="sizes[]" value="EU 36.5" <?= in_array("EU 36.5", $sizes) ? "checked" : "" ?>> EU 36.5</label><br>
+                <label><input type="checkbox" name="sizes[]" value="EU 37.5" <?= in_array("EU 37.5", $sizes) ? "checked" : "" ?>> EU 37.5</label><br>
+                <label><input type="checkbox" name="sizes[]" value="EU 38" <?= in_array("EU 38", $sizes) ? "checked" : "" ?>> EU 38</label><br>
+                <label><input type="checkbox" name="sizes[]" value="EU 38.5" <?= in_array("EU 38.5", $sizes) ? "checked" : "" ?>> EU 38.5</label><br>
+                <label><input type="checkbox" name="sizes[]" value="EU 39" <?= in_array("EU 39", $sizes) ? "checked" : "" ?>> EU 39</label><br>
+                <label><input type="checkbox" name="sizes[]" value="EU 40" <?= in_array("EU 40", $sizes) ? "checked" : "" ?>> EU 40</label><br>
+                <label><input type="checkbox" name="sizes[]" value="EU 40.5" <?= in_array("EU 40.5", $sizes) ? "checked" : "" ?>> EU 40.5</label><br>
+                <label><input type="checkbox" name="sizes[]" value="EU 41" <?= in_array("EU 41", $sizes) ? "checked" : "" ?>> EU 41</label><br>
+                <label><input type="checkbox" name="sizes[]" value="EU 42" <?= in_array("EU 42", $sizes) ? "checked" : "" ?>> EU 42</label><br>
+            </div>
 
             <input type="submit" name="capnhat" value="Cập nhật">
         </form>

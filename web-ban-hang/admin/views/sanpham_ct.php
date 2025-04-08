@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,10 +10,91 @@
         <script type="text/javascript" src="assets/js/script.js" defer></script>
         <title>Jolliboi - Bán giày chính hãng</title>
     </head>
+    <style>
+        .size {
+    display: flex;
+    flex-wrap: wrap; /* Dùng để dòng tiếp theo sẽ bắt đầu từ đầu */
+    gap: 10px; /* Khoảng cách giữa các ô */
+}
+
+.size-box {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.size-box:hover {
+    background-color: #ddd;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.quantity-control input[type="number"] {
+    width: 60px;
+    text-align: center;
+    border: none;
+    font-size: 16px;
+    padding: 6px;
+    outline: none;
+}
+
+.quantity-control button {
+    background-color: #eee;
+    border: none;
+    padding: 6px 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.quantity-control button:hover {
+    background-color: #ccc;
+}
+
+/* Chrome, Safari, Edge */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+
+
+        </style>
     <body>
         
 <!---------------------product------------------------------------->
 <section class="product">
+<form action="trangchu.php?act=addcart" method="post">
+        <input type="hidden" name="id" value="<?= isset($spct['id']) ? htmlspecialchars($spct['id']) : '' ?>">
+        <input type="hidden" name="tensp" value="<?= isset($spct['tensp']) ? htmlspecialchars($spct['tensp']) : '' ?>">
+        <input type="hidden" name="img" value="<?= isset($spct['img']) ? htmlspecialchars($spct['img']) : '' ?>">
+        <input type="hidden" name="gia" value="<?= isset($spct['gia']) ? htmlspecialchars($spct['gia']) : '' ?>">
+        <input type="hidden" name="sizes" value="<?= isset($spct['sizes']) ? htmlspecialchars($spct['sizes']) : '' ?>">
     <div class="container">
         <div class="product-top row">
             <p>Trang chủ</p> <span>&#10509;</span> <p>Nữ</p> <span>&#10509;</span> <p>Hàng nữ mới về</p><span> &#10509;</span><p> Giày thể thao</p>
@@ -27,7 +109,7 @@
             </div>
             <div class="product-content-right">
                 <div class="product-content-right-product-name">
-                    <h1 ><?= isset($spct['tensp']) ? htmlspecialchars($spct['tensp']) : '' ?>"</h1>
+                    <h1 ><?= isset($spct['tensp']) ? htmlspecialchars($spct['tensp']) : '' ?></h1>
                     
                 </div>
                 <div class="product-content-right-product-price">
@@ -35,23 +117,35 @@
                 </div>
                 
                 <div class="product-content-right-product-size">
+                <div class="product-content-right-product-size">
                     <p style="font-weight:bold;">Size: </p>
-                    <div class="size">
-                        <span>XS</span>
-                        <span>S</span>
-                        <span>M</span>
-                        <span>L</span>
-                        <span>XL</span>
+                        <div class="size">
+                            <?php
+                                $sizes = json_decode($spct['sizes'], true);
+                                if (is_array($sizes) && count($sizes) > 0) {
+                                    foreach ($sizes as $size) {
+                                        echo '<label class="size-box">';
+                                        echo '<input type="radio" name="size" value="' . htmlspecialchars($size) . '" required> ' . htmlspecialchars($size);
+                                        echo '</label>';
+                                    }
+                                } else {
+                                    echo "<p>Không có size</p>";
+                                }
+                            ?>
+                        </div>
                     </div>
-                </div>
-                <div class="quantity">
-                    <p style="font-weight:bold;">Số lượng: </p>
-                    <input type="number" min="0" value="1">
-                </div>
-                <div class="product-content-right-product-button">
-                    <button><i class="fas fa-shopping-cart"></i><p>Thêm vào giỏ hàng</p></button>
-                    <button><p>Tìm tại cửa hàng</p></button>
-                </div>
+                    <br><div class="quantity">
+                        <p style="font-weight:bold;">Số lượng: </p>
+                        <div class="quantity-control">
+                            <button type="button" class="decrease">-</button>
+                            <input type="number" name="soluong" min="1" value="1" required>
+                            <button type="button" class="increase">+</button>
+                        </div>
+                    </div>
+
+            <i class="fas fa-shopping-cart"></i>
+            <p><input type="submit" value="Mua hàng" name="addtocart"></p>
+    
                 <div class="product-content-right-product-icon">
                     <div class="product-content-right-product-icon-item">
                         <i class="fas fa-phone-alt"></i><p>Hotline</p>
@@ -85,6 +179,7 @@
             </div>
         </div>
     </div>
+</form>
 </section>
 <!-------------------------------------------product-related----------------------------->
 <section class="product-related container">
@@ -119,8 +214,6 @@
         </div>
     </div>
 </section>
-
-<!---------------------------- footer ----------------------------->
 
 </body>
 <script>
@@ -173,4 +266,24 @@ setInterval(imgSlide,5000)
 
 
 </script>
-</html>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const decreaseBtn = document.querySelector(".decrease");
+    const increaseBtn = document.querySelector(".increase");
+    const quantityInput = document.querySelector("input[name='soluong']");
+
+    decreaseBtn.addEventListener("click", function () {
+        let current = parseInt(quantityInput.value);
+        if (current > 1) {
+            quantityInput.value = current - 1;
+        }
+    });
+
+    increaseBtn.addEventListener("click", function () {
+        let current = parseInt(quantityInput.value);
+        quantityInput.value = current + 1;
+    });
+});
+</script>
+
+</html>  

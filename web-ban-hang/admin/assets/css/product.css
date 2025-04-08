@@ -129,7 +129,7 @@
 	background-color: black;
 }
 
-.card__action button {
+.card__action input {
 	padding: 10px 20px;
 	outline: none;
 	border: none;

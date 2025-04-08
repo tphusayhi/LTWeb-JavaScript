@@ -1,12 +1,12 @@
 
 <?php 
-    function update_sp($id, $tensp, $img, $gia, $view, $detail, $iddm) {
+    function update_sp($id, $tensp, $img, $gia, $view, $detail, $iddm, $sizes) {
         $conn=connectdb();
         if($img==""){
 
-        $sql = "UPDATE tbl_sanpham SET tensp='".$tensp."', gia='".$gia."', view='".$view."', detail='".$detail."', iddm='".$iddm."' WHERE id=".$id;
+        $sql = "UPDATE tbl_sanpham SET tensp='".$tensp."', gia='".$gia."', view='".$view."', detail='".$detail."', sizes='".$sizes."', iddm='".$iddm."' WHERE id=".$id;
         }else{
-            $sql = "UPDATE tbl_sanpham SET tensp='".$tensp."', gia='".$gia."', view='".$view."', detail='".$detail."', iddm='".$iddm."', img='".$img."' WHERE id=".$id;
+            $sql = "UPDATE tbl_sanpham SET tensp='".$tensp."', gia='".$gia."', view='".$view."', detail='".$detail."', sizes='".$sizes."', iddm='".$iddm."', img='".$img."' WHERE id=".$id;
 
 
         }
@@ -79,14 +79,14 @@
     
 
     
-    function insert_sanpham($iddm, $tensp, $img, $gia, $view, $detail) {
+    function insert_sanpham($iddm, $tensp, $img, $gia, $view, $detail, $sizes) {
         try {
             $conn = connectdb();
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
             // Nếu không có ảnh, chèn NULL
-            $sql = "INSERT INTO tbl_sanpham (iddm, tensp, img, gia, view, detail) 
-                    VALUES (:iddm, :tensp, :img, :gia, 0, :detail)";
+            $sql = "INSERT INTO tbl_sanpham (iddm, tensp, img, gia, view, detail, sizes) 
+                    VALUES (:iddm, :tensp, :img, :gia, 0, :detail, :sizes)";
                     
             $stmt = $conn->prepare($sql);
     
@@ -95,6 +95,7 @@
             $stmt->bindParam(':tensp', $tensp, PDO::PARAM_STR);
             $stmt->bindParam(':gia', $gia, PDO::PARAM_INT);
             $stmt->bindParam(':detail', $detail, PDO::PARAM_STR);
+            $stmt->bindParam(':sizes', $sizes, PDO::PARAM_STR);
     
             if (!empty($img)) {
                 $stmt->bindParam(':img', $img, PDO::PARAM_STR);

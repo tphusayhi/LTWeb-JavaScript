@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 ob_start();
 
@@ -8,6 +11,7 @@ ob_start();
     include "models/danhmuc.php";
     include "models/sanpham_user.php";
     include "models/donhang.php";
+    include "models/user.php";
     $conn = connectdb();
 
     // Lấy dữ liệu sản phẩm
@@ -176,8 +180,16 @@ ob_start();
                     include "views/account.php";
                     break;
                 case 'thongtincanhan':
-                    include "views/thongtincanhan.php";
+                    if (isset($_SESSION['user_id'])) {
+                        $id = $_SESSION['user_id'];
+                
+                        // Gọi hàm lấy thông tin user từ CSDL
+                        $user = get_thongtin($id);
+                    }
+                
+                    include "views/thongtincanhan.php"; // Gửi dữ liệu user sang view
                     break;
+                    
 
 
                 
@@ -200,18 +212,23 @@ ob_start();
             //     include "views/sanpham_user.php";
             //     break;
 
-            case 'dangxuat':
-                if (isset($_SESSION['role'])) {
-                    unset($_SESSION['role']);
-                }
-                header('Location: login.php');
-                exit(); // Đảm bảo script dừng lại ngay sau khi chuyển hướng
-                break;
+                case 'dangxuat':
+                    // Xóa toàn bộ thông tin người dùng
+                    if (isset($_SESSION['user'])) {
+                        unset($_SESSION['user']);
+                    }
 
-            default:
-                // Có thể hiển thị thông báo nếu hành động không hợp lệ
-                echo "<p>Hành động không hợp lệ.</p>";
-                break;
+                    // Nếu dùng session_unset() + destroy():
+                    // session_unset();
+                    // session_destroy();
+
+                    header("Location: login.php");
+                    exit();
+
+                default:
+                    // Có thể hiển thị thông báo nếu hành động không hợp lệ
+                    echo "<p>Hành động không hợp lệ.</p>";
+                    break;
         }
     }else{
         // Nếu không có tham số act, hiển thị trang chủ mặc định
@@ -221,6 +238,7 @@ ob_start();
 
     }
 
+
     // Hiển thị footer
     // include "views/footer.php";
 
@@ -229,5 +247,5 @@ ob_start();
 //     // Nếu không phải admin, chuyển hướng về trang login
 //     header('Location: login.php');
 //     exit();
-// }
+
 ?>

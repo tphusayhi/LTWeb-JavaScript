@@ -87,6 +87,7 @@
     <div class="header">
         Admin Dashboard
     </div>
+    
     <div class="sidebar">
         <h3 class="text-center">Admin Panel</h3>
         <a href="#"><i class="fas fa-home"></i> Trang chủ</a>
@@ -97,6 +98,7 @@
         <a href="#"><i class="fas fa-cogs"></i> Cài đặt</a>
         <a href="indexs.php?act=dangxuat"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
     </div>
+    
     <!-- <div class="content">
         <div class="container">
             <div class="row">

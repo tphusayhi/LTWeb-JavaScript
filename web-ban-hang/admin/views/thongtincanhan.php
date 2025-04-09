@@ -1,3 +1,7 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -180,7 +184,7 @@
 <div class="container">
   <div class="sidebar">
     <div class="avatar-container">
-      <img src="images/default-avatar.png" id="avatar-preview">
+      <img src="images/default-avatar.png" id="avatar-preview" name="imgav">
       <div class="avatar-upload-overlay">
         <input type="file" id="avatar-input" accept="image/*" style="display: none;">
         <button onclick="document.getElementById('avatar-input').click()"><i class="fas fa-camera"></i> Thay đổi</button>
@@ -202,31 +206,37 @@
       <div class="orders-header">
         <h2>Thông tin cá nhân</h2>
       </div>
+      <?php if (isset($user) && $user): ?>
       <form action="#" method="post">
-        <div class="form-group">
-          <label for="hoten">Họ và tên</label>
-          <input type="text" id="hoten" name="hoten" value="<?= htmlspecialchars($user['hoten']) ?>">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>">
-        </div>
-        <div class="form-group">
-          <label for="sdt">Số điện thoại</label>
-          <input type="tel" id="sdt" name="sdt" value="<?= htmlspecialchars($user['sdt']) ?>">
-        </div>
-        <div class="form-group">
-          <label for="ngaysinh">Ngày sinh</label>
-          <input type="date" id="ngaysinh" name="ngaysinh" value="<?= htmlspecialchars($user['ngaysinh']) ?>">
-        </div>
-        <div class="form-group" style="grid-column: span 2;">
-          <label for="diachi">Địa chỉ</label>
-          <input type="text" id="diachi" name="diachi" value="<?= htmlspecialchars($user['diachi']) ?>">
-        </div>
-        <div class="form-footer">
-          <button type="submit" class="submit-btn">Cập nhật thông tin</button>
-        </div>
-      </form>
+    <div class="form-group">
+        <label for="hoten">Họ và tên</label>
+        <input type="text" id="hoten" name="hoten" value="<?= isset($user['username']) ? htmlspecialchars($user['username']) : '' ?>"> 
+    </div>       
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="" >
+    </div>
+    <div class="form-group">
+        <label for="sdt">Số điện thoại</label>
+        <input type="tel" id="sdt" name="sdt" value="">
+    </div>
+    <div class="form-group">
+        <label for="ngaysinh">Ngày sinh</label>
+        <input type="date" id="ngaysinh" name="ngaysinh" value="">
+    </div>
+    <div class="form-group" style="grid-column: span 2;">
+        <label for="diachi">Địa chỉ</label>
+        <input type="text" id="diachi" name="diachi" value="">
+    </div>
+    <div class="form-footer">
+        <button type="submit" name="btn-insert" class="submit-btn">Cập nhật thông tin</button>
+    </div>
+</form>
+
+<?php else: ?>
+    <p>Không tìm thấy thông tin người dùng.</p>
+<?php endif; ?>
+
     </div>
   </div>
 </div>

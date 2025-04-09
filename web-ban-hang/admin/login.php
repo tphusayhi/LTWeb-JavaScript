@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 ob_start();
 require "models/database.php";
@@ -16,14 +17,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn-login'])) {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['role'] = (int) $user['role'];
+
             $_SESSION['user'] = [
                 'id' => $user['id'],
                 'username' => $user['username'],
                 'role' => (int) $user['role']
             ];
+
         
             // Điều hướng theo role
-            if ($_SESSION['user']['role'] == 2) {
+            if ($_SESSION['role'] == 2) {
                 header("Location: indexs.php");
             } else {
                 header("Location: trangchu.php");
@@ -35,8 +41,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn-login'])) {
     } else {
         $error = "Vui lòng nhập đầy đủ thông tin!";
     }
-}
+} 
 ?>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="vi">

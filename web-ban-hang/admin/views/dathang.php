@@ -32,7 +32,7 @@
                     if (isset($_SESSION['giohang']) && count($_SESSION['giohang']) > 0) {
                         $tongsoluong = 0;
                         $tongtien = 0;
-                        echo print_r($_SESSION['giohang']);
+                        echo print_r($_SESSION['user']);
                 ?>
                 <form method="post" action="trangchu.php?act=thanhtoan">
                     <input type="hidden" name="ngaydat" id="ngaydat">

@@ -168,8 +168,9 @@ ob_start();
                     break;
                 case 'account':
                     if (isset($_SESSION['user_id'])) {
-                        $iduser = $_SESSION['user_id'];
+                        $id=$iduser = $_SESSION['user_id'];
                         // Lấy danh sách đơn hàng của người dùng
+                        $user = get_thongtin($id);
                         $orders = dh_ganday($iduser); // Đảm bảo rằng tên biến (orders) trùng với biến bạn sử dụng trong view
                     } else {
                         // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
@@ -186,6 +187,29 @@ ob_start();
                         // Gọi hàm lấy thông tin user từ CSDL
                         $user = get_thongtin($id);
                     }
+
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user']['id'])) {
+                        $id = $_SESSION['user']['id'];
+                
+                        // Lấy dữ liệu từ form
+                        $hoten = $_POST['hoten'] ?? '';
+                        $email = $_POST['email'] ?? '';
+                        $sdt = $_POST['sdt'] ?? '';
+                        $ngaysinh = $_POST['ngaysinh'] ?? '';
+                        $diachi = $_POST['diachi'] ?? '';
+                
+                        // Gọi hàm cập nhật thông tin
+                        $success = update_user($id, $hoten, $email, $sdt, $ngaysinh, $diachi);
+                
+                        // Lấy lại thông tin đã cập nhật
+                        $user = get_thongtin($id);
+                
+                        // Thông báo
+                        $message = $success ? "✅ Cập nhật thành công!" : "❌ Có lỗi xảy ra khi cập nhật!";
+                    } else {
+                        $message = "Không thể cập nhật. Vui lòng đăng nhập lại.";
+                    }
+                
                 
                     include "views/thongtincanhan.php"; // Gửi dữ liệu user sang view
                     break;
@@ -240,7 +264,7 @@ ob_start();
 
 
     // Hiển thị footer
-    // include "views/footer.php";
+    include "views/footer.php";
 
 //     // Kiểm tra nếu đã đăng nhập với quyền admin (role = 1)
 //     if (isset($_SESSION['role']) && ($_SESSION['role'] == 1)) {} else {

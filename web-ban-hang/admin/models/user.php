@@ -1,4 +1,23 @@
 <?php
+function update_user($id, $hoten, $email, $sdt, $ngaysinh, $diachi) {
+    $conn = connectdb();
+    $sql = "UPDATE users 
+            SET hoten = :hoten, email = :email, sdt = :sdt, ngaysinh = :ngaysinh, diachi = :diachi 
+            WHERE id = :id";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':hoten', $hoten);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':sdt', $sdt);
+    $stmt->bindParam(':ngaysinh', $ngaysinh);
+    $stmt->bindParam(':diachi', $diachi);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+    return $stmt->execute(); // Trả về true nếu thành công
+}
+
+
+
 function get_thongtin($id) {
     try {
         $conn = connectdb(); // Kết nối đến database

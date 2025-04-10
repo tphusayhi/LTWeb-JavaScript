@@ -191,8 +191,8 @@
       </div>
     </div>
     <div class="profile">
-      <h2 id="username">Nguyễn Văn A</h2>
-      <p id="email">nguyenvana@example.com</p>
+      <h2 id="username"><?= isset($user['username']) ? htmlspecialchars($user['username']) : '' ?></h2>
+      <p id="email"><?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?></p>
     </div>
     <div class="nav-links">
       <a href="trangchu.php?act=account" ><i class="fas fa-home"></i> Trang chủ</a>
@@ -210,23 +210,23 @@
       <form action="#" method="post">
     <div class="form-group">
         <label for="hoten">Họ và tên</label>
-        <input type="text" id="hoten" name="hoten" value="<?= isset($user['username']) ? htmlspecialchars($user['username']) : '' ?>"> 
+        <input type="text" id="hoten" name="hoten" value="<?= isset($user['hoten']) ? htmlspecialchars($user['hoten']) : '' ?>"> 
     </div>       
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" value="" >
+        <input type="email" id="email" name="email" value="<?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?>" >
     </div>
     <div class="form-group">
         <label for="sdt">Số điện thoại</label>
-        <input type="tel" id="sdt" name="sdt" value="">
+        <input type="tel" id="sdt" name="sdt" value="<?= isset($user['sdt']) ? htmlspecialchars($user['sdt']) : '' ?>">
     </div>
     <div class="form-group">
         <label for="ngaysinh">Ngày sinh</label>
-        <input type="date" id="ngaysinh" name="ngaysinh" value="">
+        <input type="date" id="ngaysinh" name="ngaysinh" value="<?= isset($user['ngaysinh']) ? htmlspecialchars($user['ngaysinh']) : '' ?>">
     </div>
     <div class="form-group" style="grid-column: span 2;">
         <label for="diachi">Địa chỉ</label>
-        <input type="text" id="diachi" name="diachi" value="">
+        <input type="text" id="diachi" name="diachi" value="<?= isset($user['diachi']) ? htmlspecialchars($user['diachi']) : '' ?>">
     </div>
     <div class="form-footer">
         <button type="submit" name="btn-insert" class="submit-btn">Cập nhật thông tin</button>
@@ -236,6 +236,8 @@
 <?php else: ?>
     <p>Không tìm thấy thông tin người dùng.</p>
 <?php endif; ?>
+<h3>Đổi mật khẩu</h3>
+
 
     </div>
   </div>

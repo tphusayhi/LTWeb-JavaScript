@@ -225,8 +225,8 @@ if (!empty($_SESSION['giohang'])) {
             </div>
         </div>
         <div class="profile">
-            <h2 id="username">Nguyễn Văn A</h2>
-            <p id="email">nguyenvana@example.com</p>
+        <h2 id="username"><?= isset($user['username']) ? htmlspecialchars($user['username']) : '' ?></h2>
+        <p id="email"><?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?></p>
         </div>
         <div class="nav-links">
             <a href="#" class="active"><i class="fas fa-home"></i> Trang chủ</a>

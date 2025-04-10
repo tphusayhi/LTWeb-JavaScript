@@ -85,7 +85,7 @@
                 <td><?= date('d/m/Y', strtotime($order['ngaydat'])) ?></td>
                 <td><?= htmlspecialchars($order['hoten'], ENT_QUOTES, 'UTF-8') ?></td>
                 <td><?= number_format($order['tongtien'], 0, ',', '.') ?> đ</td>
-                <td><?= htmlspecialchars($order['trangthai'], ENT_QUOTES, 'UTF-8') ?></td>
+                <td></td>
                 <td>
                     <a href="trangchu.php?act=donhang_ct&iddh=<?=($order['id'])?>" class="btn">Xem chi tiết</a>
                 </td>

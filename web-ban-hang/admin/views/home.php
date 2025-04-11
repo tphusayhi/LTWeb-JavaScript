@@ -4,11 +4,6 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="stylesheet" href="assets/css/product.css" />
-        <script type="text/javascript" src="assets/js/script.js" defer></script>
         <title>Jolliboi - Bán giày chính hãng</title>
     </head>
     <style>
@@ -34,11 +29,16 @@
       font-size: 1.8rem;
       margin-bottom: 20px;
     }
+    .section h2{
+      font-size: 30px;
+      color: cornflowerblue;
+    }
 
     .product-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
+      height: 550px;
     }
 
     .product {
@@ -69,6 +69,50 @@
     .product p {
       color: #777;
     }
+    #Slider {
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+    overflow: hidden;
+    height: 640px;
+}
+.aspect-ratio-169 {
+    display: block;
+    position: relative;
+    padding-top: 56.25%;
+    transition: 0.3s;
+    
+  }
+  
+  .aspect-ratio-169 img {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    top: 0;
+    left: 0;
+  }
+  .dot-container{
+    position: absolute;
+    bottom: 150px;
+    height: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    
+  }
+  .dot {
+    height: 16px;
+    width: 16px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-right: 12px;
+    cursor: pointer;
+  }
+.dot.active {
+    background-color: #333;
+}
   </style>
     <body>
 <!-- slider -->
@@ -90,7 +134,7 @@
         </section>
         <!--<br><br><br>-->
         <div class="section">
-    <h2 class="section-title">Top View</h2>
+    <h2 class="section-title">SẢN PHẨM ĐƯỢC QUAN TÂM</h2>
     <div class="product-grid">
 		<?php
 		foreach($sphome1 as $item){
@@ -129,7 +173,7 @@
   </div>
 
   <div class="section">
-    <h2 class="section-title">Sản phẩm mới</h2>
+    <h2 class="section-title">SẢN PHẨM MỚI</h2>
     <div class="product-grid">
 		<?php
 	    //   foreach($sphome2 as $item){ 

@@ -232,7 +232,6 @@ if (!empty($_SESSION['giohang'])) {
             <a href="#" class="active"><i class="fas fa-home"></i> Trang chủ</a>
             <a href="trangchu.php?act=thongtincanhan"><i class="fas fa-user"></i> Thông tin cá nhân</a>
             <a href="#"><i class="fas fa-shopping-bag"></i> Đơn hàng</a>
-            <a href="#"><i class="fas fa-key"></i> Đổi mật khẩu</a>
         </div>
     </div>
     <div class="main-content">

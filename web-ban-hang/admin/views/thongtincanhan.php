@@ -152,9 +152,15 @@
       margin-bottom: 6px;
       font-size: 14px;
     }
+<<<<<<< Updated upstream
     input[type="password"],
     input[type="new_password"],
     input[type="confirm_password"],
+=======
+    input[type="oldpassword"],
+    input[type="newpassword"],
+    input[type="confirmpassword"],
+>>>>>>> Stashed changes
     input[type="text"],
     input[type="email"],
     input[type="tel"],
@@ -180,6 +186,11 @@
     .submit-btn:hover {
       background-color: #0056b3;
     }
+    .formpass {
+      display: block;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
   </style>
 </head>
 <body>
@@ -201,7 +212,6 @@
       <a href="trangchu.php?act=account" ><i class="fas fa-home"></i> Trang chủ</a>
       <a href="" class="active"><i class="fas fa-user"></i> Thông tin cá nhân</a>
       <a href="#"><i class="fas fa-shopping-bag"></i> Đơn hàng</a>
-      <a href="#"><i class="fas fa-key"></i> Đổi mật khẩu</a>
     </div>
   </div>
   <div class="main-content">
@@ -239,6 +249,7 @@
 <?php else: ?>
     <p>Không tìm thấy thông tin người dùng.</p>
 <?php endif; ?>
+<<<<<<< Updated upstream
 <form action="#" method="post">
   <div class="form-group">
     <label for="password">Mật khẩu hiện tại</label>
@@ -255,6 +266,33 @@
   <div class="form-footer">
     <button type="submit" name="btn-change-password" class="submit-btn">Cập nhật mật khẩu</button>
   </div>
+=======
+<?php
+// change_password_view.php
+
+// Display any messages (success or error)
+if (!empty($message)) {
+    echo "<p>$message</p>";
+}
+?>
+
+<form class="formpass" method="POST" action="trangchu.php?act=doimatkhau">
+<div class="form-group">
+    <label for="password">Mật khẩu cũ:</label>
+    <input type="oldpassword" name="password" id="password" required>
+</div>
+<div class="form-group">      
+    <label for="newpassword">Mật khẩu mới:</label>
+    <input type="newpassword" name="newpassword" id="newpassword" required>
+</div>
+<div class="form-group">
+    <label for="confirmpassword">Xác nhận mật khẩu mới:</label>
+    <input type="confirmpassword" name="confirmpassword" id="confirmpassword" required>
+</div><br>    
+    <div class="form-footer">
+        <button type="submit" name="btn-insert" class="submit-btn">Cập nhật thông tin</button>
+    </div>
+>>>>>>> Stashed changes
 </form>
 
 
@@ -276,8 +314,13 @@
 </script>
 <script>
   function validatePasswordForm() {
+<<<<<<< Updated upstream
     const newPassword = document.getElementById('new_password').value;
     const confirmPassword = document.getElementById('confirm_password').value;
+=======
+    const newPassword = document.getElementById('newpassword').value;
+    const confirmPassword = document.getElementById('confirmpassword').value;
+>>>>>>> Stashed changes
 
     if (newPassword !== confirmPassword) {
       alert('Mật khẩu mới và nhập lại mật khẩu không khớp!');

@@ -55,14 +55,17 @@
 	font-size: 26px;
 	transition: 0.5s;
 	text-align: center;
+	
 }
 
 .card:hover .card__title {
 	transform: translate(-40px, -72px);
+	  /* Đảm bảo văn bản đi từ trái qua phải */
 }
 
 .card:hover .card__price {
 	transform: translate(-112px, -72px);
+	  /* Đảm bảo văn bản đi từ trái qua phải */
 }
 
 .card__size,
@@ -142,7 +145,7 @@
 	transition: 0.25s;
 }
 
-.card__action button:hover {
+.card__action input:hover {
 	transform: scale(0.9);
 }
 

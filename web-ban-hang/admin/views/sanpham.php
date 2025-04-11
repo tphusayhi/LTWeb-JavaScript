@@ -16,7 +16,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
+            max-width: 1100px;
             margin: auto;
             transition: transform 0.3s ease-in-out;
         }
@@ -74,6 +74,8 @@
             text-decoration: none;
             color: #007bff;
             transition: color 0.3s;
+            display: inline-block;
+            
         }
         a:hover {
             color: #0056b3;
@@ -172,8 +174,7 @@
 
                         echo "<td>" . htmlspecialchars($item['detail']) . "</td>";
                         echo "<td>
-                                <a href='indexs.php?act=chon_sp&id=" . (int) $item['id'] . "'>Sửa</a> | 
-                                <a href='indexs.php?act=delete_sp&id=" . (int) $item['id'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa không?\")'>Xóa</a>
+                                <a href='indexs.php?act=chon_sp&id=" . (int) $item['id'] . "'>Sửa</a>  <a href='indexs.php?act=delete_sp&id=" . (int) $item['id'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa không?\")'>Xóa</a>
                               </td>";
                         echo "</tr>";
                         $i++;
@@ -190,6 +191,25 @@
             const checkboxes = document.querySelectorAll('#size-options input[type="checkbox"]');
             checkboxes.forEach(cb => cb.checked = this.checked);
         });
+        
     </script>
+    <script>
+    document.getElementById('select-all-sizes').addEventListener('change', function () {
+        const checkboxes = document.querySelectorAll('#size-options input[type="checkbox"]');
+        checkboxes.forEach(cb => cb.checked = this.checked);
+    });
+
+    // Kiểm tra ít nhất 1 size được chọn
+    document.querySelector('form').addEventListener('submit', function (e) {
+        const sizeCheckboxes = document.querySelectorAll('#size-options input[type="checkbox"]');
+        const isSizeSelected = Array.from(sizeCheckboxes).some(cb => cb.checked);
+
+        if (!isSizeSelected) {
+            alert('Vui lòng chọn ít nhất một size cho sản phẩm!');
+            e.preventDefault(); // Ngăn gửi form
+        }
+    });
+</script>
+
 </body>
 </html>

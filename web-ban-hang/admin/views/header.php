@@ -18,7 +18,11 @@
                 <img src="assets/images/logo.png" alt="logo" height="70px" width="70px"></a>
             </div>
             <div class="menu">
+<<<<<<< Updated upstream
                 <li><a href="trangchu.php">TRANG CHỦ</a></li>
+=======
+                <li><a href="trangchu.php?act=home">TRANG CHỦ</a></li>
+>>>>>>> Stashed changes
                 <li><a href="">ƯU ĐÃI</a></li>
                 <li><a href="trangchu.php?act=sanpham_user">BỘ SƯU TẬP</a></li>
                 <li><a href="trangchu.php?act=donhang">ĐƠN HÀNG</a></li>

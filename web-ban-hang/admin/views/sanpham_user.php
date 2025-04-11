@@ -8,18 +8,18 @@
         <link rel="stylesheet" href="assets/css/style.css">
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="assets/css/product.css" />
-        <script type="text/javascript" src="asets/js/script.js" defer></script>
+        <script type="text/javascript" src="assets/js/script.js" defer></script>
         <title>Jolliboi - Bán giày chính hãng</title>
     </head>
 	<style>
-		/* Ẩn checkbox mặc định */
-.custom-checkbox input {
+/* Ẩn checkbox mặc định */
+.custom-checkbox input[type="checkbox"] {
     display: none;
 }
 
 /* Tạo hộp checkbox tùy chỉnh */
 .custom-checkbox {
-    display: flex;
+    display: inline-flex;  /* Thay đổi từ flex thành inline-flex để các phần tử nằm trên cùng một dòng */
     align-items: center;
     cursor: pointer;
     font-size: 16px;
@@ -56,6 +56,15 @@
     border-color: #007bff;
 }
 
+/* Thẻ a nằm cùng hàng với checkbox */
+.custom-checkbox a {
+    display: inline-block; /* Đảm bảo thẻ a cũng nằm trên cùng một dòng */
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
 #showAllBtn {
     padding: 10px 20px;
     background-color: #007bff;
@@ -71,244 +80,127 @@
 #showAllBtn:hover {
     background-color: #0056b3;
 }
-
-
-
-
-
-
-
-		</style>
+	</style>
     <body>
-       
-
         <!--category-->
         <section class="cartegory">
             <div class="contaimer">
                 <div class="row">
                     <div class="cartegory-left">
                         <ul>
-						<li class="cartegory-left-li"><a href=""><label class="custom-checkbox">
-											<input type="checkbox">
-											<span class="checkmark"><a href="trangchu.php?act=sanpham_user">
-                                            </span>Tất cả sản phẩm
-										</label></a></li>
-							<?php
-							     foreach($dsdm as $dm){
-									echo '<li class="cartegory-left-li"><a href=""><label class="custom-checkbox">
-											<input type="checkbox">
-											<span class="checkmark"></span><a href="trangchu.php?act=sanpham_user&id='.$dm['id'].'">'. htmlspecialchars($dm['tendm']) . '
-										</label></a></li>';
-								 }
-
-							?>
-                            <!-- <li class="cartegory-left-li"><a href="">HÀNG MỚI</a></li>
-                            <li class="cartegory-left-li"><a href="">TẾT 2025</a></li>
-                            <li class="cartegory-left-li"><a href="#">NAM</a>
-                            <ul>
-                                <li><a href="">Giày thể thao</a></li>
-                                <li><a href="">Giày thời trang</a></li>
-                                <li><a href="">Phụ kiện khác</a></li>
-                                
-                            </ul>
+                            <li class="cartegory-left-li">
+                                <a href=""><label class="custom-checkbox">
+                                    <input type="checkbox" id="showAllCheckbox">
+                                    <span class="checkmark"></span>
+                                    Tất cả sản phẩm
+                                </label></a>
                             </li>
-                            <li class="cartegory-left-li"><a href="#">NỮ</a>
-                                <ul>
-                                    <li><a href="">Giày thể thao</a></li>
-                                    <li><a href="">Giày thời trang</a></li>
-                                    <li><a href="">Phụ kiện khác</a></li>
-                                    
-                                </ul>
-                            </li>
-                            <li class="cartegory-left-li"><a href="">ƯU ĐÃI</a></li>
-                            <li class="cartegory-left-li"><a href="">BỘ SƯU TẬP</a></li>
-                            <li class="cartegory-left-li"><a href="">THÔNG TIN</a></li> -->
+                            <?php
+                            foreach($dsdm as $dm) {
+                                echo '<li class="cartegory-left-li"><a href=""><label class="custom-checkbox">
+                                    <input type="checkbox" id="' . $dm['id'] . '">
+                                    <span class="checkmark"></span><a href="trangchu.php?act=sanpham_user&id=' . $dm['id'] . '">' . htmlspecialchars($dm['tendm']) . '</a>
+                                </label></a></li>';
+                            }
+                            ?>
                         </ul>
                     </div>
                     <div class="cartegory-right row">
                         <div class="cartegory-right-top-item">
-                            <p>HÀNG MỚI VỀ</P>
+                            <p>HÀNG MỚI VỀ</p>
                         </div>
                         <div class="cartegory-right-top-item">
-                            <button><span>Bộ lọc</span><i class="fas fa-sort-down"></i></button>
-                        </div>
-                        <div class="cartegory-right-top-item">
-                            <select name="" id="">
+                            <select name="sort" id="sort" onchange="sortProducts()">
                                 <option value="">Sắp xếp</option>
-                                <option value="">Giá cao đến thấp</option>
-                                <option value="">Giá thấp đến cao</option>
+                                <option value="ASC" <?php if ($sort == 'ASC') echo 'selected'; ?>>Giá thấp đến cao</option>
+                                <option value="DESC" <?php if ($sort == 'DESC') echo 'selected'; ?>>Giá cao đến thấp</option>
                             </select>
                         </div>
-                        <div class="cartegory-right-content row">
-						
-						<?php
-							// foreach($dssp_dm as $item){
-							// 	echo '<div class="card">
-                            // <form action="trangchu.php?act=addcart" method="post">
-							// 	<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-heart\"></i></span>
-							// 	<span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-cart-alt\"></i></span>
-							// 	<div class="card__img">
-							// 		<img src="assets/img/'. htmlspecialchars($item['img']) . '" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" alt="" />
-							// 	</div>
-							// 	<h2 class="card__title">'. htmlspecialchars($item['tensp']) . '</h2>
-							// 	<p class="card__price">'.htmlspecialchars($item['gia']) . ' $</p>
-							// 	<div class="card__size">
-							// 		<h3>Size:</h3>
-							// 		<span>6</span>
-							// 		<span>7</span>
-							// 		<span>8</span>
-							// 		<span>9</span>
-							// 	</div>
-							// 	<div class="card__color">
-							// 		<h3>Color:</h3>
-							// 		<span class="green"></span>
-							// 		<span class="red"></span>
-							// 		<span class="black"></span>
-							// 	</div>
-                            //     <div class="card__action">
-             
-                            //     <input type"submit" value="view" href="trangchu.php?act=sanpham_ct&id= ' . $item['id'] . '">
-                
-                                
-                            //     <input type="submit" value="Mua hàng" name="addtocart" >
-                            //     </div>
-                            //     <input type="hidden" value="'. htmlspecialchars($item['id']) . '" name="id">
-                            //     <input type="hidden" value="'. htmlspecialchars($item['tensp']) . '" name="tensp">
-                            //     <input type="hidden" value="'. htmlspecialchars($item['img']) . '" name="img">
-                            //     <input type="hidden" value="'. htmlspecialchars($item['gia']) . '" name="gia">
-                            // </form>
-							// </div>';
 
-							// }
-                            
-                        foreach($dssp_dm as $item) {
-                            // Giải mã JSON để lấy các size
-                            $sizes = json_decode($item['sizes'], true);
-                            
-                            echo '<div class="card">
-                                <form action="trangchu.php?act=addcart" method="post">
-                                    <span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class="bx bx-heart"></i></span>
-                                    <span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class="bx bx-cart-alt"></i></span>
-                                    <a href="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
-                                    <div class="card__img">
-                                        <img src="assets/img/'. htmlspecialchars($item['img']) . '" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
-                                    </div>
-                                    </a>
-                                    <a href="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
-                                    <h2 class="card__title">'. htmlspecialchars($item['tensp']) . '</h2></a>
-                                    <p class="card__price">'.htmlspecialchars($item['gia']) . ' $</p>
-                                    <div class="card__size">
-                                    
-                                        <h3>Size:</h3>';
+                        <div class="section">
+                            <div class="product-grid">
+                            <?php
+                            foreach($dssp_dm as $item) {
+                                $sizes = json_decode($item['sizes'], true);
+                                echo '<div class="card">
+                                    <form action="trangchu.php?act=addcart" method="post">
+                                        <span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class="bx bx-heart"></i></span>
+                                        <span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class="bx bx-cart-alt"></i></span>
+                                        <a href="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
+                                        <div class="card__img">
+                                            <img src="assets/img/'. htmlspecialchars($item['img']) . '" style="width: 252px; height: 168px; object-fit: cover; object-position: center;" />
+                                        </div>
+                                        </a>
+                                        <a href="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
+                                        <h2 class="card__title">'. htmlspecialchars($item['tensp']) . '</h2></a>
+                                        <p class="card__price">'.htmlspecialchars($item['gia']) . ' $</p>
+                                        <div class="card__size">
+                                            <h3>Size:</h3>';
 
-                            // Kiểm tra và hiển thị size
-                                        if (is_array($sizes) && count($sizes) > 0) {
-                                            // Hiển thị các size dưới dạng chuỗi cách nhau dấu phẩy
-                                            echo "<p>" . implode('|| ', array_map('htmlspecialchars', $sizes)) . "</p>";
-                                        } else {
-                                            // Nếu không có size
-                                            echo "<p>Không có size</p>";
-                                        }
-                                    
-                        
-                            
-                            
-                            
-                            
+                                            if (is_array($sizes) && count($sizes) > 0) {
+                                                echo "<p>" . implode('|| ', array_map('htmlspecialchars', $sizes)) . "</p>";
+                                            } else {
+                                                echo "<p>Không có size</p>";
+                                            }
 
-                            echo '  </div>
-                                    
-                                    <div class="card__action">
-                                        <input type="submit" value="View" formaction="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
-                                        <input type="submit" value="Mua hàng" name="addtocart" >
-                                    </div>
-                                    <input type="hidden" value="'. htmlspecialchars($item['id']) . '" name="id">
-                                    <input type="hidden" value="'. htmlspecialchars($item['tensp']) . '" name="tensp">
-                                    <input type="hidden" value="'. htmlspecialchars($item['img']) . '" name="img">
-                                    <input type="hidden" value="'. htmlspecialchars($item['gia']) . '" name="gia">
-                                </form>
-                            </div>';
-                        }
-
-
-
-
-
-
-						?>
+                                            echo '  </div>
+                                        <div class="card__action">
+                                            <input type="submit" value="View" formaction="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
+                                        </div>
+                                        <input type="hidden" value="'. htmlspecialchars($item['id']) . '" name="id">
+                                        <input type="hidden" value="'. htmlspecialchars($item['tensp']) . '" name="tensp">
+                                        <input type="hidden" value="'. htmlspecialchars($item['img']) . '" name="img">
+                                        <input type="hidden" value="'. htmlspecialchars($item['gia']) . '" name="gia">
+                                    </form>
+                                </div>';
+                            }
+                            ?>
+                            </div>
                         </div>    
-                        <div class="cartegory-right-bottom row">
-                            <div class="cartegory-right-bottom-items">
-                                <p>Hiển thị 2 <span>|</span> 4 sản phẩm</p>
-                            </div>
-                            <div class="cartegory-right-bottom-items">
-                                <p><span>&#171;</span> 1 2 3 4 5 <span>&#187;</span> Trang cuối</p>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
             </div>
         </section>
 
-    </body>
-    <script>
-      const header = document.querySelector("header");
-    window.addEventListener("scroll", function(){
-        x = window.pageYOffset;
-            if (x>0){
-                header.classList.add("sticky")
-            }
-            else{
-                header.classList.remove("sticky")
-            }
-        })
-        
+        <script>
+        // Checkbox redirection logic
+        function redirectToSelectedCategories() {
+    const checkboxes = document.querySelectorAll('.custom-checkbox input');
+    let selectedCategories = [];
 
-
-
-
-    const imgPosition = document.querySelectorAll(".aspect-ratio-169 img");
-    const imgContainer = document.querySelector(".aspect-ratio-169");
-    const dotItem = document.querySelectorAll(".dot");
-    let imgNuber= imgPosition.length
-    let index = 0
-        //console.log(impgPosition)
-
-    imgPosition.forEach(function(image, index){
-        image.style.left = index * 100 + "%"
-        dotItem[index].addEventListener("click",function(){
-        slider(index)
-
-        })
-    })
-    function imgSlide(){
-        index++;
-        console.log(index)
-        if (index>=imgNuber) (index = 0)
-        slider (index)
-    }
-    function slider (index){
-        imgContainer.style.left = "-"+index*100 + "%";
-        const dotActive = document.querySelector(".active")
-        dotActive.classList.remove("active")
-        dotItem[index].classList.add("active")
-    }
-
-
-
-    setInterval(imgSlide,5000)
-
-    
-	function redirectToAllProducts() {
-        const checkbox = document.getElementById("showAllCheckbox");
+    // Duyệt qua tất cả các checkbox và lấy giá trị ID của checkbox được chọn
+    checkboxes.forEach(checkbox => {
         if (checkbox.checked) {
-            window.location.href = "trangchu.php?act=sanpham_user";
+            selectedCategories.push(checkbox.id);  // Thêm ID của checkbox vào mảng
         }
+    });
+
+    const currentUrl = window.location.href.split('?')[0]; // Lấy URL hiện tại
+    let newUrl = currentUrl + '?act=sanpham_user';
+
+    // Nếu có checkbox được chọn, thêm tham số vào URL
+    if (selectedCategories.length > 0) {
+        newUrl += '&id=' + selectedCategories.join(','); // Nối các ID với dấu phẩy
     }
 
-    document.getElementById("showAllCheckbox").addEventListener("change", redirectToAllProducts);
+    // Điều hướng đến URL mới với các tham số
+    window.location.href = newUrl;
+}
+
+// Thêm event listener cho tất cả checkbox
+document.querySelectorAll('.custom-checkbox input').forEach(checkbox => {
+    checkbox.addEventListener('change', redirectToSelectedCategories);
+});
 
 
-    </script>
+        // Sorting function
+        function sortProducts() {
+            var sortValue = document.getElementById("sort").value;
+            var currentUrl = window.location.href.split('?')[0]; // Lấy URL hiện tại
+            var newUrl = currentUrl + '?act=sanpham_user&sort=' + sortValue; // Thêm tham số sort vào URL
+            window.location.href = newUrl; // Điều hướng đến URL mới
+        }
+        </script>
+    </body>
 </html>

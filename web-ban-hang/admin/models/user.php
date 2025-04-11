@@ -1,4 +1,24 @@
 <?php
+function update_password($id, $hashed_password) {
+    try {
+        $conn = connectdb(); // Hàm kết nối PDO đến CSDL
+
+        $sql = "UPDATE users SET password = :password WHERE id = :id";
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindParam(':password', $hashed_password, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute(); // Trả về true nếu thành công
+    } catch (PDOException $e) {
+        // Ghi log thay vì echo (để không lộ lỗi ra trình duyệt nếu dùng thực tế)
+        error_log("Lỗi cập nhật mật khẩu: " . $e->getMessage());
+        return false;
+    }
+}
+
+
+
 function update_user($id, $hoten, $email, $sdt, $ngaysinh, $diachi) {
     $conn = connectdb();
     $sql = "UPDATE users 

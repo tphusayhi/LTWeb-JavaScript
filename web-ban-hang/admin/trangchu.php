@@ -12,6 +12,8 @@ ob_start();
     include "models/sanpham_user.php";
     include "models/donhang.php";
     include "models/user.php";
+    include "models/ma_giam_gia.php";
+
     $conn = connectdb();
 
     // Lấy dữ liệu sản phẩm
@@ -30,20 +32,23 @@ ob_start();
                 include "views/home.php";
                 break;
 
-            case 'sanpham_user':
-                $dsdm = getall_danhmuc(); // Lấy danh sách danh mục
-            
-                // Kiểm tra nếu có ID danh mục từ URL
-                $iddm = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-            
-                // Lấy danh sách sản phẩm theo danh mục (0 nếu không có ID danh mục)
-                $dssp_dm = getall_sanpham($iddm, 0);
-            
-                // Lấy toàn bộ danh sách sản phẩm (có thể sắp xếp theo lượt xem hoặc ID)
-                $kq = getall_sanpham(0, 0);
-            
-                include "views/sanpham_user.php";
-                break;
+                case 'sanpham_user':
+                    // Lấy danh sách tất cả danh mục
+                    $dsdm = getall_danhmuc();
+                
+                    // Lấy id danh mục từ URL nếu có, nếu không thì mặc định 0 (tức là tất cả)
+                    $iddm = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+                
+                    // Lấy tham số sắp xếp từ URL
+                    $sort = isset($_GET['sort']) ? $_GET['sort'] : 'asc'; // Mặc định là 'asc'
+                
+                    // Gọi hàm để lấy sản phẩm với lọc theo danh mục và sắp xếp theo giá
+                    $dssp_dm = getall_sanpham($iddm, 0, $sort); // Thực hiện lấy sản phẩm
+                
+                    include "views/sanpham_user.php";
+                    break;
+                
+                
             case 'sanpham_ct':
                 $dsdm = getall_danhmuc();
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
@@ -97,6 +102,8 @@ ob_start();
                 exit();
                 break;
                 case 'thanhtoan':
+                    
+                    
                     if ((isset($_POST['thanhtoan'])) && ($_POST['thanhtoan'])) {
                         $hoten = $_POST['hoten'];
                         $sdt = $_POST['sdt'];
@@ -121,6 +128,7 @@ ob_start();
                             // ✅ Unset sau khi thêm hết
                             unset($_SESSION['giohang']);
                         }
+                        
                 
                         header("Location: trangchu.php?act=donhang&id=$iddh");
                         exit;
@@ -206,13 +214,99 @@ ob_start();
                 
                         // Thông báo
                         $message = $success ? "✅ Cập nhật thành công!" : "❌ Có lỗi xảy ra khi cập nhật!";
-                    } else {
-                        $message = "Không thể cập nhật. Vui lòng đăng nhập lại.";
                     }
                 
                 
                     include "views/thongtincanhan.php"; // Gửi dữ liệu user sang view
                     break;
+                    case 'doimatkhau':
+                        $message = "";
+                    
+                        if (isset($_SESSION['user']['id'])) {
+                            $id = $_SESSION['user']['id'];
+                    
+                            // Gọi hàm lấy thông tin user từ DB
+                            $user = get_thongtin($id); // ['id' => ..., 'password' => ..., ...]
+                    
+                            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                                // Lấy dữ liệu từ form
+                                $old_password = $_POST['password'] ?? '';
+                                $new_password = $_POST['newpassword'] ?? '';
+                                $confirm_password = $_POST['confirmpassword'] ?? '';
+                    
+                                // Lấy mật khẩu đã mã hóa từ DB
+                                $hashed_password = $user['password'] ?? ''; // <-- Đảm bảo đúng tên cột trong DB
+                    
+                                // Kiểm tra mật khẩu cũ
+                                if ($hashed_password && password_verify($old_password, $hashed_password)) {
+                                    // Kiểm tra mật khẩu mới khớp xác nhận
+                                    if ($new_password === $confirm_password) {
+                                        // Mã hóa mật khẩu mới
+                                        $hashed_new_password = password_hash($new_password, PASSWORD_DEFAULT);
+                    
+                                        // Cập nhật mật khẩu trong DB
+                                        $success = update_password($id, $hashed_new_password);
+                    
+                                        // Thông báo kết quả
+                                        $message = $success ? "✅ Đổi mật khẩu thành công!" : "❌ Có lỗi xảy ra khi đổi mật khẩu!";
+                                    } else {
+                                        $message = "❌ Mật khẩu xác nhận không khớp!";
+                                    }
+                                } else {
+                                    $message = "❌ Mật khẩu cũ không đúng!";
+                                }
+                            }
+                        } else {
+                            $message = "⚠️ Bạn chưa đăng nhập!";
+                        }
+                    
+                        include "views/thongtincanhan.php";
+                        break;
+                    case 'kiemtramagiamgia':
+
+                        $giamgia = 0;
+
+                        if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['magiamgia'])) {
+                            $magiamgia = trim($_POST['magiamgia']);
+
+                            // Truy vấn mã giảm giá trong database
+                            $sql = "SELECT * FROM ma_giam_gia WHERE magiamgia = ? AND trang_thai = 'active' AND so_luong > 0";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute([$magiamgia]);
+                            $voucher = $stmt->fetch();
+
+                            if ($voucher) {
+                                // Tính giảm giá
+                                $phantram = $voucher['phan_tram_giam_gia'];
+                                $tongtien = $_SESSION['tongtien']; // Ví dụ bạn lưu tổng tiền trong session
+                                $giamgia = $tongtien * ($phantram / 100);
+
+                                // Lưu lại giảm giá vào session nếu cần
+                                $_SESSION['giamgia'] = $giamgia;
+                                $_SESSION['phantram'] = $phantram;
+
+                                // (Tùy chọn) Giảm số lượng mã sau khi sử dụng
+                                $stmt = $pdo->prepare("UPDATE ma_giam_gia SET so_luong = so_luong - 1 WHERE id = ?");
+                                $stmt->execute([$voucher['id']]);
+
+                                echo json_encode([
+                                    'success' => true,
+                                    'giamgia' => $giamgia,
+                                    'phantram' => $phantram
+                                ]);
+                            } else {
+                                echo json_encode(['success' => false, 'message' => 'Mã giảm giá không hợp lệ hoặc đã hết.']);
+                            }
+                        }
+
+
+                        break;
+
+
+                    
+                    
+                    
+                
                     
 
 

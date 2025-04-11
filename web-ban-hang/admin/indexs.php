@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 ob_start();
 
@@ -7,9 +9,10 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
     include "models/database.php";
     include "models/danhmuc.php";
     include "models/sanpham.php";
+    include "models/ma_giam_gia.php";
     $conn = connectdb();
 
-    include "views/admin_home.php";
+    // include "views/admin_home.php";
 
     if (isset($_GET['act'])) {
         switch ($_GET['act']) {
@@ -127,7 +130,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
                         exit();
                     } else {
                         echo "<script>alert('Lỗi: Vui lòng nhập đầy đủ thông tin sản phẩm!');</script>";
-                    }
+                    }echo "<script>alert('Thêm mới sản phẩm thành công!');</script>";
                 }
                 
                     $kq = getall_sanpham();
@@ -202,11 +205,63 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
                         $kq = getall_sanpham();
                         include "views/sanpham.php";
                         break; 
-                    case 'dangxuat' :
-                        if(isset($_SESSION['role'])) unset($_SESSION['role']);
-                        header('Location: login.php');
 
-                        break;
+                        case "magiamgia":
+                            $ds_ma_giam_gia = getall_magiamgia();
+                        include "views/magiamgia.php"; // form HTML bạn đã tạo
+                            break;
+                        
+                        case "them_magiamgia":
+                            if (isset($_POST['them'])) {
+                                $ma = $_POST['ma'];
+                                $phan_tram = $_POST['phan_tram_giam_gia'];
+                                $so_luong = $_POST['so_luong'];
+                                $han_su_dung = $_POST['han_su_dung'];
+                                $trang_thai = $_POST['trang_thai'];
+                                them_magiamgia($ma, $phan_tram, $so_luong, $han_su_dung, $trang_thai);
+                            }
+                            $ds_ma_giam_gia = getall_magiamgia();
+                            include "views/magiamgia.php";
+                            break;
+                        
+                        case "xoa_magiamgia":
+                            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                                xoa_magiamgia($_GET['id']);
+                            }
+                            $ds_ma_giam_gia = getall_magiamgia();
+                            include "views/magiamgia.php";
+                            break;
+                        
+                            case "sua_magiamgia":
+                                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                                    $id = $_GET['id'];
+                                    $magiamgia = lay_1_magiamgia_theo_id($id); // Hàm bạn cần tạo
+                                    include "views/update_mg.php";
+                                }
+                                break;
+                            
+                            case "update_magiamgia":
+                                if (isset($_POST['capnhat'])) {
+                                    $id = $_POST['id'];
+                                    $ma = $_POST['ma'];
+                                    $phan_tram = $_POST['phan_tram_giam_gia'];
+                                    $so_luong = $_POST['so_luong'];
+                                    $han_su_dung = $_POST['han_su_dung'];
+                                    $trang_thai = $_POST['trang_thai'];
+                            
+                                    $thongbao = update_magiamgia($id, $ma, $phan_tram, $so_luong, $han_su_dung, $trang_thai);
+                                }
+                            
+                                $ds_ma_giam_gia = getall_magiamgia();
+                                include "views/magiamgia.php";
+                                break;
+                            
+                        
+
+
+
+                    
+                    
         
                         
                 

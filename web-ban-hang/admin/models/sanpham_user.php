@@ -27,29 +27,37 @@
             // }
         }
         
-        function getall_sanpham($iddm = 0, $view = 1){
+        function getall_sanpham($iddm = 0, $view = 1, $sort_price = 'ASC') {
             $conn = connectdb();
             $sql = "SELECT * FROM tbl_sanpham WHERE 1";
-        
+            
             // Nếu có ID danh mục, thêm điều kiện lọc
             if ($iddm > 0) {
                 $sql .= " AND iddm = " . (int)$iddm; // Ép kiểu để tránh lỗi SQL Injection
             }
-        
-            // Sắp xếp theo lượt xem hoặc theo ID
-            if ($view == 1) {
-                $sql .= " ORDER BY view DESC";
+            
+            // Lọc theo giá nếu có yêu cầu
+            if ($sort_price == 'ASC' || $sort_price == 'DESC') {
+                $sql .= " ORDER BY gia " . $sort_price;
             } else {
-                $sql .= " ORDER BY id DESC";
+                // Nếu không có yêu cầu sắp xếp theo giá thì sắp xếp theo lượt xem hoặc ID
+                if ($view == 1) {
+                    $sql .= " ORDER BY view DESC";
+                } else {
+                    $sql .= " ORDER BY id DESC";
+                }
             }
-        
+            
+            // Thực thi câu truy vấn
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $kq = $stmt->fetchAll();
-        
+            
             return $kq;
         }
+        
+        
         
         // function getall_sanpham($iddm, $view = 1){
         //     $conn=connectdb();

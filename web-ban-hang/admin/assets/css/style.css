@@ -111,102 +111,171 @@ header:hover {
 }
 /*category*/
 .cartegory {
-    padding: 100px;
+    padding: 40px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
+
 .cartegory-top {
+    width: 100%;
     margin-bottom: 50px;
 }
+
 .cartegory-top p {
     font-family: var(--main-text-font);
     margin: 0 12px;
     font-size: 13px;
 }
+
 .cartegory-left {
-    width: 20%;
+    width: 25%;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
 }
+
 .cartegory-right {
-    width: 80%;
+    width: 70%;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;  /* Giữ khoảng cách giữa các phần tử */
 }
+
 .cartegory-right-top-item:first-child {
     flex: 2;
     font-size: 16px;
     font-family: var(--main-text-font);
     font-weight: bold;
 }
+
 .cartegory-right-top-item {
     flex: 1;
     padding: 0 12px;
 }
-.cartegory-right-top-item button {
-    width: 100%;
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    border: 1px solid #dddddd;
-    cursor: pointer;
-}
+
+.cartegory-right-top-item button,
 .cartegory-right-top-item select {
     width: 100%;
     padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
+    margin-bottom: 10px;
     background-color: white;
     border: 1px solid #dddddd;
     cursor: pointer;
+    border-radius: 4px;
 }
+
 .cartegory-right-content {
-    margin-top: 20px;
-    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between; /* Đảm bảo các sản phẩm có thể chia đều */
+    width: 100%;
 }
+
+/* Hiển thị 3 cột */
 .cartegory-right-content-item {
-    width: calc(25% - 12px);
+    width: calc(33.333% - 13.333px);  /* 3 cột, với khoảng cách giữa các cột */
     text-align: center;
     padding: 12px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-sizing: border-box;  /* Đảm bảo padding không làm thay đổi kích thước */
 }
+
+/* Thêm các hiệu ứng hover cho hình ảnh */
+.cartegory-right-content-item:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-color: #007bff;
+}
+
+.cartegory-right-content-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Đảm bảo các tiêu đề và mô tả trong sản phẩm căn chỉnh tốt */
 .cartegory-right-content-item h1 {
     font-size: 14px;
     font-family: var(--main-text-font);
     margin-top: 6px;
-    color:#333333;
+    color: #333333;
 }
-.cartegory-right-content-item img {
-    width: 100%;
-}
+
 .cartegory-right-content-item p {
     font-size: 12px;
+    color: #777;
 }
+
+/* Giới hạn số lượng sản phẩm hiển thị trên một hàng */
+@media (max-width: 1200px) {
+    .cartegory-right-content-item {
+        width: calc(50% - 10px);  /* Hiển thị 2 cột khi màn hình nhỏ */
+    }
+}
+
+@media (max-width: 768px) {
+    .cartegory-right-content-item {
+        width: 100%;  /* Hiển thị 1 cột khi màn hình rất nhỏ */
+    }
+}
+
 .cartegory-right-bottom {
+    display: flex;
     justify-content: space-between;
     margin: 30px 0 20px;
     width: 100%;
 }
+
 .cartegory-right-bottom p {
     font-family: var(--main-text-font);
     font-size: 13px;
+    color: #333;
 }
+
+.cartegory-left ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
 .cartegory-left ul li {
     padding: 12px 0;
 }
+
 .cartegory-left ul li>a {
     color: black;
     font-size: 16px;
     font-weight: bold;
     font-family: var(--main-text-font);
 }
+
 .cartegory-left ul li ul li {
     padding-left: 10px;
 }
+
 .cartegory-left-li ul {
     display: none;
 }
+
 .cartegory-left-li.block ul {
     display: block;
 }
+
 .cartegory-left ul li ul li a {
-    color:#333333;
+    color: #333333;
     font-size: 14px;
 }
+
+/* Thêm các hiệu ứng hover để làm nổi bật các mục trong danh sách */
+.cartegory-left ul li a:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
 /*-----------------------------product------------------------------------------*/
 .product {
     padding: 100px;

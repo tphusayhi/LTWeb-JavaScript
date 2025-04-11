@@ -1,3 +1,4 @@
+<?php echo print_r($_SESSION['ma_giam_gia']); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -34,6 +35,7 @@
                         $tongtien = 0;
                         // Khởi tạo biến giamgia
                 ?>
+                
                 <form method="post" action="trangchu.php?act=thanhtoan">
                     <input type="hidden" name="ngaydat" id="ngaydat">
 
@@ -150,23 +152,37 @@
                                         <button type="button" id="applyDiscountBtn">Áp dụng</button>
                                     </td>
                                 </tr>
+                                <?php
+                                $giam_phan_tram = isset($_SESSION['giam_phan_tram']) ? $_SESSION['giam_phan_tram'] : 0;
+                                $giamgia = ($tongtien * 1.1) * ($giam_phan_tram / 100);
+                                ?>
+
                                 <tr id="discountInfo">
                                     <td style="font-weight:bold" colspan="3">Giảm giá</td>
-                                    <td style="font-weight:bold">Chưa áp dụng</td>
+                                    <td style="font-weight:bold">
+                                        <?php
+                                            if ($giam_phan_tram > 0) {
+                                                echo "- ".number_format($giamgia)." <sup>đ</sup> ({$giam_phan_tram}% mã: {$_SESSION['ma_giam_gia']})";
+                                            } else {
+                                                echo "Chưa áp dụng";
+                                            }
+                                        ?>
+                                    </td>
                                 </tr>
+                                <!-- Tổng tiền hàng -->
                                 <tr>
                                     <td style="font-weight:bold" colspan="3">Tổng tiền hàng</td>
                                     <td style="font-weight:bold" id="finalAmount"><?php echo number_format($tongtien * 1.1); ?><sup>đ</sup></td>
                                 </tr>
 
-                                <!-- Hidden fields to store updated values -->
-                                <input type="hidden" name="tongtien" id="tongtien" value="<?php echo $tongtien * 1.1; ?>">
-                                <input type="hidden" name="giamgia" id="giamgiaInput" value="0">
-
+                                <!-- Tổng tiền sau giảm -->
                                 <tr>
                                     <td style="font-weight:bold" colspan="3">Tổng tiền hàng (sau giảm giá)</td>
                                     <td style="font-weight:bold" id="finalAmountAfterDiscount"><?php echo number_format(($tongtien * 1.1) - $giamgia); ?><sup>đ</sup></td>
                                 </tr>
+                                <input type="hidden" name="tongtien" id="tongtien" value="<?php echo (($tongtien * 1.1) - $giamgia); ?>">
+                                <input type="hidden" name="giamgia" id="giamgia" value="<?php echo $giamgia; ?>">
+
 
                             </table>
                         </div>  
@@ -197,54 +213,16 @@
         // Gán vào input hidden
         document.getElementById('ngaydat').value = formattedDate;
     </script>
-    <script>
-        document.getElementById('applyDiscountBtn').addEventListener('click', function() {
-    const magiamgia = document.getElementById('magiamgia').value;
-    if (!magiamgia) {
-        alert("Vui lòng nhập mã giảm giá.");
-        return;
-    }
-
-    // Gửi mã giảm giá đến server để kiểm tra
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'trangchu.php?act=kiemtramagiamgia', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            const response = JSON.parse(xhr.responseText);
-            if (response.success) {
-                const giamgia = response.giamgia;  // Giá trị giảm giá từ server
-                const phantramgiam = response.phantramgiam;
-
-                // Hiển thị giảm giá
-                document.getElementById('discountInfo').innerHTML = `Giảm giá (${phantramgiam}%) -₫ ${giamgia.toLocaleString()}`;
-
-                // Tính lại tổng tiền
-                const tongtien = parseFloat(document.getElementById('tongtien').value); // Lấy tổng tiền hàng
-                const tongTienSauGiam = tongtien - giamgia;
-                document.getElementById('finalAmount').innerHTML = tongTienSauGiam.toLocaleString() + ' đ';
-
-                // Lưu giá trị giảm giá vào form hidden
-                document.getElementById('giamgiaInput').value = giamgia;
-
-                // Cập nhật lại giá trị tổng tiền trong form
-                document.getElementById('tongtien').value = tongTienSauGiam;
-            } else {
-                alert('Mã giảm giá không hợp lệ hoặc đã hết lượt sử dụng.');
-            }
+  <script>
+    document.getElementById("applyDiscountBtn").addEventListener("click", function() {
+        const maGiamGia = document.getElementById("magiamgia").value.trim();
+        if(maGiamGia !== "") {
+            // Chuyển trang và gửi mã giảm giá bằng tham số URL
+            window.location.href = "trangchu.php?act=magiamgia&ma=" + encodeURIComponent(maGiamGia);
+        } else {
+            alert("Vui lòng nhập mã giảm giá.");
         }
-    };
-    xhr.send('magiamgia=' + encodeURIComponent(magiamgia));
-});
-    </script>
-    <script>
-        // Lắng nghe sự kiện thay đổi trên input mã giảm giá
-        document.getElementById('magiamgia').addEventListener('input', function() {
-            const magiamgia = this.value;
-            if (magiamgia === '') {
-                document.getElementById('discountInfo').innerHTML = 'Chưa áp dụng';
-            }
-        });
-    </script>
+    });
+</script>
 
 </html>

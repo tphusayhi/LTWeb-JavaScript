@@ -13,11 +13,11 @@
         <title>Jolliboi - Bán giày chính hãng</title>
     </head>
     <style>
-    * {
+    /* * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
+    } */
 
   
 
@@ -26,8 +26,8 @@
       margin: 20px auto;
       padding: 20px;
       background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      /* border-radius: 10px; */
+      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     }
 
     .section-title {
@@ -42,9 +42,10 @@
 
     .product-grid {
       display: grid;
+    
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
-      height: 550px;
+      /* height: 550px; */
     }
 
     .product {
@@ -139,8 +140,8 @@
         </div>
         </section>
         <!--<br><br><br>-->
-        <div class="section">
-    <h2 class="section-title">SẢN PHẨM ĐƯỢC QUAN TÂM</h2>
+   
+    <br><br><br><h2 class="section-title">SẢN PHẨM ĐƯỢC QUAN TÂM</h2>
   <div class="section">
     <h2 class="section-title">Sản Phẩm Mới</h2>
     <div class="product-grid">
@@ -168,7 +169,7 @@
       echo '  </div>
 			
 			<div class="card__action">
-				<input type="submit" value="View" formaction="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
+				<a href=trangchu.php?act=sanpham_ct&id=' . $item['id'] . '"><button>View</button></a>
 
 			</div>
 		</div>';
@@ -181,10 +182,10 @@
   </div>
 
   <div class="section">
-    <h2 class="section-title">SẢN PHẨM MỚI</h2>
+    <!-- <h2 class="section-title">SẢN PHẨM MỚI</h2> -->
     <h2 class="section-title">Sản phẩm Top View</h2>
-    <div class="product-grid">
-		<?php
+  <div class="product-grid">
+  <?php
 	    //   foreach($sphome2 as $item){ 
 			echo '<div class="card">
 			<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-heart\"></i></span>
@@ -280,7 +281,6 @@
 
 
 		?>
-    </div>
   </div>
        
 

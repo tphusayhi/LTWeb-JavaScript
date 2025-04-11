@@ -114,8 +114,9 @@ ob_start();
                         $tongtien = $_POST['tongtien'];
                         $pttt = $_POST['pttt'];
                         $iduser = $_SESSION['user']['id'] ?? 0;
+                        $giamgia= $_POST['giamgia'];
                 
-                        $iddh = insert_donhang($hoten, $sdt, $email, $diachi, $ghichu, $madh, $tongtien, $pttt, $iduser);
+                        $iddh = insert_donhang($hoten, $sdt, $email, $diachi, $ghichu, $madh, $tongtien, $pttt, $iduser, $giamgia);
                         $_SESSION['iddh'] = $iddh;
                 
                         if ($iddh > 0 && isset($_SESSION['giohang'])) {
@@ -125,14 +126,45 @@ ob_start();
                                     echo "Lỗi khi thêm sản phẩm: " . $item[1] . "<br>";
                                 }
                             }
+                            if (isset($_SESSION['ma_giam_gia'])) {
+                                $giam_ma = $_SESSION['ma_giam_gia'];
+                            
+                                // Lấy thông tin mã giảm giá từ CSDL
+                                $coupon = lay_1_magiamgia_theo_ma($giam_ma);
+                            
+                                if ($coupon && $coupon['so_luong'] > 0) {
+                            
+                                    // ✅ Gọi hàm để trừ số lượng
+                                    giam_so_luong_magiamgia($giam_ma);
+                            
+                                    $message = "Mã giảm giá đã được áp dụng!";
+                                } else {
+                                    $message = "Mã giảm giá không hợp lệ hoặc đã hết lượt dùng.";
+                                }
+                            }                            
                             // ✅ Unset sau khi thêm hết
                             unset($_SESSION['giohang']);
+                            unset($_SESSION['giam_phan_tram']);
                         }
                         
-                
+                        echo "<script>alert('Đặt hàng thành công!');</script>";
+                        // Chuyển hướng đến trang đơn hàng
                         header("Location: trangchu.php?act=donhang&id=$iddh");
                         exit;
                     }
+                    if (isset($_SESSION['giam_phan_tram'])) {
+                        
+                    
+                        // Ví dụ: Tính tổng mới
+                        // $tongtien = 500000; // số tiền gốc (lấy từ giỏ hàng)
+                        // $giam = $tongtien * $_SESSION['giam_phan_tram'] / 100;
+                        // $tong_sau_giam = $tong_goc - $giam;
+                    
+                        // echo "<p>Tổng sau giảm: " . number_format($tong_sau_giam, 0, ',', '.') . "đ</p>";
+                        header("Location: trangchu.php?act=dathang");
+                        exit;
+                    }
+                    
                     break;
                 
                 
@@ -262,43 +294,13 @@ ob_start();
                     
                         include "views/thongtincanhan.php";
                         break;
-                    case 'kiemtramagiamgia':
-
-                        $giamgia = 0;
-
-                        if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['magiamgia'])) {
-                            $magiamgia = trim($_POST['magiamgia']);
-
-                            // Truy vấn mã giảm giá trong database
-                            $sql = "SELECT * FROM ma_giam_gia WHERE magiamgia = ? AND trang_thai = 'active' AND so_luong > 0";
-                            $stmt = $pdo->prepare($sql);
-                            $stmt->execute([$magiamgia]);
-                            $voucher = $stmt->fetch();
-
-                            if ($voucher) {
-                                // Tính giảm giá
-                                $phantram = $voucher['phan_tram_giam_gia'];
-                                $tongtien = $_SESSION['tongtien']; // Ví dụ bạn lưu tổng tiền trong session
-                                $giamgia = $tongtien * ($phantram / 100);
-
-                                // Lưu lại giảm giá vào session nếu cần
-                                $_SESSION['giamgia'] = $giamgia;
-                                $_SESSION['phantram'] = $phantram;
-
-                                // (Tùy chọn) Giảm số lượng mã sau khi sử dụng
-                                $stmt = $pdo->prepare("UPDATE ma_giam_gia SET so_luong = so_luong - 1 WHERE id = ?");
-                                $stmt->execute([$voucher['id']]);
-
-                                echo json_encode([
-                                    'success' => true,
-                                    'giamgia' => $giamgia,
-                                    'phantram' => $phantram
-                                ]);
+                    case 'magiamgia':
+                            if (isset($_GET['ma'])) {
+                                xuLyMaGiamGia($_GET['ma']);
                             } else {
-                                echo json_encode(['success' => false, 'message' => 'Mã giảm giá không hợp lệ hoặc đã hết.']);
+                                echo "<script>alert('Không có mã được gửi!'); window.location.href='trangchu.php?act=thanhtoan';</script>";
                             }
-                        }
-
+                        include "views/dathang.php";
 
                         break;
 

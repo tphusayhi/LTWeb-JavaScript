@@ -162,20 +162,40 @@
         }
 
         .badge {
-            padding: 5px 10px;
-            border-radius: 10px;
-            font-size: 12px;
-            color: white;
-        }
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+}
 
-        .bg-success {
-            background-color: #28a745;
-        }
+/* Mỗi trạng thái một màu riêng */
+.badge-pending {
+    background-color: #ffc107; /* vàng */
+    color: #212529;             /* chữ đen dễ đọc */
+}
 
-        .bg-warning {
-            background-color: #ffc107;
-            color: black;
-        }
+.badge-packing {
+    background-color: #007bff; /* xanh dương */
+}
+
+.badge-shipping {
+    background-color: #17a2b8; /* xanh nhạt */
+    color: #212529;
+}
+
+.badge-completed {
+    background-color: #28a745; /* xanh lá */
+}
+
+.badge-cancelled {
+    background-color: #dc3545; /* đỏ */
+}
+
+        
 
         .btn-sm {
             padding: 5px 10px;
@@ -272,7 +292,15 @@ if (!empty($_SESSION['giohang'])) {
                         <td>#<?= htmlspecialchars($order['madh'], ENT_QUOTES, 'UTF-8') ?></td>
                         <td><?= date('d/m/Y', strtotime($order['ngaydat'])) ?></td>
                         <td><?= number_format($order['tongtien'], 0, ',', '.') ?> đ</td>
-                        <td><span class="badge bg-success">Hoàn thành</span></td>
+                        
+                        <td><span class="badge badge-pending">Chờ xác nhận</span></td>
+                        <!-- <td><span class="badge badge-pending">Chờ xác nhận</span></td>
+                        <td><span class="badge badge-packing">Đang đóng gói</span></td>
+                        <td><span class="badge badge-shipping">Đang vận chuyển</span></td>
+                        <td><span class="badge badge-completed">Hoàn thành</span></td>
+                        <td><span class="badge badge-cancelled">Đã hủy</span></td>  -->
+
+
                         <td><button class="btn-sm btn-outline-primary"><a href="trangchu.php?act=donhang_ct&iddh=<?=($order['id'])?>">Chi tiết<a></button></td>
                     </tr>
                     <?php endforeach; ?>

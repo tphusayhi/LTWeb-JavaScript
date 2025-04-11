@@ -132,11 +132,11 @@
 	background-color: black;
 }
 
-.card__action input {
+.card__action input, button{
 	padding: 10px 20px;
 	outline: none;
 	border: none;
-	background-color: var(--primary-color);
+	background-color: cornflowerblue;
 	border-radius: 5px;
 	cursor: pointer;
 	color: white;
@@ -144,6 +144,8 @@
 	font-weight: 600;
 	transition: 0.25s;
 }
+
+
 
 .card__action input:hover {
 	transform: scale(0.9);

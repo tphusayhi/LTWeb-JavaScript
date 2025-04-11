@@ -10,10 +10,11 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
     include "models/danhmuc.php";
     include "models/sanpham.php";
     include "models/ma_giam_gia.php";
+    include "models/donhang.php";
+    include "models/user.php";
     $conn = connectdb();
 
-    // include "views/admin_home.php";
-
+    include "views/admin_home.php";
     if (isset($_GET['act'])) {
         switch ($_GET['act']) {
             case 'danhmuc':
@@ -286,7 +287,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
                 break;
         }
     } else {
-        include ""; // Hoặc trang mặc định khác
+        include "views/home_admin.php"; // Hoặc trang mặc định khác
     }
 } else {
     header('Location: login.php');

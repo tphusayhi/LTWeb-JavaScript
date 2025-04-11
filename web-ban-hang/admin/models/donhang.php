@@ -1,12 +1,12 @@
 <?php
-   function insert_donhang($hoten, $sdt, $email, $diachi, $ghichu, $madh, $tongtien, $pttt, $iduser) {
+   function insert_donhang($hoten, $sdt, $email, $diachi, $ghichu, $madh, $tongtien, $pttt, $iduser, $giamgia) {
     // Kết nối cơ sở dữ liệu
     $conn = connectdb();
     try {
         // Chuẩn bị câu lệnh SQL
         $sql = "
-            INSERT INTO tbl_donhang (madh, hoten, sdt, email, diachi, ghichu, tongtien, pttt, iduser)
-            VALUES (:madh, :hoten, :sdt, :email, :diachi, :ghichu, :tongtien, :pttt, :iduser)
+            INSERT INTO tbl_donhang (madh, hoten, sdt, email, diachi, ghichu, tongtien, pttt, iduser, giamgia)
+            VALUES (:madh, :hoten, :sdt, :email, :diachi, :ghichu, :tongtien, :pttt, :iduser, :giamgia)
         ";
 
         $stmt = $conn->prepare($sql);
@@ -21,6 +21,8 @@
         $stmt->bindParam(':tongtien', $tongtien);
         $stmt->bindParam(':pttt', $pttt);
         $stmt->bindParam(':iduser', $iduser);
+        $stmt->bindParam(':giamgia', $giamgia); // Gán giá trị cho giamgia nếu cần
+
 
 
         // Thực thi câu lệnh

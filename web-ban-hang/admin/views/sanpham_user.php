@@ -63,6 +63,23 @@
     color: inherit;
 }
 
+.section {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      /* border-radius: 10px; */
+      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    }
+
+    .product-grid {
+      display: grid;
+    
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      /* height: 550px; */
+    }
+
 
 
 #showAllBtn {

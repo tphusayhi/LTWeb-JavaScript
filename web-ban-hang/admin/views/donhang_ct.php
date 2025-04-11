@@ -1,6 +1,3 @@
-<?php
-echo print_r($_SESSION);
- ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -15,7 +12,7 @@ echo print_r($_SESSION);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .container {
+        .containerr {
             width: 90%;
             max-width: 1200px;
             margin: 40px auto;
@@ -87,7 +84,7 @@ echo print_r($_SESSION);
 </head>
 <body>
 
-<div class="container">
+<div class="containerr">
     <?php
     // Kiểm tra và cập nhật iddh từ URL nếu có
     if (isset($_GET['iddh']) && !empty($_GET['iddh'])) {
@@ -146,6 +143,7 @@ echo print_r($_SESSION);
             <tbody>
                 <?php
                 $tong = 0;
+                
                 foreach ($orderDetails as $item):
                     $thanhtien = $item['dongia'] * $item['soluong'];
                     $tong += $thanhtien;
@@ -158,10 +156,11 @@ echo print_r($_SESSION);
                         <td><?= $item['soluong'] ?></td>
                         <td><?= number_format($thanhtien, 0, ',', '.') ?> đ</td>
                     </tr>
-                <?php endforeach;
-
-                $vat = $tong * 0.1;
-                $tongcong = $tong + $vat;
+                
+                    <?php endforeach;
+                      $vat = $tong * 0.1;
+                      $tongcong = $tong + $vat;
+                      
                 ?>
                 <tr>
                     <td colspan="5" align="right"><strong>Tổng:</strong></td>
@@ -172,9 +171,13 @@ echo print_r($_SESSION);
                     <td><strong><?= number_format($vat, 0, ',', '.') ?> đ</strong></td>
                 </tr>
                 <tr>
+                    <td colspan="5" align="right"><strong>Mã giảm giá:</strong></td>
+                    <td><strong><?=number_format($orderinfo['giamgia'], 0, ',', '.')?>đ</strong></td>
+                <tr>
                     <td colspan="5" align="right"><strong>Tổng cộng:</strong></td>
-                    <td><strong><?= number_format($tongcong, 0, ',', '.') ?> đ</strong></td>
+                    <td><strong><?= number_format($orderinfo['tongtien'], 0, ',', '.') ?> đ</strong></td>
                 </tr>
+                
             </tbody>
         </table>
     <?php

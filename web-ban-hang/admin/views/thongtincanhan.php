@@ -152,7 +152,6 @@
       margin-bottom: 6px;
       font-size: 14px;
     }
-<<<<<<< Updated upstream
 
     input[type="password"],
     input[type="new_password"],

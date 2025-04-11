@@ -4,13 +4,12 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< Updated upstream
-=======
+
         <link rel="stylesheet" href="assets/css/style.css">
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="assets/css/product.css" />
         <script type="text/javascript" src="assets/js/script.js" defer></script>
->>>>>>> Stashed changes
+
         <title>Jolliboi - Bán giày chính hãng</title>
     </head>
     <style>
@@ -140,13 +139,10 @@
         </div>
         </section>
         <!--<br><br><br>-->
-<<<<<<< Updated upstream
         <div class="section">
     <h2 class="section-title">SẢN PHẨM ĐƯỢC QUAN TÂM</h2>
-=======
   <div class="section">
     <h2 class="section-title">Sản Phẩm Mới</h2>
->>>>>>> Stashed changes
     <div class="product-grid">
 		<?php
 		foreach($sphome1 as $item){
@@ -185,11 +181,8 @@
   </div>
 
   <div class="section">
-<<<<<<< Updated upstream
     <h2 class="section-title">SẢN PHẨM MỚI</h2>
-=======
     <h2 class="section-title">Sản phẩm Top View</h2>
->>>>>>> Stashed changes
     <div class="product-grid">
 		<?php
 	    //   foreach($sphome2 as $item){ 

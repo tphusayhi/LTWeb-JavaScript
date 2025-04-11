@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="assets/css/style.css">
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="assets/css/product.css" />
-        <script type="text/javascript" src="asets/js/script.js" defer></script>
+        <script type="text/javascript" src="assets/js/script.js" defer></script>
         <title>Jolliboi - Bán giày chính hãng</title>
     </head>
     <style>

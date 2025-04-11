@@ -8,11 +8,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title></title>
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <script type="text/javascript" src="assets/js/script.js" defer></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -84,7 +80,81 @@
                 © 2025 Copyright:
                 <a class="text-white" href="trangchu.php"><u>Jolliboi.com.vn</u></a>
             </div>
+<style>
+.footer {
+  background-color: #3f51b5;
+  color: white;
+  padding-top: 20px;
+}
+
+.footer h5 {
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.footer ul li {
+  color: white;
+  margin-bottom: 8px;
+}
+
+.btn-floating {
+  background-color: #4b5fb9;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.btn-floating:hover {
+  background-color: #5c6ec9;
+}
+
+.footer table {
+  color: white;
+}
+
+.footer .row {
+    display: flex; 
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.footer .col-md-4 {
+    flex: 1;
+    padding: 0 15px;
+    text-align: left;
+    box-sizing: border-box;
+    max-width: 300px;
+}
+
+.footer .col-md-4:nth-child(1) {
+    margin-right: auto;
+}
+
+.footer .col-md-4:nth-child(3) {
+    margin-left: auto;
+}
+
+.footer .text-center {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .footer {
+      text-align: center;
+  }
+  
+  .footer h5 {
+      margin-top: 20px;
+  }
+}
+</style>
         </footer>
-        <script src="" async defer></script>
     </body>
 </html>

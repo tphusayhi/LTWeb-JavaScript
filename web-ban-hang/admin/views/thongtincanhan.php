@@ -152,6 +152,9 @@
       margin-bottom: 6px;
       font-size: 14px;
     }
+    input[type="password"],
+    input[type="new_password"],
+    input[type="confirm_password"],
     input[type="text"],
     input[type="email"],
     input[type="tel"],
@@ -236,7 +239,24 @@
 <?php else: ?>
     <p>Không tìm thấy thông tin người dùng.</p>
 <?php endif; ?>
-<h3>Đổi mật khẩu</h3>
+<form action="#" method="post">
+  <div class="form-group">
+    <label for="password">Mật khẩu hiện tại</label>
+    <input type="password" id="password" name="password" required>
+  </div>
+  <div class="form-group">
+    <label for="new_password">Mật khẩu mới</label>
+    <input type="password" id="new_password" name="new_password" required>
+  </div>
+  <div class="form-group">
+    <label for="confirm_password">Nhập lại mật khẩu mới</label>
+    <input type="confirm_password" id="confirm_password" name="confirm_password" required>
+  </div>
+  <div class="form-footer">
+    <button type="submit" name="btn-change-password" class="submit-btn">Cập nhật mật khẩu</button>
+  </div>
+</form>
+
 
 
     </div>
@@ -254,5 +274,24 @@
     }
   });
 </script>
+<script>
+  function validatePasswordForm() {
+    const newPassword = document.getElementById('new_password').value;
+    const confirmPassword = document.getElementById('confirm_password').value;
+
+    if (newPassword !== confirmPassword) {
+      alert('Mật khẩu mới và nhập lại mật khẩu không khớp!');
+      return false;
+    }
+
+    if (newPassword.length < 6) {
+      alert('Mật khẩu mới phải có ít nhất 6 ký tự.');
+      return false;
+    }
+
+    return true;
+  }
+</script>
+
 </body>
 </html>

@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/product.css">
         <script type="text/javascript" src="assets/js/script.js" defer></script>
         <title>Jolliboi - Bán giày chính hãng</title>
     </head>
@@ -96,6 +96,13 @@ input[type=number] {
         <input type="hidden" name="gia" value="<?= isset($spct['gia']) ? htmlspecialchars($spct['gia']) : '' ?>">
         <input type="hidden" name="sizes" value="<?= isset($spct['sizes']) ? htmlspecialchars($spct['sizes']) : '' ?>">
     <div class="container">
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 909dbb958761e1585d4ddf95138f1cab0e7dee5f
+>>>>>>> Stashed changes
         <div class="product-content row">
             <div class="product-content-left row">
                 <div class="product-content-left-big-img">
@@ -139,10 +146,21 @@ input[type=number] {
                             <button type="button" class="increase">+</button>
                         </div>
                     </div>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+                   <input type="submit" value="Mua hàng" name="addtocart">
+=======
+>>>>>>> Stashed changes
                
             <i class="fas fa-shopping-cart"></i>
             <p><input type="submit" value="Mua hàng" name="addtocart"></p>
             
+<<<<<<< Updated upstream
+=======
+>>>>>>> 909dbb958761e1585d4ddf95138f1cab0e7dee5f
+>>>>>>> Stashed changes
                 <div class="product-content-right-product-icon">
                     <div class="product-content-right-product-icon-item">
                         <i class="fas fa-phone-alt"></i><p>Hotline</p>

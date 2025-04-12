@@ -1,4 +1,47 @@
 <?php
+function delete_user($id) {
+    $conn = connectdb();
+    try {
+        $stmt = $conn->prepare("DELETE FROM users WHERE id = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->rowCount(); // Trả về số dòng đã xóa
+    } catch (PDOException $e) {
+        echo "Lỗi khi xóa user: " . $e->getMessage();
+        return false;
+    }
+}
+function them_user($username, $password, $role) {
+    $conn = connectdb();
+
+    // Mã hóa mật khẩu
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    try {
+        $stmt = $conn->prepare("INSERT INTO users (username, password, role) 
+                                VALUES (:username, :password, :role)");
+        $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+        $stmt->bindParam(":password", $hashed_password, PDO::PARAM_STR);
+        $stmt->bindParam(":role", $role, PDO::PARAM_INT);
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        return false; // Có thể log lỗi nếu muốn
+    }
+}
+
+
+function getall_users(){
+    $conn=connectdb();
+    $stmt = $conn->prepare("SELECT * FROM users");
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $kq_user = $stmt->fetchAll();
+
+
+
+    return $kq_user;
+}
+
 function update_password($id, $hashed_password) {
     try {
         $conn = connectdb(); // Hàm kết nối PDO đến CSDL

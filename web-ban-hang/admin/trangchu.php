@@ -141,13 +141,14 @@ ob_start();
                                 } else {
                                     $message = "Mã giảm giá không hợp lệ hoặc đã hết lượt dùng.";
                                 }
-                            }                            
+                            }
+                            echo "<script>alert('Đặt hàng thành công!');</script>";                       
                             // ✅ Unset sau khi thêm hết
                             unset($_SESSION['giohang']);
                             unset($_SESSION['giam_phan_tram']);
                         }
                         
-                        echo "<script>alert('Đặt hàng thành công!');</script>";
+                        // echo "<script>alert('Đặt hàng thành công!');</script>";
                         // Chuyển hướng đến trang đơn hàng
                         header("Location: trangchu.php?act=donhang&id=$iddh");
                         exit;

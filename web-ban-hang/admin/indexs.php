@@ -280,6 +280,28 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
                                     }
                                 }
                                 break;
+                            case 'them_user':
+                                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['them'])) {
+                                    $username = $_POST['username'];
+                                    $password = $_POST['password'];
+                                    $role = $_POST['role'];
+                        
+                                    them_user($username, $password, $role);
+                                }
+                        
+                                
+                                $kq_user = getall_users();
+                                include "views/ds_user.php";
+                                break;
+                            case 'delete_user':
+                                if (isset($_GET['id'])) {
+                                    $id = $_GET['id'];
+                                    delete_user($id);
+                                }
+                                $kq_user = getall_users();
+                                include "views/ds_user.php";
+                                break;
+
                             
                         
 

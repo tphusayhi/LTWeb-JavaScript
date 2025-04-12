@@ -1,4 +1,3 @@
-<?php echo print_r($_SESSION['ma_giam_gia']); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

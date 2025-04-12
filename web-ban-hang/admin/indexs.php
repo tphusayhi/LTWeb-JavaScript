@@ -15,7 +15,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
     include "models/thongke.php";
     $conn = connectdb();
 
-    include "views/admin_home.php";
+    // include "views/admin_home.php";
     if (isset($_GET['act'])) {
         switch ($_GET['act']) {
             case 'danhmuc':
@@ -256,6 +256,29 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
                             
                                 $ds_ma_giam_gia = getall_magiamgia();
                                 include "views/magiamgia.php";
+                                break;
+                            case 'donhang_admin':
+                                $alldonhang = getall_donhang();
+                                include "views/donhang_admin.php";
+                                break;
+                            case 'capnhat_trangthai':
+                                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                                    if (isset($_POST['id_donhang'], $_POST['trangthai'])) {
+                                        $id_donhang = $_POST['id_donhang'];
+                                        $trangthai = $_POST['trangthai'];
+                                
+                                        // Gọi hàm cập nhật
+                                        if (update_trangthai($id_donhang, $trangthai)) {
+                                            // Quay lại trang danh sách đơn hàng (có thể thay đổi URL tùy theo hệ thống)
+                                            header('Location: indexs.php?act=donhang_admin');
+                                            exit;
+                                        } else {
+                                            echo "❌ Cập nhật trạng thái thất bại!";
+                                        }
+                                    } else {
+                                        echo "Thiếu dữ liệu cần thiết.";
+                                    }
+                                }
                                 break;
                             
                         

@@ -293,12 +293,31 @@ if (!empty($_SESSION['giohang'])) {
                         <td><?= date('d/m/Y', strtotime($order['ngaydat'])) ?></td>
                         <td><?= number_format($order['tongtien'], 0, ',', '.') ?> đ</td>
                         
-                        <td><span class="badge badge-pending">Chờ xác nhận</span></td>
-                        <!-- <td><span class="badge badge-pending">Chờ xác nhận</span></td>
-                        <td><span class="badge badge-packing">Đang đóng gói</span></td>
-                        <td><span class="badge badge-shipping">Đang vận chuyển</span></td>
-                        <td><span class="badge badge-completed">Hoàn thành</span></td>
-                        <td><span class="badge badge-cancelled">Đã hủy</span></td>  -->
+                        <td>
+                        <?php 
+                        switch (htmlspecialchars($order['trangthai'])) {
+                            case 1: 
+                                echo '<span class="badge badge-pending">Chờ xác nhận</span>'; 
+                                break;
+                            case 2: 
+                                echo '<span class="badge badge-packing">Đang đóng gói</span>'; 
+                                break;
+                            case 3: 
+                                echo '<span class="badge badge-shipping">Đang vận chuyển</span>'; 
+                                break;
+                            case 4: 
+                                echo '<span class="badge badge-completed">Hoàn thành</span>'; 
+                                break;
+                            case 5:
+                                echo '<span class="badge badge-cancelled">Đã hủy</span>'; 
+                                break;
+                            default: 
+                                echo '<span class="badge badge-cancelled">Không xác định</span>'; 
+                                break;
+                        }
+                        ?>
+                        </td>
+
 
 
                         <td><button class="btn-sm btn-outline-primary"><a href="trangchu.php?act=donhang_ct&iddh=<?=($order['id'])?>">Chi tiết<a></button></td>

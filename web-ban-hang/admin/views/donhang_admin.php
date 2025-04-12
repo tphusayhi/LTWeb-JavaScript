@@ -13,10 +13,11 @@
         }
 
         .container {
-            width: 90%;
-            margin: 50px auto;
+            width: 70%;
+            margin-top: 80px;
             background-color: #fff;
             padding: 30px;
+            margin-left: 300px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border-radius: 8px;
         }
@@ -70,9 +71,27 @@
 }
 
 /* Mỗi trạng thái một màu riêng */
+
+/* Dropdown trạng thái */
+select.badge {
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    padding: 6px 10px;
+    color: #fff;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-align: center;
+    text-align-last: center;
+}
+
+/* Màu nền thay đổi theo trạng thái (thông qua JS hoặc class tương ứng) */
 .badge-pending {
     background-color: #ffc107; /* vàng */
-    color: #212529;             /* chữ đen dễ đọc */
+    color: #212529;
 }
 
 .badge-packing {
@@ -91,6 +110,7 @@
 .badge-cancelled {
     background-color: #dc3545; /* đỏ */
 }
+
     </style>
 </head>
 <body>
@@ -110,37 +130,41 @@
             </tr>
         </thead>
         <tbody>
-    <?php if (!empty($orders)): ?>
-        <?php foreach ($orders as $order): ?>
+    <?php if (!empty($alldonhang)): ?>
+        <?php foreach ($alldonhang as $order): ?>
             <tr>
                 <td>#<?= htmlspecialchars($order['madh'], ENT_QUOTES, 'UTF-8') ?></td>
                 <td><?= date('d/m/Y', strtotime($order['ngaydat'])) ?></td>
                 <td><?= htmlspecialchars($order['hoten'], ENT_QUOTES, 'UTF-8') ?></td>
                 <td><?= number_format($order['tongtien'], 0, ',', '.') ?> đ</td>
+
                 <td>
-                <?php 
-                switch (htmlspecialchars($order['trangthai'])) {
-                    case 1: 
-                        echo '<span class="badge badge-pending">Chờ xác nhận</span>'; 
-                        break;
-                    case 2: 
-                        echo '<span class="badge badge-packing">Đang đóng gói</span>'; 
-                        break;
-                    case 3: 
-                        echo '<span class="badge badge-shipping">Đang vận chuyển</span>'; 
-                        break;
-                    case 4: 
-                        echo '<span class="badge badge-completed">Hoàn thành</span>'; 
-                        break;
-                    case 5:
-                        echo '<span class="badge badge-cancelled">Đã hủy</span>'; 
-                        break;
-                    default: 
-                        echo '<span class="badge badge-cancelled">Không xác định</span>'; 
-                        break;
-                }
-                ?>
+                    <form action="indexs.php?act=capnhat_trangthai" method="post" style="margin: 0;">
+                        <input type="hidden" name="id_donhang" value="<?= $order['id'] ?>">
+                        <?php
+                            // Lấy class tương ứng với trạng thái hiện tại
+                            $badgeClass = '';
+                            switch ($order['trangthai']) {
+                                case 1: $badgeClass = 'badge-pending'; break;
+                                case 2: $badgeClass = 'badge-packing'; break;
+                                case 3: $badgeClass = 'badge-shipping'; break;
+                                case 4: $badgeClass = 'badge-completed'; break;
+                                case 5: $badgeClass = 'badge-cancelled'; break;
+                                default: $badgeClass = 'badge-cancelled'; break;
+                            }
+                        ?>
+                        <select name="trangthai" onchange="this.form.submit()" class="badge <?= $badgeClass ?>">
+                            <option value="1" class="badge-pending" <?= $order['trangthai'] == 1 ? 'selected' : '' ?>>Chờ xác nhận</option>
+                            <option value="2" class="badge-packing" <?= $order['trangthai'] == 2 ? 'selected' : '' ?>>Đang đóng gói</option>
+                            <option value="3" class="badge-shipping" <?= $order['trangthai'] == 3 ? 'selected' : '' ?>>Đang vận chuyển</option>
+                            <option value="4" class="badge-completed" <?= $order['trangthai'] == 4 ? 'selected' : '' ?>>Hoàn thành</option>
+                            <option value="5" class="badge-cancelled" <?= $order['trangthai'] == 5 ? 'selected' : '' ?>>Đã hủy</option>
+                        </select>
+                    </form>
                 </td>
+
+
+
 
                 <td>
                     <a href="trangchu.php?act=donhang_ct&iddh=<?=($order['id'])?>" class="btn">Xem chi tiết</a>

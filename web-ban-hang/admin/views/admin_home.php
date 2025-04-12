@@ -95,7 +95,7 @@
         <a href="indexs.php?act=magiamgia"><i class="fas fa-tags"></i> Mã giảm giá</a>
         <a href="indexs.php?act=danhmuc"><i class="fas fa-list"></i> Danh mục</a>
         <a href="#"><i class="fas fa-users"></i> Khách hàng</a>
-        <a href="#"><i class="fas fa-shopping-cart"></i> Đơn hàng</a>
+        <a href="indexs.php?act=donhang_admin"><i class="fas fa-shopping-cart"></i> Đơn hàng</a>
         <a href="#"><i class="fas fa-cogs"></i> Cài đặt</a>
         <a href="indexs.php?act=dangxuat"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
     </div>

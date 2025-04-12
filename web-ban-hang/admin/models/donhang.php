@@ -1,4 +1,33 @@
-<?php
+<?php 
+    function update_trangthai($id_donhang, $trangthai_moi) {
+        $conn = connectdb(); // Kết nối cơ sở dữ liệu
+        try {
+            $sql = "UPDATE tbl_donhang SET trangthai = :trangthai WHERE id = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':trangthai', $trangthai_moi, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $id_donhang, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            // Ghi log nếu cần: error_log($e->getMessage());
+            return false;
+        }
+    }
+
+
+   function getall_donhang(){
+    $conn=connectdb();
+    $stmt = $conn->prepare("SELECT * FROM tbl_donhang");
+    $stmt->execute();
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $alldonhang = $stmt->fetchAll();
+
+
+
+    return $alldonhang;
+ }// Trả về mảng các dòng kết quả
+   
+
+
    function insert_donhang($hoten, $sdt, $email, $diachi, $ghichu, $madh, $tongtien, $pttt, $iduser, $giamgia) {
     // Kết nối cơ sở dữ liệu
     $conn = connectdb();

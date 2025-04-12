@@ -21,6 +21,7 @@
             max-width: 1100px;
             margin-top: 80px;
             transition: transform 0.3s ease-in-out;
+
         }
         .main:hover {
             transform: scale(1.02);
@@ -30,6 +31,7 @@
             color: #007bff;
         }
         form {
+            
             display: flex;
             flex-direction: column;
             gap: 10px;

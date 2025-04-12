@@ -1,5 +1,5 @@
 <?php
-
+echo print_r($_SESSION['user']);
 session_start();
 ob_start();
 require "models/database.php";

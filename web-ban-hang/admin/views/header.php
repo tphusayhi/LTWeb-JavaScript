@@ -22,7 +22,17 @@
                 <li><a href="">ƯU ĐÃI</a></li>
                 <li><a href="trangchu.php?act=sanpham_user">BỘ SƯU TẬP</a></li>
                 <li><a href="trangchu.php?act=donhang">ĐƠN HÀNG</a></li>
-                <li><a href="trangchu.php?act=dangxuat">ĐĂNG XUẤT</a></li>
+                <?php
+                    // Kiểm tra nếu người dùng đã đăng nhập
+                    if (!isset($_SESSION['user_id']) && !isset($_SESSION['user'])) {
+                        // Chưa đăng nhập thì hiển thị "Đăng nhập" và "Đăng ký"
+                        echo '<li><a href="login.php">ĐĂNG NHẬP</a></li>';
+                        echo '<li><a href="register.php">ĐĂNG KÝ</a></li>';
+                    } else {
+                        // Nếu đã đăng nhập thì hiển thị "Đăng xuất"
+                        echo '<li><a href="trangchu.php?act=dangxuat">ĐĂNG XUẤT</a></li>';
+                    }
+                ?>
             </div>
             <div class="oders">
                 <li><input placeholder="Tìm kiếm" type="text"> <i class="fas fa-search"></i></li>

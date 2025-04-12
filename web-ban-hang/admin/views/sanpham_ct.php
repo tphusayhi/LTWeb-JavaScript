@@ -96,13 +96,7 @@ input[type=number] {
         <input type="hidden" name="gia" value="<?= isset($spct['gia']) ? htmlspecialchars($spct['gia']) : '' ?>">
         <input type="hidden" name="sizes" value="<?= isset($spct['sizes']) ? htmlspecialchars($spct['sizes']) : '' ?>">
     <div class="container">
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-        
-=======
->>>>>>> 909dbb958761e1585d4ddf95138f1cab0e7dee5f
->>>>>>> Stashed changes
+
         <div class="product-content row">
             <div class="product-content-left row">
                 <div class="product-content-left-big-img">
@@ -146,21 +140,15 @@ input[type=number] {
                             <button type="button" class="increase">+</button>
                         </div>
                     </div>
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 
-                   <input type="submit" value="Mua hàng" name="addtocart">
-=======
->>>>>>> Stashed changes
+
+                
+
                
             <i class="fas fa-shopping-cart"></i>
             <p><input type="submit" value="Mua hàng" name="addtocart"></p>
             
-<<<<<<< Updated upstream
-=======
->>>>>>> 909dbb958761e1585d4ddf95138f1cab0e7dee5f
->>>>>>> Stashed changes
+
                 <div class="product-content-right-product-icon">
                     <div class="product-content-right-product-icon-item">
                         <i class="fas fa-phone-alt"></i><p>Hotline</p>

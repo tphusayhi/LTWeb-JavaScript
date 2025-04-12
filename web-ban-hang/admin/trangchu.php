@@ -102,6 +102,12 @@ ob_start();
                 exit();
                 break;
                 case 'thanhtoan':
+                    // ✅ Kiểm tra người dùng đã đăng nhập chưa
+                    if (!isset($_SESSION['user_id']) && !isset($_SESSION['user'])) {
+                        // Chưa đăng nhập thì chuyển hướng về trang đăng nhập
+                        header("Location: trangchu.php?act=dangnhap");
+                        exit();
+                    }
                     
                     
                     if ((isset($_POST['thanhtoan'])) && ($_POST['thanhtoan'])) {
@@ -204,10 +210,28 @@ ob_start();
                     include "views/viewcart.php";
                     break;
                 case 'dathang':
-                    
+                    // ✅ Kiểm tra người dùng đã đăng nhập chưa
+                    if (!isset($_SESSION['user_id']) && !isset($_SESSION['user'])) {
+                        // Chưa đăng nhập thì chuyển hướng về trang đăng nhập
+                        echo "<script>
+                                    alert('Bạn cần đăng nhập để đặt hàng!');
+                                    window.location.href = 'login.php';
+                                </script>";
+                                exit();
+ 
+                    }
+
                     include "views/dathang.php";
                     break;
                 case 'account':
+                    if (!isset($_SESSION['user_id']) && !isset($_SESSION['user'])) {
+                        // Chưa đăng nhập thì chuyển hướng về trang đăng nhập
+                        echo "<script>
+                                    alert('Bạn cần đăng nhập để xem thông tin tài khoản!');
+                                    window.location.href = 'login.php';
+                                </script>";
+                                exit();
+                    }
                     if (isset($_SESSION['user_id'])) {
                         $id=$iduser = $_SESSION['user_id'];
                         // Lấy danh sách đơn hàng của người dùng
@@ -335,9 +359,12 @@ ob_start();
 
                 case 'dangxuat':
                     // Xóa toàn bộ thông tin người dùng
-                    if (isset($_SESSION['user'])) {
-                        unset($_SESSION['user']);
-                    }
+                    // if (isset($_SESSION['user'])) {
+                    //     unset($_SESSION['user']);
+                    // }
+                    session_start();
+                    session_unset();
+                    session_destroy();
 
                     // Nếu dùng session_unset() + destroy():
                     // session_unset();

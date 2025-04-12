@@ -97,6 +97,9 @@
 #showAllBtn:hover {
     background-color: #0056b3;
 }
+.cartegory-left {
+    margin-top: 30px;   
+}
 	</style>
     <body>
         <!--category-->

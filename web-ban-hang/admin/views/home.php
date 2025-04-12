@@ -22,14 +22,15 @@
   
 
     .section {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
+      max-width: 100%;
       background: #fff;
-      /* border-radius: 10px; */
-      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+      border-radius: 10px; 
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     }
 
+    .section .card {
+      margin: 10px 70px;
+    }
     .section-title {
       text-align: center;
       font-size: 1.8rem;
@@ -42,10 +43,9 @@
 
     .product-grid {
       display: grid;
-    
+      margin-bottom: 20px;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
-      /* height: 550px; */
     }
 
     .product {

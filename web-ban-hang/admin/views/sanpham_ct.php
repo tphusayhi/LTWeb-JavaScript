@@ -96,9 +96,6 @@ input[type=number] {
         <input type="hidden" name="gia" value="<?= isset($spct['gia']) ? htmlspecialchars($spct['gia']) : '' ?>">
         <input type="hidden" name="sizes" value="<?= isset($spct['sizes']) ? htmlspecialchars($spct['sizes']) : '' ?>">
     <div class="container">
-        <div class="product-top row">
-            <p>Trang chủ</p> <span>&#10509;</span> <p>Nữ</p> <span>&#10509;</span> <p>Hàng nữ mới về</p><span> &#10509;</span><p> Giày thể thao</p>
-        </div>
         <div class="product-content row">
             <div class="product-content-left row">
                 <div class="product-content-left-big-img">
@@ -142,10 +139,10 @@ input[type=number] {
                             <button type="button" class="increase">+</button>
                         </div>
                     </div>
-
+               
             <i class="fas fa-shopping-cart"></i>
             <p><input type="submit" value="Mua hàng" name="addtocart"></p>
-    
+            
                 <div class="product-content-right-product-icon">
                     <div class="product-content-right-product-icon-item">
                         <i class="fas fa-phone-alt"></i><p>Hotline</p>

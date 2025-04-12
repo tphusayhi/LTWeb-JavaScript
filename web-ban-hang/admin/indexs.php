@@ -15,7 +15,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
     include "models/thongke.php";
     $conn = connectdb();
 
-    // include "views/admin_home.php";
+    include "views/admin_home.php";
     if (isset($_GET['act'])) {
         switch ($_GET['act']) {
             case 'danhmuc':

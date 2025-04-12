@@ -462,9 +462,9 @@ header:hover {
 }
 
 /*----------------------------------------cart----------------------------------*/
-.cart {
+/* .cart {
     padding: 100px 50px;
-}
+} */
 .cart-top-wrap {
     display: flex;
     justify-content: center;

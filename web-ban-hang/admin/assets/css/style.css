@@ -477,7 +477,7 @@ header:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 50px 200px;
+    margin: 80px 200px;
 }
 .cart-top-item {
     width: 40px;
@@ -501,6 +501,7 @@ header:hover {
 .cart-content-left {
     flex: 2;
     padding-right: 12px;
+    min-height: 400px;
 }
 .cart-content-left table {
     width: 100%;
@@ -590,23 +591,34 @@ header:hover {
     height: 35px;
     cursor: pointer;
 }
-.cart-content-right-button button:first-child {
+.cart-content-right-button button:nth-child(1) {
     background-color: white;
     border: 1px solid black;
     margin-right: 20px;
 }
-.cart-content-right-button button:first-child:hover {
-    background-color: #dddddd;
+.cart-content-right-button button:nth-child(1):hover {
+    background-color: red;
+    cursor: pointer;
 }
-.cart-content-right-button button:last-child {
-    background-color: black;
+.cart-content-right-button button:nth-child(2) {
+    background-color: white;
+    border: 1px solid black;
+    margin-right: 20px;
+}
+.cart-content-right-button button:nth-child(2):hover {
+    background-color: greenyellow;
+    cursor: pointer;
+}
+.cart-content-right-button button:nth-child(3) {
+    background-color: white;
     color: #fff;
     border: none;  
     border: 1px solid black; 
 }
-.cart-content-right-button button:last-child:hover {
-    background-color: #dddddd;
-    color: black;
+.cart-content-right-button button:nth-child(3):hover {
+    background-color: yellow;
+    color: white;
+    cursor: pointer;
 }
 .cart-content-right-dangnhap {
     margin-top: 20px;
@@ -621,9 +633,7 @@ header:hover {
 
 
 /*-------------------------------Delivery----------------------------*/
-.delivery {
-    padding: 100px 50px;
-}
+
 .delivery-top-wrap {
     display: flex;
     justify-content: center;
@@ -636,7 +646,7 @@ header:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 50px 200px;
+    margin: 80px 200px;
 }
 .delivery-top-item {
     width: 40px;
@@ -714,7 +724,7 @@ header:hover {
 .delivery-content-left-button p {
     display: inline-block;
     font-family: var(--main-text-font);
-    font-size: 12px;
+    font-size: 13px;
 }
 .delivery-content-left-button span {
     margin-right: 12px;
@@ -722,15 +732,15 @@ header:hover {
 .delivery-content-left-button {
     justify-content: space-between;
     padding-top: 20px;
+    margin: 10px;
 }
-.delivery-content-left-button button {
-    height: 35px;
+.delivery-content-left-button input {
     border: 2px solid black;
-    padding: 6px 12px;
+    padding: 10px 20px;
     cursor: pointer;
-    transition: 0.3 ease;
+    font-size: 18px;
 }
-.delivery-content-left-button button:hover {
+.delivery-content-left-button input:hover {
     background-color: black;
     color: white;
 }
@@ -809,6 +819,7 @@ header:hover {
 }
 .payment-content-left {
     width: 60%;
+    margin-left: 5px;
 }
 .payment-content-right {
     width: 40%;

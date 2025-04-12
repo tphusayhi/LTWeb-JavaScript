@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/admin-style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
         body {
             display: flex;
@@ -94,7 +93,7 @@
         <a href="indexs.php?act=sanpham"><i class="fas fa-box"></i> Sản phẩm</a>
         <a href="indexs.php?act=magiamgia"><i class="fas fa-tags"></i> Mã giảm giá</a>
         <a href="indexs.php?act=danhmuc"><i class="fas fa-list"></i> Danh mục</a>
-        <a href="#"><i class="fas fa-users"></i> Khách hàng</a>
+        <a href="indexs.php?act=ds_user"><i class="fas fa-users"></i> Khách hàng</a>
         <a href="indexs.php?act=donhang_admin"><i class="fas fa-shopping-cart"></i> Đơn hàng</a>
         <a href="#"><i class="fas fa-cogs"></i> Cài đặt</a>
         <a href="indexs.php?act=dangxuat"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>

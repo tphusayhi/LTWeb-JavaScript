@@ -12,6 +12,7 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
     include "models/ma_giam_gia.php";
     include "models/donhang.php";
     include "models/user.php";
+    include "models/thongke.php";
     $conn = connectdb();
 
     include "views/admin_home.php";

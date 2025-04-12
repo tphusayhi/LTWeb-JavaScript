@@ -102,9 +102,7 @@
 <body>
     <div class="main">
         <h2>Danh mục sản phẩm</h2>
-        <?php
-        echo var_dump($kqone);
-        ?>
+       
         <form action="indexs.php?act=themdm" method="post">
         <input type="text" name="tendm" placeholder="Nhập tên danh mục">
             <input type="submit" name="them" value="Thêm">

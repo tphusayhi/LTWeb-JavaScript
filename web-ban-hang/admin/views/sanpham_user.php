@@ -100,6 +100,13 @@
 .cartegory-left {
     margin-top: 30px;   
 }
+.cartegory-right-top-item p {
+    margin-top: 20px;
+    font-size: 25px;
+}
+.cartegory-right-top-item select {
+    margin-top: 20px;
+}
 	</style>
     <body>
         <!--category-->

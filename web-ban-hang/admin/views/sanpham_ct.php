@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -65,10 +64,21 @@
     transition: background-color 0.2s;
 }
 
-.quantity-control button:hover {
+quantity-control button:hover {
     background-color: #ccc;
 }
-
+.add-to-cart button {
+    font-size: 18px;
+    padding: 10px 20px;
+}
+.add-to-cart {
+    margin-bottom: 20px;
+}
+.add-to-cart button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
 /* Chrome, Safari, Edge */
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button {
@@ -145,8 +155,11 @@ input[type=number] {
                 
 
                
-            <i class="fas fa-shopping-cart"></i>
-            <p><input type="submit" value="Mua hàng" name="addtocart"></p>
+            <div class="add-to-cart">
+                <button type="submit" name="addtocart">
+                    <i class="fas fa-shopping-cart"></i> Mua hàng
+                </button>
+            </div>
             
 
                 <div class="product-content-right-product-icon">
@@ -289,4 +302,4 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-</html>  
+</html>

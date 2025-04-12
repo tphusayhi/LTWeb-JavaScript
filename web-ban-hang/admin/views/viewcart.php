@@ -88,21 +88,25 @@
 
 
                 <div class="cart-content-right-text">
-                    <p>Bạn được miễn ship với các đơn hàng có giá trị trên 2.000.000 đ</p>
-                    <p style="color:red;font-weight:bold;">Mua thêm <span style="font-size:18px;">131.000đ</span> để được miễn ship</p>
+                    <p style="color:red;font-weight:bold;">Bạn được miễn ship với các đơn hàng có giá trị trên 2.000.000 đ</p>
                 </div>
                 <div class="cart-content-right-button">
-                    <button"><a href="trangchu.php?act=deletecart">XOÁ GIỎ HÀNG</a></button>
-                    <button>TIẾP TỤC MUA SẮM</button>
-                    <button><a href="trangchu.php?act=dathang">ĐẶT HÀNG<a></button>
+                    <button><a href="trangchu.php?act=deletecart">XOÁ GIỎ HÀNG</a></button>
+                    <button><a href="trangchu.php?act=sanpham_user"> TIẾP TỤC MUA SẮM</a></button>
+                    <button><a href="trangchu.php?act=dathang">ĐẶT HÀNG</a></button>
                 </div>
                 <div class="cart-content-right-dangnhap">
                     <p>TÀI KHOẢN JOLLIBOI</p><br>
-                    <p>Hãy <a href=""><u style="color: orange;">đăng nhập</u></a> tài khoản của bạn để tích điểm thành viên.</p>
+                    <p>Hãy <a href="login.php"><u style="color: orange;">đăng nhập</u></a> tài khoản của bạn để sử dụng mã giảm giá.</p>
                 </div>
             </div>
         </div>
     </div>
+    <style>
+        .container{
+            margin-top:20px;
+        }
+    </style>
 </section>
 
 </body>

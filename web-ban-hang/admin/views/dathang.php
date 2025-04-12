@@ -12,7 +12,7 @@
     <body>
         <!--------------------------------------------Delivery----------------------------------->
         <section class="delivery">
-            <div class="container" style="height: 100px;">
+            <div class="containers" style="height: 100px;">
                 <div class="delivery-top-wrap"></div>
                 <div class="delivery-top">
                     <div class="delivery-top-delivery delivery-top-item">
@@ -82,36 +82,36 @@
                                             <label for="">Thanh toán bằng thẻ tín dụng (OnePay)</label>
                                         </div>
                                         <div class="payment-content-left-method-payment-item-img">
-                                            <img src="giaodien/images/visa.jpg" alt="thanh toán" height="30px" width="70px">
+                                            <img src="assets/images/visa.jpg" alt="thanh toán" height="30px" width="70px">
                                         </div>
                                         <div class="payment-content-left-method-payment-item">
                                             <input name="pttt" type="radio" value="3" required>
                                             <label for="">Thanh toán bằng thẻ ATM (OnePay)</label>
                                         </div>
                                         <div class="payment-content-left-method-payment-item-img">
-                                            <img src="giaodien/images/vcb.jpg" alt="thanh toán" height="100px" width="250px">
+                                            <img src="assets/images/vcb.jpg" alt="thanh toán" height="100px" width="250px">
                                         </div>
                                         <div class="payment-content-left-method-payment-item">
                                             <input name="pttt" type="radio" value="4" required>
                                             <label for="">Thanh toán bằng Momo</label>
                                         </div>
                                         <div class="payment-content-left-method-payment-item-img">
-                                            <img src="giaodien/images/logo-momo.png" alt="thanh toán" height="40px" width="40px">
+                                            <img src="assets/images/logo-momo.png" alt="thanh toán" height="40px" width="40px">
                                         </div>
                                         <div class="payment-content-left-method-payment-item">
                                             <input name="pttt" type="radio" value="1" required>
                                             <label for="">Thanh toán khi nhận hàng</label>
                                         </div>
                                         <div class="payment-content-left-method-payment-item-img">
-                                            <img src="giaodien/images/unnamed.png" alt="thanh toán" height="50px" width="50px">
+                                            <img src="assets/images/unnamed.png" alt="thanh toán" height="50px" width="50px">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="delivery-content-left-button row">
-                                <a href="trangchu.php?act=viewcart"><span>&#171;</span><p style="color:orange;font-size:13px;">Quay lại giỏ hàng</p></a>
-                                <button><input type="submit" name="thanhtoan" style="font-weight: bold;" value="THANH TOÁN VÀ GIAO HÀNG"></button>
+                                <a href="trangchu.php?act=viewcart"><span>&#171;</span><p style="color:orange;font-size:15px;">Quay lại giỏ hàng</p></a>
+                                <input type="submit" name="thanhtoan" style="font-weight: bold;" value="THANH TOÁN VÀ GIAO HÀNG">
                             </div>
                         </div>
 
@@ -196,6 +196,11 @@
                 ?>
             </div>
         </section>
+        <style>
+        .container{
+            margin-top:20px;
+        }
+    </style>
     </body>
     <script>
         // Lấy ngày hiện tại

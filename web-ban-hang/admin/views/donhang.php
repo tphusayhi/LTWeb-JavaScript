@@ -12,8 +12,9 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .container {
+        .containerr {
             width: 90%;
+            min-height:500px;
             margin: 50px auto;
             background-color: #fff;
             padding: 30px;
@@ -95,7 +96,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="containerr">
     <h2>Danh sách đơn hàng của bạn</h2>
 
     <table>

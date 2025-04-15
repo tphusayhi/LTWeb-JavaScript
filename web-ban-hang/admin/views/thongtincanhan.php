@@ -212,7 +212,7 @@
     <div class="nav-links">
       <a href="trangchu.php?act=account" ><i class="fas fa-home"></i> Trang chủ</a>
       <a href="" class="active"><i class="fas fa-user"></i> Thông tin cá nhân</a>
-      <a href="#"><i class="fas fa-shopping-bag"></i> Đơn hàng</a>
+      <a href="trangchu.php?act=donhang"><i class="fas fa-shopping-bag"></i> Đơn hàng</a>
     </div>
   </div>
   <div class="main-content">

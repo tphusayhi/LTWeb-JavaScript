@@ -53,7 +53,7 @@
         }
 
         img {
-            max-height: 60px;
+            max-height: 70px;
             border-radius: 6px;
         }
 
@@ -77,7 +77,7 @@
             }
 
             img {
-                max-height: 40px;
+                max-height: 70px;
             }
         }
     </style>

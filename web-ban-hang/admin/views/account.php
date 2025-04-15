@@ -25,6 +25,7 @@
             gap: 20px;
             padding: 30px;
             flex-wrap: wrap;
+            min-height: 500px;
         }
 
         .sidebar {
@@ -251,7 +252,7 @@ if (!empty($_SESSION['giohang'])) {
         <div class="nav-links">
             <a href="#" class="active"><i class="fas fa-home"></i> Trang chủ</a>
             <a href="trangchu.php?act=thongtincanhan"><i class="fas fa-user"></i> Thông tin cá nhân</a>
-            <a href="#"><i class="fas fa-shopping-bag"></i> Đơn hàng</a>
+            <a href="trangchu.php?act=donhang"><i class="fas fa-shopping-bag"></i> Đơn hàng</a>
         </div>
     </div>
     <div class="main-content">
@@ -273,7 +274,7 @@ if (!empty($_SESSION['giohang'])) {
         <div class="orders">
             <div class="orders-header">
                 <h5>Đơn hàng gần đây</h5>
-                <button class="btn-sm btn-outline-primary">Xem tất cả</button>
+                <a href="trangchu.php?act=donhang"><button class="btn-sm btn-outline-primary">Xem tất cả</button></a>
             </div>
             <table>
                 <thead>

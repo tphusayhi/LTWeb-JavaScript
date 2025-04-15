@@ -65,6 +65,7 @@
 
 .section {
       max-width: 1200px;
+      min-height: 500px;
       margin: 20px auto;
       padding: 20px;
       background: #fff;

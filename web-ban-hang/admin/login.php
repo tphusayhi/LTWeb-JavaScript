@@ -1,8 +1,29 @@
 <?php
-echo print_r($_SESSION['user']);
 session_start();
 ob_start();
 require "models/database.php";
+
+// Kiểm tra trước khi in $_SESSION['user']
+if (isset($_SESSION['user'])) {
+    print_r($_SESSION['user'], true);
+}
+
+// Đảm bảo hàm connectdb() tồn tại
+if (!function_exists('connectdb')) {
+    function connectdb() {
+        try {
+            $dsn = "mysql:host=localhost;dbname=your_database_name;charset=utf8";
+            $username = "your_username";
+            $password = "your_password";
+            return new PDO($dsn, $username, $password, [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            ]);
+        } catch (PDOException $e) {
+            die("Kết nối cơ sở dữ liệu thất bại: " . $e->getMessage());
+        }
+    }
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn-login'])) {
     $username = trim($_POST['username']);
@@ -44,10 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn-login'])) {
 } 
 ?>
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -87,7 +104,7 @@ button {
     border: none;
 }
 
-        </style>
+    </style>
 </head>
 <body>
     <div class="login-container">

@@ -92,7 +92,7 @@
                 </div>
                 <div class="cart-content-right-button">
                     <button><a href="trangchu.php?act=deletecart">XOÁ GIỎ HÀNG</a></button>
-                    <button><a href="trangchu.php?act=sanpham_user"> TIẾP TỤC MUA SẮM</a></button>
+                    <button><a href="trangchu.php?act=sanpham_user">TIẾP TỤC MUA SẮM</a></button>
                     <button><a href="trangchu.php?act=dathang">ĐẶT HÀNG</a></button>
                 </div>
                 <div class="cart-content-right-dangnhap">

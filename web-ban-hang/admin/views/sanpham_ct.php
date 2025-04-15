@@ -5,7 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/product.css">
         <script type="text/javascript" src="assets/js/script.js" defer></script>
         <title>Jolliboi - Bán giày chính hãng</title>
     </head>
@@ -90,7 +89,9 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
-
+.product{
+    min-height: 600px;
+}
 
 
 
@@ -106,7 +107,6 @@ input[type=number] {
         <input type="hidden" name="gia" value="<?= isset($spct['gia']) ? htmlspecialchars($spct['gia']) : '' ?>">
         <input type="hidden" name="sizes" value="<?= isset($spct['sizes']) ? htmlspecialchars($spct['sizes']) : '' ?>">
     <div class="container">
-
         <div class="product-content row">
             <div class="product-content-left row">
                 <div class="product-content-left-big-img">
@@ -151,9 +151,6 @@ input[type=number] {
                         </div>
                     </div>
 
-
-                
-
                
             <div class="add-to-cart">
                 <button type="submit" name="addtocart">
@@ -161,7 +158,6 @@ input[type=number] {
                 </button>
             </div>
             
-
                 <div class="product-content-right-product-icon">
                     <div class="product-content-right-product-icon-item">
                         <i class="fas fa-phone-alt"></i><p>Hotline</p>
@@ -197,91 +193,8 @@ input[type=number] {
     </div>
 </form>
 </section>
-<!-------------------------------------------product-related----------------------------->
-<section class="product-related container">
-    <div class="product-related-title">
-        <p>SẢN PHẨM LIÊN QUAN</p>
-    </div>
-    <div class="row product-content">
-        <div class="product-related-item">
-            <img src="giaodien/images/sp2.jpg" alt="sản phẩm">
-            <h1>Balo thời trang</h1>
-            <p>790.000<sup>đ</sup></p>
-        </div>
-        <div class="product-related-item">
-            <img src="giaodien/images/sp3.jpg" alt="sản phẩm">
-            <h1>Balo thời trang</h1>
-            <p>790.000<sup>đ</sup></p>
-        </div>
-        <div class="product-related-item">
-            <img src="giaodien/images/sp4.jpg" alt="sản phẩm">
-            <h1>Balo thời trang</h1>
-            <p>790.000<sup>đ</sup></p>
-        </div>
-        <div class="product-related-item">
-            <img src="giaodien/images/sp5.jpg" alt="sản phẩm">
-            <h1>Balo thời trang</h1>
-            <p>790.000<sup>đ</sup></p>
-        </div>
-        <div class="product-related-item">
-            <img src="giaodien/images/sp6.jpg" alt="sản phẩm">
-            <h1>Balo thời trang</h1>
-            <p>790.000<sup>đ</sup></p>
-        </div>
-    </div>
-</section>
 
 </body>
-<script>
-const header = document.querySelector("header");
-window.addEventListener("scroll", function(){
-x = window.pageYOffset;
-    if (x>0){
-        header.classList.add("sticky")
-    }
-    else{
-        header.classList.remove("sticky")
-    }
-})
-
-
-
-
-
-const imgPosition = document.querySelectorAll(".aspect-ratio-169 img");
-const imgContainer = document.querySelector(".aspect-ratio-169");
-const dotItem = document.querySelectorAll(".dot");
-let imgNuber= imgPosition.length
-let index = 0
-//console.log(impgPosition)
-
-imgPosition.forEach(function(image, index){
-image.style.left = index * 100 + "%"
-dotItem[index].addEventListener("click",function(){
-slider(index)
-
-})
-})
-function imgSlide(){
-index++;
-console.log(index)
-if (index>=imgNuber) (index = 0)
-slider (index)
-}
-function slider (index){
-imgContainer.style.left = "-"+index*100 + "%";
-const dotActive = document.querySelector(".active")
-dotActive.classList.remove("active")
-dotItem[index].classList.add("active")
-}
-
-
-
-setInterval(imgSlide,5000)
-
-
-
-</script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const decreaseBtn = document.querySelector(".decrease");

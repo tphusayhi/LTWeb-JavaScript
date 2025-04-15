@@ -21,7 +21,7 @@
                         <h5 class="text-uppercase mb-4">Về Chúng Tôi</h5>
                         <p>Jolliboi - Chuyên bán giày thời trang chính hãng, giá tốt.</p>
                         <a class="navbar-brand" href="trangchu.php">
-                        <img src="assets/images/logo.png" alt="Logo" style="width: 100px;">
+                        <img src="assets/images/logo.png" alt="Logo" style="height: 100px;width: 100px;">
                         </a>
                     </div>
                     

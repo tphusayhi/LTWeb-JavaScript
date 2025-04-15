@@ -196,21 +196,18 @@
 			<h2 class="card__title">'. htmlspecialchars($sphome2[0]['tensp']) . '</h2>
 			<p class="card__price">'.htmlspecialchars($sphome2[0]['gia']) . ' $</p>
 			<div class="card__size">
-				<h3>Size:</h3>
-				<span>6</span>
-				<span>7</span>
-				<span>8</span>
-				<span>9</span>
-			</div>
-			<div class="card__color">
-				<h3>Color:</h3>
-				<span class="green"></span>
-				<span class="red"></span>
-				<span class="black"></span>
-			</div>
+				<h3>Size:</h3>';
+				if (is_array($sizes) && count($sizes) > 0) {
+          echo "<p>" . implode('|| ', array_map('htmlspecialchars', $sizes)) . "</p>";
+      } else {
+          echo "<p>Không có size</p>";
+      }
+
+      echo '  </div>
+			
 			<div class="card__action">
-				<button>Buy now</button>
-				<button>Add cart</button>
+				<a href=trangchu.php?act=sanpham_ct&id=' . $item['id'] . '"><button>View</button></a>
+
 			</div>
 		  </div>';
 		//   }
@@ -227,24 +224,21 @@
 			</div>
 			<h2 class="card__title">'. htmlspecialchars($sphome2[1]['tensp']) . '</h2>
 			<p class="card__price">'.htmlspecialchars($sphome2[1]['gia']) . ' $</p>
-			<div class="card__size">
-				<h3>Size:</h3>
-				<span>6</span>
-				<span>7</span>
-				<span>8</span>
-				<span>9</span>
-			</div>
-			<div class="card__color">
-				<h3>Color:</h3>
-				<span class="green"></span>
-				<span class="red"></span>
-				<span class="black"></span>
-			</div>
+		  <div class="card__size">
+				<h3>Size:</h3>';
+				if (is_array($sizes) && count($sizes) > 0) {
+          echo "<p>" . implode('|| ', array_map('htmlspecialchars', $sizes)) . "</p>";
+      } else {
+          echo "<p>Không có size</p>";
+      }
+
+      echo '  </div>
+			
 			<div class="card__action">
-				<button>Buy now</button>
-				<button>Add cart</button>
+				<a href=trangchu.php?act=sanpham_ct&id=' . $item['id'] . '"><button>View</button></a>
+
 			</div>
-		  </div>';
+      </div>';
 		//   }
 
 
@@ -259,24 +253,21 @@
 			</div>
 			<h2 class="card__title">'. htmlspecialchars($sphome2[2]['tensp']) . '</h2>
 			<p class="card__price">'.htmlspecialchars($sphome2[2]['gia']) . ' $</p>
-			<div class="card__size">
-				<h3>Size:</h3>
-				<span>6</span>
-				<span>7</span>
-				<span>8</span>
-				<span>9</span>
-			</div>
-			<div class="card__color">
-				<h3>Color:</h3>
-				<span class="green"></span>
-				<span class="red"></span>
-				<span class="black"></span>
-			</div>
+		  <div class="card__size">
+				<h3>Size:</h3>';
+				if (is_array($sizes) && count($sizes) > 0) {
+          echo "<p>" . implode('|| ', array_map('htmlspecialchars', $sizes)) . "</p>";
+      } else {
+          echo "<p>Không có size</p>";
+      }
+
+      echo '  </div>
+			
 			<div class="card__action">
-				<button>Buy now</button>
-				<button>Add cart</button>
+				<a href=trangchu.php?act=sanpham_ct&id=' . $item['id'] . '"><button>View</button></a>
+
 			</div>
-		  </div>';
+      </div>';
 		//   }
 
 

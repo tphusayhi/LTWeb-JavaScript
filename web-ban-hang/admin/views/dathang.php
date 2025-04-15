@@ -11,7 +11,7 @@
     </head>
     <body>
         <!--------------------------------------------Delivery----------------------------------->
-        <section class="delivery">
+        <section class="delivery" style="min-height: 550px;">
             <div class="containers" style="height: 100px;">
                 <div class="delivery-top-wrap"></div>
                 <div class="delivery-top">
@@ -191,7 +191,8 @@
                 </form> 
                 <?php
                     } else {
-                        echo "<p>Giỏ hàng của bạn đang trống.</p>";
+                        echo "<p>Giỏ hàng của bạn đang trống.</p><br><br>";
+                        echo '<a href="trangchu.php"><button class="btn btn-primary" style="padding:10px;font-size:20px">Quay lại trang chủ</button></a>';
                     }
                 ?>
             </div>

@@ -19,7 +19,7 @@
             </div>
             <div class="menu">
                 <li><a href="trangchu.php?act=home">TRANG CHỦ</a></li>
-                <li><a href="">ƯU ĐÃI</a></li>
+                <li><a href="trangchu.php?act=use_discount">ƯU ĐÃI</a></li>
                 <li><a href="trangchu.php?act=sanpham_user">BỘ SƯU TẬP</a></li>
                 <li><a href="trangchu.php?act=donhang">ĐƠN HÀNG</a></li>
                 <?php

@@ -333,6 +333,16 @@ ob_start();
                         include "views/dathang.php";
 
                         break;
+                    case 'use_discount':
+                        // Lấy danh sách mã giảm giá từ database
+                        $ds_ma_giam_gia = lay_danh_sach_magiamgia(); // Hàm này đã được định nghĩa trong models/ma_giam_gia.php
+                        include "views/use_discount.php"; // Hiển thị trang mã giảm giá
+                        break;
+                    case 'use_discount':
+                        $ds_ma_giam_gia = lay_danh_sach_magiamgia(); // Gọi hàm lấy danh sách mã giảm giá
+                        include "views/use_discount.php"; // Hiển thị trang mã giảm giá
+                        break;
+                    
 
 
                     

@@ -117,4 +117,11 @@ function getall_magiamgia(){
 
     return $kq;
 }
+function lay_danh_sach_magiamgia() {
+    $conn = connectdb(); // Kết nối cơ sở dữ liệu
+    $sql = "SELECT * FROM ma_giam_gia WHERE han_su_dung >= CURDATE() ORDER BY han_su_dung ASC";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>

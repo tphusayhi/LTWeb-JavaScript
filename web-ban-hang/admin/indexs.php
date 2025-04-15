@@ -290,17 +290,17 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
                                 }
                         
                                 
-                                $kq_user = getall_users();
-                                include "views/ds_user.php";
-                                break;
-                            case 'delete_user':
+                               
+                                case 'delete_user':
                                 if (isset($_GET['id'])) {
                                     $id = $_GET['id'];
                                     delete_user($id);
                                 }
+                                case 'ds_user':
                                 $kq_user = getall_users();
                                 include "views/ds_user.php";
                                 break;
+                                
 
                             
                         

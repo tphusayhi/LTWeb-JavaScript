@@ -7,13 +7,12 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 10px;
             background-color: #f4f4f4;
             width: 100%;
         }
         .main {
             background: white;
-            padding: 20px;
+            padding: 60px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             max-width: 1100px;

@@ -32,7 +32,7 @@
             width: 250px;
             background: #343a40;
             color: white;
-            padding-top: 20px;
+            padding-top: 80px;
             position: fixed;
             height: 100%;
             transition: transform 0.3s ease-in-out;
@@ -88,14 +88,13 @@
     </div>
     
     <div class="sidebar">
-        <h3 class="text-center">Admin Panel</h3>
-        <a href="#"><i class="fas fa-home"></i> Trang chủ</a>
+        <h3 class="text-center"><u>Admin Panel</u></h3>
+        <a href="indexs.php"><i class="fas fa-home"></i> Trang chủ</a>
         <a href="indexs.php?act=sanpham"><i class="fas fa-box"></i> Sản phẩm</a>
         <a href="indexs.php?act=magiamgia"><i class="fas fa-tags"></i> Mã giảm giá</a>
         <a href="indexs.php?act=danhmuc"><i class="fas fa-list"></i> Danh mục</a>
         <a href="indexs.php?act=ds_user"><i class="fas fa-users"></i> Khách hàng</a>
         <a href="indexs.php?act=donhang_admin"><i class="fas fa-shopping-cart"></i> Đơn hàng</a>
-        <a href="#"><i class="fas fa-cogs"></i> Cài đặt</a>
         <a href="indexs.php?act=dangxuat"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
     </div>
     

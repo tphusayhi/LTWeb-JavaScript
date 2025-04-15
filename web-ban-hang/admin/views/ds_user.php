@@ -7,8 +7,6 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 10px;
-            
             background-color: #f4f4f4;
             width: 100%;
         }

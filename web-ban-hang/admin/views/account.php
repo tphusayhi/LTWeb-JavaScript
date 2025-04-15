@@ -25,7 +25,6 @@
             gap: 20px;
             padding: 30px;
             flex-wrap: wrap;
-            min-height: 500px;
         }
 
         .sidebar {

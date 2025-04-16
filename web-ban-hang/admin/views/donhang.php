@@ -14,7 +14,7 @@
 
         .containerr {
             width: 90%;
-            min-height:500px;
+            min-height:600px;
             margin: 50px auto;
             background-color: #fff;
             padding: 30px;

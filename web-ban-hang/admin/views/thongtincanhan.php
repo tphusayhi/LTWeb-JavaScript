@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -19,7 +15,6 @@
       font-family: "Segoe UI", sans-serif;
       background-color: #f4f6f8;
       color: #333;
-      margin: 40px;
     }
     .container {
       display: flex;

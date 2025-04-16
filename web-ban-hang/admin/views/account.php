@@ -16,15 +16,14 @@
             font-family: "Segoe UI", sans-serif;
             background-color: #f4f6f8;
             color: #333;
-            margin: 40px;
         }
 
         .container {
             display: flex;
             flex-direction: row;
             gap: 20px;
-            padding: 30px;
             flex-wrap: wrap;
+            padding: 30px;
         }
 
         .sidebar {
@@ -141,6 +140,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.05);
             padding: 20px;
+            min-height: 500px;
         }
 
         .orders-header {

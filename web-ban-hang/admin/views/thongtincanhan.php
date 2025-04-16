@@ -246,22 +246,23 @@
     <p>Không tìm thấy thông tin người dùng.</p>
 <?php endif; ?>
 
-<form action="#" method="post">
+<form action="trangchu.php?act=doimatkhau" method="POST" onsubmit="return validatePasswordForm();">
   <div class="form-group">
     <label for="password">Mật khẩu hiện tại</label>
     <input type="password" id="password" name="password" required>
   </div>
   <div class="form-group">
-    <label for="new_password">Mật khẩu mới</label>
-    <input type="password" id="new_password" name="new_password" required>
+    <label for="newpassword">Mật khẩu mới</label>
+    <input type="password" id="newpassword" name="newpassword" required>
   </div>
   <div class="form-group">
-    <label for="confirm_password">Nhập lại mật khẩu mới</label>
-    <input type="confirm_password" id="confirm_password" name="confirm_password" required>
+    <label for="confirmpassword">Nhập lại mật khẩu mới</label>
+    <input type="password" id="confirmpassword" name="confirmpassword" required>
   </div>
   <div class="form-footer">
     <button type="submit" name="btn-change-password" class="submit-btn">Cập nhật mật khẩu</button>
   </div>
+</form>
 
 <?php
 // change_password_view.php
@@ -271,27 +272,6 @@ if (!empty($message)) {
     echo "<p>$message</p>";
 }
 ?>
-
-<form class="formpass" method="POST" action="trangchu.php?act=doimatkhau">
-<div class="form-group">
-    <label for="password">Mật khẩu cũ:</label>
-    <input type="oldpassword" name="password" id="password" required>
-</div>
-<div class="form-group">      
-    <label for="newpassword">Mật khẩu mới:</label>
-    <input type="newpassword" name="newpassword" id="newpassword" required>
-</div>
-<div class="form-group">
-    <label for="confirmpassword">Xác nhận mật khẩu mới:</label>
-    <input type="confirmpassword" name="confirmpassword" id="confirmpassword" required>
-</div><br>    
-    <div class="form-footer">
-        <button type="submit" name="btn-insert" class="submit-btn">Cập nhật thông tin</button>
-    </div>
-</form>
-
-
-
     </div>
   </div>
 </div>
@@ -309,25 +289,21 @@ if (!empty($message)) {
 </script>
 <script>
   function validatePasswordForm() {
+  const newPassword = document.getElementById('newpassword').value;
+  const confirmPassword = document.getElementById('confirmpassword').value;
 
-
-    const confirmPassword = document.getElementById('confirmpassword').value;
-    const newPassword = document.getElementById('newpassword').value;
-    const confirmPassword = document.getElementById('confirmpassword').value;
-
-
-    if (newPassword !== confirmPassword) {
-      alert('Mật khẩu mới và nhập lại mật khẩu không khớp!');
-      return false;
-    }
-
-    if (newPassword.length < 6) {
-      alert('Mật khẩu mới phải có ít nhất 6 ký tự.');
-      return false;
-    }
-
-    return true;
+  if (newPassword !== confirmPassword) {
+    alert('Mật khẩu mới và nhập lại mật khẩu không khớp!');
+    return false;
   }
+
+  if (newPassword.length < 6) {
+    alert('Mật khẩu mới phải có ít nhất 6 ký tự.');
+    return false;
+  }
+
+  return true;
+}
 </script>
 
 </body>

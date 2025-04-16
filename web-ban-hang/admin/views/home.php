@@ -26,6 +26,7 @@
       background: #fff;
       border-radius: 10px; 
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+      margin-top: 30px;
     }
 
     .section .card {
@@ -40,7 +41,10 @@
       font-size: 30px;
       color: cornflowerblue;
     }
-
+    .section h1{
+      font-size: 35px;
+      color: darkblue;
+    }
     .product-grid {
       display: grid;
       margin-bottom: 20px;
@@ -141,55 +145,53 @@
         </section>
         <!--<br><br><br>-->
    
-    <br><br><br><h2 class="section-title">SẢN PHẨM ĐƯỢC QUAN TÂM</h2>
+    <br><br><br><h1 class="section-title" style="color: darkgray;font-size:35px;">SẢN PHẨM ĐƯỢC QUAN TÂM</h1>
   <div class="section">
-    <h2 class="section-title">Sản Phẩm Mới</h2>
+    <h1 class="section-title">Sản Phẩm Mới</h1>
     <div class="product-grid">
-		<?php
-		foreach($sphome1 as $item){
-      $sizes = json_decode($item['sizes'], true);
-			echo '<div class="card">
-			<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-heart\"></i></span>
-			<span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-cart-alt\"></i></span>
-			<div class="card__img">
-      <a href="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
-				<img src="assets/img/'. htmlspecialchars($item['img']) . '" style="width: 252px; height: 168px; object-fit: cover; object-position: center;" alt="" /></a>
-			</div>
-      <a href="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
-			<h2 class="card__title">'. htmlspecialchars($item['tensp']) . '</h2></a>
-			<p class="card__price">'.htmlspecialchars($item['gia']) . ' $</p>
-			<div class="card__size">
-				<h3>Size:</h3>';
-				if (is_array($sizes) && count($sizes) > 0) {
-          echo "<p>" . implode('|| ', array_map('htmlspecialchars', $sizes)) . "</p>";
-      } else {
-          echo "<p>Không có size</p>";
-      }
+    <?php
+    // Lấy tối đa 6 sản phẩm từ danh sách $sphome1
+    $latestProducts = array_slice($sphome1, 0, 6);
 
-      echo '  </div>
-			
-			<div class="card__action">
-				<a href=trangchu.php?act=sanpham_ct&id=' . $item['id'] . '"><button>View</button></a>
+    foreach ($latestProducts as $item) {
+        $sizes = json_decode($item['sizes'], true);
+        echo '<div class="card">
+        <span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2;"><i class="bx bx-heart"></i></span>
+        <span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2;"><i class="bx bx-cart-alt"></i></span>
+        <div class="card__img">
+        <a href="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
+            <img src="assets/img/' . htmlspecialchars($item['img']) . '" style="width: 252px; height: 168px; object-fit: cover; object-position: center;" alt="" /></a>
+        </div>
+        <a href="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '">
+        <h2 class="card__title">' . htmlspecialchars($item['tensp']) . '</h2></a>
+        <p class="card__price">' . htmlspecialchars($item['gia']) . ' $</p>
+        <div class="card__size">
+            <h3>Size:</h3>';
+        if (is_array($sizes) && count($sizes) > 0) {
+            echo "<p>" . implode(' || ', array_map('htmlspecialchars', $sizes)) . "</p>";
+        } else {
+            echo "<p>Không có size</p>";
+        }
 
-			</div>
-		</div>';
-		}
-
-
-		?>
-       
-    </div>
+        echo '</div>
+        <div class="card__action">
+            <a href="trangchu.php?act=sanpham_ct&id=' . $item['id'] . '"><button>View</button></a>
+        </div>
+        </div>';
+    }
+    ?>
+</div>
   </div>
 
   <div class="section">
     <!-- <h2 class="section-title">SẢN PHẨM MỚI</h2> -->
-    <h2 class="section-title">Sản phẩm Top View</h2>
+    <h1 class="section-title">Sản phẩm Top View</h1>
   <div class="product-grid">
   <?php
 	    //   foreach($sphome2 as $item){ 
 			echo '<div class="card">
-			<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-heart\"></i></span>
-			<span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-cart-alt\"></i></span>
+			<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2;"><i class="bx bx-heart"></i></span>
+        <span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2;"><i class="bx bx-cart-alt"></i></span>
 			<div class="card__img">
 				<img src="assets/img/'. htmlspecialchars($sphome2[0]['img']) . '" style="width: 252px; height: 168px; object-fit: cover; object-position: center;" alt="" />
 			</div>
@@ -217,8 +219,8 @@
 		<?php
 	    //   foreach($sphome2 as $item){ 
 			echo '<div class="card">
-			<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-heart\"></i></span>
-			<span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-cart-alt\"></i></span>
+			<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2;"><i class="bx bx-heart"></i></span>
+        <span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2;"><i class="bx bx-cart-alt"></i></span>
 			<div class="card__img">
 				<img src="assets/img/'. htmlspecialchars($sphome2[1]['img']) . '" style="width: 252px; height: 168px; object-fit: cover; object-position: center;" alt="" />
 			</div>
@@ -246,8 +248,8 @@
 		<?php
 	    //   foreach($sphome2 as $item){ 
 			echo '<div class="card">
-			<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-heart\"></i></span>
-			<span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2; "><i class=\"bx bx-cart-alt\"></i></span>
+			<span style="font-size: 25px; position: absolute; top: 12px; left: 20px; cursor: pointer; z-index: 2;"><i class="bx bx-heart"></i></span>
+        <span style="font-size: 25px; position: absolute; top: 12px; right: 20px; cursor: pointer; z-index: 2;"><i class="bx bx-cart-alt"></i></span>
 			<div class="card__img">
 				<img src="assets/img/'. htmlspecialchars($sphome2[2]['img']) . '" style="width: 252px; height: 168px; object-fit: cover; object-position: center;" alt="" />
 			</div>

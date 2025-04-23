@@ -262,7 +262,7 @@ if (!empty($_SESSION['giohang'])) {
         </div>
         <div class="stat-box">
             <h3>Tổng chi tiêu</h3>
-            <h2 id="total-spent"><?= number_format($tongTienTatCa, 0, ',', '.') ?>đ</h2>
+            <h2 id="total-spent"><?= number_format($tongTienTatCa, 0, ',', '.') ?>$</h2>
         </div>
 
             <div class="stat-box">
@@ -291,7 +291,7 @@ if (!empty($_SESSION['giohang'])) {
                     <tr>
                         <td>#<?= htmlspecialchars($order['madh'], ENT_QUOTES, 'UTF-8') ?></td>
                         <td><?= date('d/m/Y', strtotime($order['ngaydat'])) ?></td>
-                        <td><?= number_format($order['tongtien'], 0, ',', '.') ?> đ</td>
+                        <td><?= number_format($order['tongtien']) ?> $</td>
                         
                         <td>
                         <?php 

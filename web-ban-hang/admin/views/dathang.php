@@ -76,7 +76,7 @@
 
                                     <div class="payment-content-left-method-payment">
                                         <p style="font-weight:bold;">Phương thức thanh toán</p>
-                                        <p>Mọi thông tin sẽ được bảo mật.</p>
+                                        <p style="color:red;font-weight:bold;font-size:18px;">Mọi thông tin sẽ được bảo mật.</p>
                                         <div class="payment-content-left-method-payment-item">
                                             <input name="pttt" type="radio" value="2" required>
                                             <label for="">Thanh toán bằng thẻ tín dụng (OnePay)</label>
@@ -131,9 +131,9 @@
                                         echo '
                                         <tr>
                                             <td>'.$item[1].'</td>
-                                            <td>'.number_format($item[3]).'<sup>đ</sup></td>
+                                            <td>'.number_format($item[3]).'$</td>
                                             <td>'.$item[4].'</td>
-                                            <td>'.number_format($thanhtien).'<sup>đ</sup></td>
+                                            <td>'.number_format($thanhtien).'$</td>
                                         </tr>';
                                     }
                                 ?>
@@ -142,7 +142,7 @@
 
                                 <tr>
                                     <td style="font-weight:bold" colspan="3">Thuế VAT</td>
-                                    <td style="font-weight:bold"><?php echo number_format($tongtien * 0.1); ?><sup>đ</sup></td>
+                                    <td style="font-weight:bold"><?php echo number_format($tongtien * 0.1); ?>$</td>
                                 </tr>
                                 <tr>
                                     <td style="font-weight:bold" colspan="3">Mã giảm giá</td>
@@ -161,7 +161,7 @@
                                     <td style="font-weight:bold">
                                         <?php
                                             if ($giam_phan_tram > 0) {
-                                                echo "- ".number_format($giamgia)." <sup>đ</sup> ({$giam_phan_tram}% mã: {$_SESSION['ma_giam_gia']})";
+                                                echo "- ".number_format($giamgia)."$ ({$giam_phan_tram}% mã: {$_SESSION['ma_giam_gia']})";
                                             } else {
                                                 echo "Chưa áp dụng";
                                             }
@@ -171,13 +171,13 @@
                                 <!-- Tổng tiền hàng -->
                                 <tr>
                                     <td style="font-weight:bold" colspan="3">Tổng tiền hàng</td>
-                                    <td style="font-weight:bold" id="finalAmount"><?php echo number_format($tongtien * 1.1); ?><sup>đ</sup></td>
+                                    <td style="font-weight:bold" id="finalAmount"><?php echo number_format($tongtien * 1.1); ?>$</td>
                                 </tr>
 
                                 <!-- Tổng tiền sau giảm -->
                                 <tr>
                                     <td style="font-weight:bold" colspan="3">Tổng tiền hàng (sau giảm giá)</td>
-                                    <td style="font-weight:bold" id="finalAmountAfterDiscount"><?php echo number_format(($tongtien * 1.1) - $giamgia); ?><sup>đ</sup></td>
+                                    <td style="font-weight:bold" id="finalAmountAfterDiscount"><?php echo number_format(($tongtien * 1.1) - $giamgia); ?>$</td>
                                 </tr>
                                 <input type="hidden" name="tongtien" id="tongtien" value="<?php echo (($tongtien * 1.1) - $giamgia); ?>">
                                 <input type="hidden" name="giamgia" id="giamgia" value="<?php echo $giamgia; ?>">

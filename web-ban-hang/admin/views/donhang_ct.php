@@ -151,10 +151,10 @@
                     <tr>
                         <td><?= htmlspecialchars($item['tensp']) ?></td>
                         <td><img src="assets/img/<?= htmlspecialchars($item['img']) ?>" alt="<?= htmlspecialchars($item['tensp']) ?>"></td>
-                        <td><?= number_format($item['dongia'], 0, ',', '.') ?> đ</td>
+                        <td><?= number_format($item['dongia'], 0, ',', '.') ?> $</td>
                         <td><?= htmlspecialchars($item['sizes']) ?></td>
                         <td><?= $item['soluong'] ?></td>
-                        <td><?= number_format($thanhtien, 0, ',', '.') ?> đ</td>
+                        <td><?= number_format($thanhtien, 0, ',', '.') ?> $</td>
                     </tr>
                 
                     <?php endforeach;
@@ -164,18 +164,18 @@
                 ?>
                 <tr>
                     <td colspan="5" align="right"><strong>Tổng:</strong></td>
-                    <td><strong><?= number_format($tong, 0, ',', '.') ?> đ</strong></td>
+                    <td><strong><?= number_format($tong, 0, ',', '.') ?> $</strong></td>
                 </tr>
                 <tr>
                     <td colspan="5" align="right"><strong>VAT (10%):</strong></td>
-                    <td><strong><?= number_format($vat, 0, ',', '.') ?> đ</strong></td>
+                    <td><strong><?= number_format($vat, 0, ',', '.') ?> $</strong></td>
                 </tr>
                 <tr>
                     <td colspan="5" align="right"><strong>Mã giảm giá:</strong></td>
-                    <td><strong><?=number_format($orderinfo['giamgia'], 0, ',', '.')?>đ</strong></td>
+                    <td><strong><?=number_format($orderinfo['giamgia'], 0, ',', '.')?>$</strong></td>
                 <tr>
                     <td colspan="5" align="right"><strong>Tổng cộng:</strong></td>
-                    <td><strong><?= number_format($orderinfo['tongtien'], 0, ',', '.') ?> đ</strong></td>
+                    <td><strong><?= number_format($orderinfo['tongtien'], 0, ',', '.') ?> $</strong></td>
                 </tr>
                 
             </tbody>

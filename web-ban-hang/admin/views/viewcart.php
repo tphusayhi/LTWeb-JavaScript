@@ -57,8 +57,8 @@
                                     <td><p>'.$item[1].'</p></td>
                                     <td><p>'.$item[5].'</p></td>
                                     <td><p>' . $item[4] . '</p></td>
-                                    <td><p>'.number_format($item[3]).'<sup>đ</sup></p></td>
-                                    <td><p>'.number_format($thanhtien).'<sup>đ</sup></p></td>
+                                    <td><p>'.number_format($item[3]).'$</p></td>
+                                    <td><p>'.number_format($thanhtien).'$</p></td>
                                     <td><span><a href="trangchu.php?act=deletecart&id='.$index.'">X</a></span></td>
                                 </tr>';
                             }
@@ -75,11 +75,11 @@
                             </tr>  
                             <tr>
                                 <td>TỔNG TIỀN HÀNG: </td>
-                                <td><p>'.number_format($tongtien).'<sup>đ</sup></p></td>
+                                <td><p>'.number_format($tongtien).'$</strong></p></td>
                             </tr>
                             <tr>
                                 <td>TẠM TÍNH: </td>
-                                <td><p style="color: black;font-weight: bold;">'.number_format($tongtien).' <sup>đ</sup></p></td>
+                                <td><p style="color: black;font-weight: bold;">'.number_format($tongtien).' $</p></td>
                             </tr>
 
                         </table>';
@@ -88,7 +88,7 @@
 
 
                 <div class="cart-content-right-text">
-                    <p style="color:red;font-weight:bold;">Bạn được miễn ship với các đơn hàng có giá trị trên 2.000.000 đ</p>
+                    <p style="color:red;font-weight:bold;">Bạn được miễn ship với các đơn hàng có giá trị trên 2.000$</p>
                 </div>
                 <div class="cart-content-right-button">
                     <button><a href="trangchu.php?act=deletecart">XOÁ GIỎ HÀNG</a></button>

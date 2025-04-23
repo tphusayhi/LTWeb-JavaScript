@@ -117,7 +117,7 @@
                 <td>#<?= htmlspecialchars($order['madh'], ENT_QUOTES, 'UTF-8') ?></td>
                 <td><?= date('d/m/Y', strtotime($order['ngaydat'])) ?></td>
                 <td><?= htmlspecialchars($order['hoten'], ENT_QUOTES, 'UTF-8') ?></td>
-                <td><?= number_format($order['tongtien'],0, ',', '.') ?> </td>
+                <td><strong><?= number_format($order['tongtien'],0, ',', '.') ?> $</strong> </td>
                 <td>
                 <?php 
                 switch (htmlspecialchars($order['trangthai'])) {

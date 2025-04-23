@@ -193,6 +193,13 @@
         </section>
 
         <script>
+            // Sorting function
+    function sortProducts() {
+        var sortValue = document.getElementById("sort").value;
+        var currentUrl = window.location.href.split('?')[0]; // Lấy URL hiện tại
+        var newUrl = currentUrl + '?act=sanpham_user&sort=' + sortValue; // Thêm tham số sort vào URL
+        window.location.href = newUrl; // Điều hướng đến URL mới
+    }
     // Đồng bộ trạng thái checkbox và liên kết danh mục
     function syncCheckboxAndLink(checkbox) {
         const parentLabel = checkbox.closest('.custom-checkbox');

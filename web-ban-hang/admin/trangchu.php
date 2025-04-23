@@ -157,8 +157,8 @@ ob_start();
                         // echo "<script>alert('Đặt hàng thành công!');</script>";
                         // Chuyển hướng đến trang đơn hàng
                         echo "<script>
-                                    alert('Bạn cần đăng nhập để xem thông tin tài khoản!');
-                                    window.location.href = 'ltrangchu.php?act=donhang&id=$iddh';
+                                    alert('Xem đơn hàng đã đặt!');
+                                    window.location.href = 'trangchu.php?act=donhang&id=$iddh';
                                 </script>";
                                 exit();
                         

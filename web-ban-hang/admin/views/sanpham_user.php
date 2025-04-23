@@ -127,7 +127,8 @@
                             foreach($dsdm as $dm) {
                                 echo '<li class="cartegory-left-li"><a href=""><label class="custom-checkbox">
                                     <input type="checkbox" id="' . $dm['id'] . '">
-                                    <span class="checkmark"></span><a href="trangchu.php?act=sanpham_user&id=' . $dm['id'] . '">' . htmlspecialchars($dm['tendm']) . '</a>
+                                    <span class="checkmark"></span>
+                                    ' . htmlspecialchars($dm['tendm']) . '
                                 </label></a></li>';
                             }
                             ?>
@@ -192,43 +193,78 @@
         </section>
 
         <script>
-        // Checkbox redirection logic
-        function redirectToSelectedCategories() {
-    const checkboxes = document.querySelectorAll('.custom-checkbox input');
-    let selectedCategories = [];
-
-    // Duyệt qua tất cả các checkbox và lấy giá trị ID của checkbox được chọn
-    checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            selectedCategories.push(checkbox.id);  // Thêm ID của checkbox vào mảng
+    // Đồng bộ trạng thái checkbox và liên kết danh mục
+    function syncCheckboxAndLink(checkbox) {
+        const parentLabel = checkbox.closest('.custom-checkbox');
+        if (parentLabel) {
+            const link = parentLabel.querySelector('a');
+            if (link) {
+                link.style.fontWeight = checkbox.checked ? 'bold' : 'normal';
+                link.style.color = checkbox.checked ? '#007bff' : 'inherit';
+            }
         }
-    });
-
-    const currentUrl = window.location.href.split('?')[0]; // Lấy URL hiện tại
-    let newUrl = currentUrl + '?act=sanpham_user';
-
-    // Nếu có checkbox được chọn, thêm tham số vào URL
-    if (selectedCategories.length > 0) {
-        newUrl += '&id=' + selectedCategories.join(','); // Nối các ID với dấu phẩy
     }
 
-    // Điều hướng đến URL mới với các tham số
-    window.location.href = newUrl;
-}
+    // Xử lý khi checkbox thay đổi
+    function handleCheckboxChange(event) {
+        const checkbox = event.target;
 
-// Thêm event listener cho tất cả checkbox
-document.querySelectorAll('.custom-checkbox input').forEach(checkbox => {
-    checkbox.addEventListener('change', redirectToSelectedCategories);
-});
+        // Bỏ tích tất cả các checkbox khác
+        document.querySelectorAll('.custom-checkbox input').forEach(cb => {
+            if (cb !== checkbox) {
+                cb.checked = false;
+                syncCheckboxAndLink(cb);
+            }
+        });
 
+        // Đồng bộ trạng thái checkbox hiện tại
+        syncCheckboxAndLink(checkbox);
 
-        // Sorting function
-        function sortProducts() {
-            var sortValue = document.getElementById("sort").value;
-            var currentUrl = window.location.href.split('?')[0]; // Lấy URL hiện tại
-            var newUrl = currentUrl + '?act=sanpham_user&sort=' + sortValue; // Thêm tham số sort vào URL
-            window.location.href = newUrl; // Điều hướng đến URL mới
+        // Lưu trạng thái checkbox vào localStorage
+        const selectedCategory = checkbox.checked ? checkbox.id : null;
+        localStorage.setItem('selectedCategory', selectedCategory);
+
+        // Điều hướng đến URL mới với danh mục được chọn
+        const currentUrl = window.location.href.split('?')[0]; // Lấy URL hiện tại
+        let newUrl = currentUrl + '?act=sanpham_user';
+
+        if (selectedCategory) {
+            newUrl += '&id=' + selectedCategory; // Thêm ID của checkbox được chọn
         }
-        </script>
-    </body>
+
+        window.location.href = newUrl;
+    }
+
+    // Gắn sự kiện cho tất cả checkbox
+    document.querySelectorAll('.custom-checkbox input').forEach(checkbox => {
+        checkbox.addEventListener('change', handleCheckboxChange);
+    });
+
+    // Gắn sự kiện cho các liên kết danh mục
+    document.querySelectorAll('.custom-checkbox a').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+            const checkbox = this.closest('.custom-checkbox').querySelector('input');
+            
+            // Đổi trạng thái checkbox
+            checkbox.checked = true;
+
+            // Gọi hàm xử lý checkbox
+            handleCheckboxChange({ target: checkbox });
+        });
+    });
+
+    // Khôi phục trạng thái checkbox khi tải lại trang
+    window.addEventListener('DOMContentLoaded', () => {
+        const selectedCategory = localStorage.getItem('selectedCategory');
+        if (selectedCategory) {
+            const checkbox = document.getElementById(selectedCategory);
+            if (checkbox) {
+                checkbox.checked = true;
+                syncCheckboxAndLink(checkbox);
+            }
+        }
+    });
+</script>
+</body>
 </html>

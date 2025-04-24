@@ -71,7 +71,7 @@ $i = 1; // Biến đếm cho sản phẩm bán chạy
     <table class="styled-table">
         <tr>
             <th>Tháng</th>
-            <th>Doanh thu (VNĐ)</th>
+            <th>Doanh thu ($)</th>
         </tr>
         <?php foreach ($doanh_thu_thang as $row): ?>
         <tr>

@@ -69,8 +69,7 @@
                                     <div class="payment-content-left-method-delivery">
                                         <p style="font-weight:bold;">Phương thức giao hàng</p>
                                         <div class="payment-content-left-method-delivery-item">
-                                            <input checked type="radio" name="giaohang" value="chuyennhanh">
-                                            <label for="">Giao hàng chuyển phát nhanh</label>
+                                            <label for=""><input checked type="radio" name="giaohang" value="chuyennhanh">Giao hàng chuyển phát nhanh</label>
                                         </div>
                                     </div>
 
@@ -78,29 +77,25 @@
                                         <p style="font-weight:bold;">Phương thức thanh toán</p>
                                         <p style="color:red;font-weight:bold;font-size:18px;">Mọi thông tin sẽ được bảo mật.</p>
                                         <div class="payment-content-left-method-payment-item">
-                                            <input name="pttt" type="radio" value="2" required>
-                                            <label for="">Thanh toán bằng thẻ tín dụng (OnePay)</label>
+                                            <label for=""><input name="pttt" type="radio" value="2" required>Thanh toán bằng thẻ tín dụng (OnePay)</label>
                                         </div>
                                         <div class="payment-content-left-method-payment-item-img">
                                             <img src="assets/images/visa.jpg" alt="thanh toán" height="30px" width="70px">
                                         </div>
                                         <div class="payment-content-left-method-payment-item">
-                                            <input name="pttt" type="radio" value="3" required>
-                                            <label for="">Thanh toán bằng thẻ ATM (OnePay)</label>
+                                            <label for=""><input name="pttt" type="radio" value="3" required>Thanh toán bằng thẻ ATM (OnePay)</label>
                                         </div>
                                         <div class="payment-content-left-method-payment-item-img">
                                             <img src="assets/images/vcb.jpg" alt="thanh toán" height="100px" width="250px">
                                         </div>
                                         <div class="payment-content-left-method-payment-item">
-                                            <input name="pttt" type="radio" value="4" required>
-                                            <label for="">Thanh toán bằng Momo</label>
+                                            <label for=""><input name="pttt" type="radio" value="4" required>Thanh toán bằng Momo</label>
                                         </div>
                                         <div class="payment-content-left-method-payment-item-img">
                                             <img src="assets/images/logo-momo.png" alt="thanh toán" height="40px" width="40px">
                                         </div>
                                         <div class="payment-content-left-method-payment-item">
-                                            <input name="pttt" type="radio" value="1" required>
-                                            <label for="">Thanh toán khi nhận hàng</label>
+                                            <label for=""><input name="pttt" type="radio" value="1" required>Thanh toán khi nhận hàng</label>
                                         </div>
                                         <div class="payment-content-left-method-payment-item-img">
                                             <img src="assets/images/unnamed.png" alt="thanh toán" height="50px" width="50px">

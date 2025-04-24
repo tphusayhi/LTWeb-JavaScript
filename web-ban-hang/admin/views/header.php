@@ -35,7 +35,13 @@
                 ?>
             </div>
             <div class="oders">
-                <li><input placeholder="Tìm kiếm" type="text"> <i class="fas fa-search"></i></li>
+            <li>
+            <form action="trangchu.php?act=search" method="GET" style ="display: inline-flex;">
+            <input type="hidden" name="act" value="search">
+            <input name="keyword" placeholder="Tìm kiếm" type="text" value="<?php echo isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : ''; ?>">
+                <button class="fas fa-search"></button>
+        </form>
+    </li>
                 <li> <a class="fa fa-paw" href="" ></a></li>
                 <li> <a class="fa fa-user" href="trangchu.php?act=account" ></a></li>
                 <li> <a class="fa fa-shopping-bag" href="trangchu.php?act=viewcart" ></a></li>

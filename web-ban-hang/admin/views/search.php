@@ -110,6 +110,7 @@
 }
 	</style>
     <body>
+
         <!--category-->
         <section class="cartegory">
         <?php
@@ -155,9 +156,13 @@ $currentProducts = array_slice($dssp_dm, $startIndex, $productsPerPage);
                         </ul>
                     </div>
                     <div class="cartegory-right row">
-                        <div class="cartegory-right-top-item">
-                            <p>HÀNG MỚI VỀ</p>
-                        </div>
+                    <h2 style="margin-bottom: 20px;">Kết quả tìm kiếm cho: "<?= htmlspecialchars($keyword) ?>"</h2>
+<?php if (empty($dssp_dm)): ?>
+    <p>Không tìm thấy sản phẩm phù hợp.</p>
+<?php else: ?>
+    <!-- Gọi lại code hiển thị sản phẩm như bạn đang dùng -->
+<?php endif; ?>
+                        
                         <div class="cartegory-right-top-item">
                             <select name="sort" id="sort" onchange="sortProducts()">
                                 <option value="">Sắp xếp</option>
@@ -212,7 +217,7 @@ $currentProducts = array_slice($dssp_dm, $startIndex, $productsPerPage);
                 <div style="margin-top: 20px; text-align: center;">
     <?php if ($totalPages > 1): ?>
         <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-            <a href="?act=sanpham_user&page=<?= $i ?><?= isset($_GET['id']) ? '&id=' . $_GET['id'] : '' ?>" 
+            <a href="?act=search&page=<?= $i ?><?= isset($_GET['id']) ? '&id=' . $_GET['id'] : '' ?>" 
                style="display: inline-block; margin: 0 5px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px;
                       text-decoration: none; color: <?= $i == $currentPage ? '#fff' : '#007bff' ?>; 
                       background-color: <?= $i == $currentPage ? '#007bff' : '#f9f9f9' ?>">
@@ -287,7 +292,6 @@ $currentProducts = array_slice($dssp_dm, $startIndex, $productsPerPage);
             handleCheckboxChange({ target: checkbox });
         });
     });
-    
 
     // Khôi phục trạng thái checkbox khi tải lại trang
     window.addEventListener('DOMContentLoaded', () => {
@@ -304,10 +308,9 @@ $currentProducts = array_slice($dssp_dm, $startIndex, $productsPerPage);
      function sortProducts() {
             var sortValue = document.getElementById("sort").value;
             var currentUrl = window.location.href.split('?')[0]; // Lấy URL hiện tại
-            var newUrl = currentUrl + '?act=sanpham_user&sort=' + sortValue; // Thêm tham số sort vào URL
+            var newUrl = currentUrl + '?act=search&sort=' + sortValue; // Thêm tham số sort vào URL
             window.location.href = newUrl; // Điều hướng đến URL mới
-     }
+        }
 </script>
-
 </body>
 </html>

@@ -81,5 +81,13 @@
 
         //     return $kq;
         // } 
+        function searchProducts($keyword) {
+            $conn = connectdb();
+            $sql = "SELECT * FROM tbl_sanpham WHERE tensp LIKE ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(["%$keyword%"]);
+            return $stmt->fetchAll();
+        }
+        
  ?>
 

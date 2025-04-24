@@ -342,6 +342,30 @@ ob_start();
                         $ds_ma_giam_gia = lay_danh_sach_magiamgia(); // Gọi hàm lấy danh sách mã giảm giá
                         include "views/use_discount.php"; // Hiển thị trang mã giảm giá
                         break;
+                    case 'search':
+                        // Lấy danh sách tất cả danh mục
+                    $dsdm = getall_danhmuc();
+                
+                    // Lấy id danh mục từ URL nếu có, nếu không thì mặc định 0 (tức là tất cả)
+                    $iddm = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+                
+                    // Lấy tham số sắp xếp từ URL
+                    $sort = isset($_GET['sort']) ? $_GET['sort'] : 'asc'; // Mặc định là 'asc'
+                
+                    // Gọi hàm để lấy sản phẩm với lọc theo danh mục và sắp xếp theo giá
+                    $dssp_dm = getall_sanpham($iddm, 0, $sort); // Thực hiện lấy sản phẩm
+                        if (isset($_GET['act']) && $_GET['act'] == 'search') {
+                            $keyword = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
+                            
+                            // Gọi hàm tìm kiếm trong CSDL (viết trong file model hoặc ngay trong đây)
+                            $dssp_dm = searchProducts($keyword);
+                        
+                            // Gọi view hiển thị danh sách sản phẩm
+                            include "views/search.php";
+                        }
+                        
+                        
+                        break;
                     
 
 

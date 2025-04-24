@@ -208,7 +208,7 @@
       echo '  </div>
 			
 			<div class="card__action">
-				<a href=trangchu.php?act=sanpham_ct&id=' . $item['id'] . '"><button>View</button></a>
+				<a href=trangchu.php?act=sanpham_ct&id=' .($sphome2[0]['id']). '"><button>View</button></a>
 
 			</div>
 		  </div>';
@@ -237,7 +237,7 @@
       echo '  </div>
 			
 			<div class="card__action">
-				<a href=trangchu.php?act=sanpham_ct&id=' . $item['id'] . '"><button>View</button></a>
+				<a href=trangchu.php?act=sanpham_ct&id=' . ($sphome2[1]['id']). '"><button>View</button></a>
 
 			</div>
       </div>';
@@ -266,7 +266,7 @@
       echo '  </div>
 			
 			<div class="card__action">
-				<a href=trangchu.php?act=sanpham_ct&id=' . $item['id'] . '"><button>View</button></a>
+				<a href=trangchu.php?act=sanpham_ct&id=' . ($sphome2[2]['id']) . '"><button>View</button></a>
 
 			</div>
       </div>';

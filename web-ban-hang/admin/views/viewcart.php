@@ -88,17 +88,28 @@
 
 
                 <div class="cart-content-right-text">
-                    <p style="color:red;font-weight:bold;">Bạn được miễn ship với các đơn hàng có giá trị trên 2.000$</p>
+                    <p style="color:red;font-weight:bold;font-size:15px;">Bạn được miễn ship với các đơn hàng có giá trị trên 2.000$</p>
                 </div>
                 <div class="cart-content-right-button">
                     <button><a href="trangchu.php?act=deletecart">XOÁ GIỎ HÀNG</a></button>
                     <button><a href="trangchu.php?act=sanpham_user">TIẾP TỤC MUA SẮM</a></button>
                     <button><a href="trangchu.php?act=dathang">ĐẶT HÀNG</a></button>
                 </div>
-                <div class="cart-content-right-dangnhap">
-                    <p>TÀI KHOẢN JOLLIBOI</p><br>
-                    <p>Hãy <a href="login.php"><u style="color: orange;">đăng nhập</u></a> tài khoản của bạn để sử dụng mã giảm giá.</p>
-                </div>
+
+                <?php
+                    // Kiểm tra nếu người dùng đã đăng nhập
+                    if (isset($_SESSION['user_id']) && isset($_SESSION['user'])) {
+                        // Nếu đã đăng nhập
+                        echo '<p style="margin:10px;color:orange;font-size:15px;font-weight:bold;">Nhớ sử dụng mã giảm giá ở mục ưu đãi nhé!</p>';
+                    } else {
+                        // Nếu chưa đăng nhập
+                        echo '<div class="cart-content-right-dangnhap">
+                                <p>TÀI KHOẢN JOLLIBOI</p><br>
+                                <p>Hãy <a href="login.php"><u style="color: orange;">đăng nhập</u></a> tài khoản của bạn để sử dụng mã giảm giá.</p>
+                              </div>';
+                    }
+                ?>
+                
             </div>
         </div>
     </div>

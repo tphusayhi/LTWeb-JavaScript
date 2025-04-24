@@ -146,6 +146,13 @@ function uploadAvatar($id, $file) {
     }
 }
 
+function getall_user_ava() {
+    $conn = connectdb(); // Hàm kết nối CSDL
+    $stmt = $conn->prepare("SELECT id, imgav FROM users");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 
 ?>

@@ -41,10 +41,33 @@
             <input name="keyword" placeholder="Tìm kiếm" type="text" value="<?php echo isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : ''; ?>">
                 <button class="fas fa-search"></button>
         </form>
-    </li>
+    </li> 
                 <li> <a class="fa fa-paw" href="" ></a></li>
-                <li> <a class="fa fa-user" href="trangchu.php?act=account" ></a></li>
                 <li> <a class="fa fa-shopping-bag" href="trangchu.php?act=viewcart" ></a></li>
+                <?php 
+// Kiểm tra xem user có avatar không
+$user_ava = getall_user_ava(); // Lấy danh sách avatar
+$avatar = "images/default-avatar.png"; // Mặc định
+
+if (isset($_SESSION['user_id'])) {
+    $id = $_SESSION['user_id'];
+
+    // Tìm avatar theo ID
+    foreach ($user_ava as $u) {
+        if ($u['id'] == $id && !empty($u['imgav'])) {
+            $avatar = "assets/img/" . $u['imgav'];
+            break;
+        }
+    }
+}
+?>
+
+                <li> <a  href="trangchu.php?act=account" ><img src="<?= htmlspecialchars($avatar) ?>" id="avatar-preview" alt="Avatar" width="20" style="border-radius: 50%;"></a></li>
+                
+       
+
+
+
             </div>
         </header>
     </body>

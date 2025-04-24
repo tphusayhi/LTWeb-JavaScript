@@ -19,8 +19,12 @@ ob_start();
     // Lấy dữ liệu sản phẩm
     $sphome1 = getall_sanpham(0, 0);
     $sphome2 = getall_sanpham(0, 1);
+    $user_ava = getall_user_ava();
 
     include "views/header.php";
+   
+    
+    
     // Hiển thị trang chủ
     // include "views/home.php";
     // Kiểm tra có tham số act hay không

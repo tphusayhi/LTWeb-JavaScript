@@ -93,7 +93,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn-register'])) {
                     </div>
                     <input type="submit" class="btn btn-primary w-100" name="btn-register" value="Đăng Ký">
                 </form>
-                <p class="text-center mt-3">Đã có tài khoản? <a href="login.php">Đăng nhập</a></p>
+                
+                <div class="text-link">
+            <p>Đã có tài khoản? <a href="login.php">Đăng nhập</a></p>
+            <p><a href="trangchu.php">Quay lại trang chủ</a></p>
+        </div>
             </div>
         </div>
     </div>

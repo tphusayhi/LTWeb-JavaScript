@@ -23,7 +23,7 @@
             flex-direction: row;
             gap: 20px;
             flex-wrap: wrap;
-            padding: 30px;
+            padding: 60px;
         }
 
         .sidebar {
@@ -237,13 +237,37 @@ if (!empty($_SESSION['giohang'])) {
 ?>
 <div class="container">
     <div class="sidebar">
-        <div class="avatar-container">
-            <img src="images/default-avatar.png" id="avatar-preview">
-            <div class="avatar-upload-overlay">
-                <input type="file" id="avatar-input" accept="image/*" style="display: none;">
-                <button onclick="document.getElementById('avatar-input').click()"><i class="fas fa-camera"></i> Thay đổi</button>
-            </div>
+    <?php
+    $avatar = !empty($user['imgav']) ? "assets/img/" . $user['imgav'] : "images/default-avatar.png";
+?>
+
+<form action="trangchu.php?act=upload_avatar" method="POST" enctype="multipart/form-data">
+    <div class="avatar-container">
+        <img src="<?= $avatar ?>" id="avatar-preview" alt="Avatar" width="150" style="border-radius: 50%;">
+        <div class="avatar-upload-overlay">
+            <input type="file" name="avatar" id="avatar-input" accept="image/*" style="display: none;" required>
+            <button type="button" onclick="document.getElementById('avatar-input').click()">
+                <i class="fas fa-camera"></i> Thay đổi
+            </button>
         </div>
+    </div>
+    <br>
+    <button type="submit" name="upload">Cập Nhật Avatar</button>
+</form>
+
+<script>
+document.getElementById('avatar-input').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('avatar-preview').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+});
+</script>
+
         <div class="profile">
         <h2 id="username"><?= isset($user['username']) ? htmlspecialchars($user['username']) : '' ?></h2>
         <p id="email"><?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?></p>
@@ -262,7 +286,7 @@ if (!empty($_SESSION['giohang'])) {
         </div>
         <div class="stat-box">
             <h3>Tổng chi tiêu</h3>
-            <h2 id="total-spent"><?= number_format($tongTienTatCa, 0, ',', '.') ?>$</h2>
+            <h2 id="total-spent"><?= number_format($tongTienTatCa) ?>$</h2>
         </div>
 
             <div class="stat-box">
@@ -334,16 +358,16 @@ if (!empty($_SESSION['giohang'])) {
     </div>
 </div>
 <script>
-    document.getElementById('avatar-input').addEventListener('change', function () {
-        if (this.files && this.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById('avatar-preview').src = e.target.result;
-                alert("Avatar đã được cập nhật (chỉ preview - không upload).");
-            };
-            reader.readAsDataURL(this.files[0]);
+document.getElementById('avatar-input').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('avatar-preview').src = e.target.result;
         }
-    });
+        reader.readAsDataURL(file);
+    }
+});
 </script>
 </body>
 </html>

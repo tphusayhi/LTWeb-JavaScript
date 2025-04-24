@@ -111,4 +111,41 @@ function check_user($user, $pass) {
 }
 
 
+function uploadAvatar($id, $file) {
+    if (isset($file) && $file['error'] === 0) {
+        $target_dir = "assets/img/";
+        if (!is_dir($target_dir)) {
+            mkdir($target_dir, 0777, true);
+        }
+
+        $imageFileType = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
+        $allowed_types = ["jpg", "jpeg", "png", "gif"];
+
+        if (in_array($imageFileType, $allowed_types)) {
+            $newFileName = uniqid("avatar_") . "." . $imageFileType;
+            $target_file = $target_dir . $newFileName;
+
+            if (move_uploaded_file($file["tmp_name"], $target_file)) {
+                // Cập nhật avatar trong CSDL
+                $pdo = connectdb(); // Kết nối đến database
+                $sql = "UPDATE users SET imgav = :avatar WHERE id = :id";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([
+                    ':avatar' => $newFileName,
+                    ':id' => $id
+                ]);
+                return "Ảnh đại diện đã được cập nhật thành công!";
+            } else {
+                return "Không thể di chuyển file. Vui lòng kiểm tra quyền thư mục.";
+            }
+        } else {
+            return "Chỉ hỗ trợ file JPG, JPEG, PNG, GIF!";
+        }
+    } else {
+        return "Không có file hoặc có lỗi khi tải lên!";
+    }
+}
+
+
+
 ?>

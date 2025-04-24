@@ -20,7 +20,7 @@
       display: flex;
       flex-direction: row;
       gap: 20px;
-      padding: 30px;
+      padding: 60px;
       flex-wrap: wrap;
     }
     .sidebar {
@@ -31,18 +31,19 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
     }
     .avatar-container {
-      position: relative;
-      width: 120px;
-      height: 120px;
-      margin: 0 auto;
-    }
-    .avatar-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 3px solid #ddd;
-    }
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #ddd;
+        }
     .avatar-upload-overlay {
       position: absolute;
       bottom: 0;
@@ -127,11 +128,7 @@
       margin-bottom: 20px;
       text-align: center;
     }
-    form {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
+   
     @media (min-width: 768px) {
       form {
         grid-template-columns: 1fr 1fr;
@@ -193,13 +190,22 @@
 
 <div class="container">
   <div class="sidebar">
+  <?php
+    $avatar = !empty($user['imgav']) ? "assets/img/" . $user['imgav'] : "images/default-avatar.png";
+?>
+  <form action="trangchu.php?act=upload_avatar" method="POST" enctype="multipart/form-data">
     <div class="avatar-container">
-      <img src="images/default-avatar.png" id="avatar-preview" name="imgav">
-      <div class="avatar-upload-overlay">
-        <input type="file" id="avatar-input" accept="image/*" style="display: none;">
-        <button onclick="document.getElementById('avatar-input').click()"><i class="fas fa-camera"></i> Thay đổi</button>
-      </div>
+        <img src="<?= $avatar ?>" id="avatar-preview" alt="Avatar" width="150" style="border-radius: 50%;">
+        <div class="avatar-upload-overlay">
+            <input type="file" name="avatar" id="avatar-input" accept="image/*" style="display: none;" required>
+            <button type="button" onclick="document.getElementById('avatar-input').click()">
+                <i class="fas fa-camera"></i> Thay đổi
+            </button>
+        </div>
     </div>
+    <br>
+    <button type="submit" name="upload">Cập Nhật Avatar</button>
+</form>
     <div class="profile">
       <h2 id="username"><?= isset($user['username']) ? htmlspecialchars($user['username']) : '' ?></h2>
       <p id="email"><?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?></p>

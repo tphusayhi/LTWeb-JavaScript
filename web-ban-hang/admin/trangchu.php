@@ -190,8 +190,11 @@ ob_start();
                         include "views/donhang.php"; // Hiển thị trang danh sách đơn hàng
                     } else {
                         // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
-                        header("Location: trangchu.php?act=dangnhap");
-                        exit();
+                        echo "<script>
+                                    alert('Bạn cần đăng nhập để xem đơn hàng!');
+                                    window.location.href = 'register.php';
+                                </script>";
+                                exit();
                     }
                     break;
                 
@@ -249,6 +252,26 @@ ob_start();
                     }
                 
                     include "views/account.php";
+                    break;
+                case 'upload_avatar':
+                    if (isset($_SESSION['user_id'])) {
+                        $id = $_SESSION['user_id'];
+                
+                        // Gọi hàm lấy thông tin user từ CSDL
+                        $user = get_thongtin($id);
+                
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['avatar'])) {
+                            // Gọi hàm upload avatar
+                            $message = uploadAvatar($id, $_FILES['avatar']);
+                
+                            // Lấy lại thông tin đã cập nhật
+                            $user = get_thongtin($id);
+                            echo "<script>alert('Cập thành công!');</script>";
+                        }
+                    } else {
+                        echo "<script>alert('Bạn cần đăng nhập để tải ảnh lên!');</script>";
+                    }
+                    include "views/account.php"; // Gửi dữ liệu user sang view
                     break;
                 case 'thongtincanhan':
                     if (isset($_SESSION['user_id'])) {

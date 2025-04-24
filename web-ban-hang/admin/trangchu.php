@@ -396,7 +396,9 @@ ob_start();
                         
                     case 'dangxuat':
                         // Xóa toàn bộ thông tin người dùng
-                        session_start();
+                        if (session_status() === PHP_SESSION_NONE) {
+                            session_start();
+                        }
                         echo "<script>
                             if (confirm('Bạn chắc chắn muốn đăng xuất chứ?')) {
                                 window.location.href = 'trangchu.php?act=thuchiendangxuat';

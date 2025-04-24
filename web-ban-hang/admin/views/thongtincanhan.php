@@ -20,7 +20,8 @@
       display: flex;
       flex-direction: row;
       gap: 20px;
-      padding: 60px;
+      padding: 20px;
+      margin-top:30px;
       flex-wrap: wrap;
     }
     .sidebar {
@@ -166,6 +167,7 @@
     .form-footer {
       grid-column: span 2;
       text-align: right;
+      margin-top: 10px;
     }
     .submit-btn {
       padding: 10px 20px;
@@ -204,7 +206,7 @@
         </div>
     </div>
     <br>
-    <button type="submit" name="upload">Cập Nhật Avatar</button>
+    <p style="margin-left: 55px;"><button type="submit" name="upload">Cập Nhật Avatar</button></p>
 </form>
     <div class="profile">
       <h2 id="username"><?= isset($user['username']) ? htmlspecialchars($user['username']) : '' ?></h2>

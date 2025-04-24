@@ -23,7 +23,8 @@
             flex-direction: row;
             gap: 20px;
             flex-wrap: wrap;
-            padding: 60px;
+            padding: 20px;
+            margin-top:30px;
         }
 
         .sidebar {

@@ -209,7 +209,7 @@ $currentProducts = array_slice($dssp_dm, $startIndex, $productsPerPage);
                     </div>
 
                 </div>
-                <div style="margin-top: 20px; text-align: center;">
+                <div style="text-align:right">
     <?php if ($totalPages > 1): ?>
         <?php for ($i = 1; $i <= $totalPages; $i++): ?>
             <a href="?act=sanpham_user&page=<?= $i ?><?= isset($_GET['id']) ? '&id=' . $_GET['id'] : '' ?>" 

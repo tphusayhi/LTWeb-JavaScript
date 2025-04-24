@@ -394,51 +394,24 @@ ob_start();
                         include "views/search.php";
                         break;
                         
-                    
+                    case 'dangxuat':
+                        // Xóa toàn bộ thông tin người dùng
+                        session_start();
+                        echo "<script>
+                            if (confirm('Bạn chắc chắn muốn đăng xuất chứ?')) {
+                                window.location.href = 'trangchu.php?act=thuchiendangxuat';
+                            } else {
+                                window.history.back();
+                            }
+                        </script>";
+                        exit();
 
-
-                    
-                    
-                    
-                
-                    
-
-
-                
-                
-                
-                
-                
-            // case 'sanpham_user':
-            //     $dsdm = getall_danhmuc();
-
-            //     if(isset($_GET['id'])&&($_GET['id']>0)){
-            //         $iddm=$_GET['id'];
-            //         $dssp_dm=getall_sanpham($iddm, 0);
-            //     }else{
-            //         $dssp_dm = getall_sanpham(0, 0);
-            //     }
-
-            //     // load danh sách sản phẩm
-            //     $kq = getall_sanpham();
-            //     include "views/sanpham_user.php";
-            //     break;
-
-                case 'dangxuat':
-                    // Xóa toàn bộ thông tin người dùng
-                    // if (isset($_SESSION['user'])) {
-                    //     unset($_SESSION['user']);
-                    // }
-                    session_start();
-                    session_unset();
-                    session_destroy();
-
-                    // Nếu dùng session_unset() + destroy():
-                    // session_unset();
-                    // session_destroy();
-
-                    header("Location: login.php");
-                    exit();
+                    case 'thuchiendangxuat':
+                        // Thực hiện đăng xuất
+                        session_unset();
+                        session_destroy();
+                        header("Location: trangchu.php");
+                        exit();
 
                 default:
                     // Có thể hiển thị thông báo nếu hành động không hợp lệ

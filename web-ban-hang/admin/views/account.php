@@ -252,7 +252,7 @@ if (!empty($_SESSION['giohang'])) {
         </div>
     </div>
     <br>
-    <button type="submit" name="upload">Cập Nhật Avatar</button>
+    <p style="margin-left: 55px;"><button type="submit" name="upload">Cập Nhật Avatar</button></p>
 </form>
 
 <script>

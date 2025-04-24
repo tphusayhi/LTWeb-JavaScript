@@ -36,7 +36,7 @@
             </div>
             <div class="oders">
             <li>
-            <form action="trangchu.php?act=search" method="GET" style ="display: inline-flex;">
+            <form action="trangchu.php?act=search" method="GET" style ="display: inline-flex;height: 20px;width: 300px;align-items: center;">
             <input type="hidden" name="act" value="search">
             <input name="keyword" placeholder="Tìm kiếm" type="text" value="<?php echo isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : ''; ?>">
                 <button class="fas fa-search"></button>
@@ -47,7 +47,7 @@
                 <?php 
 // Kiểm tra xem user có avatar không
 $user_ava = getall_user_ava(); // Lấy danh sách avatar
-$avatar = "images/default-avatar.png"; // Mặc định
+$avatar = "assets/images/default-avatar.jpg"; // Mặc định
 
 if (isset($_SESSION['user_id'])) {
     $id = $_SESSION['user_id'];

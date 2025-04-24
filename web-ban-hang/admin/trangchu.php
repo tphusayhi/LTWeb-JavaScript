@@ -343,29 +343,30 @@ ob_start();
                         include "views/use_discount.php"; // Hiển thị trang mã giảm giá
                         break;
                     case 'search':
-                        // Lấy danh sách tất cả danh mục
-                    $dsdm = getall_danhmuc();
-                
-                    // Lấy id danh mục từ URL nếu có, nếu không thì mặc định 0 (tức là tất cả)
-                    $iddm = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-                
-                    // Lấy tham số sắp xếp từ URL
-                    $sort = isset($_GET['sort']) ? $_GET['sort'] : 'asc'; // Mặc định là 'asc'
-                
-                    // Gọi hàm để lấy sản phẩm với lọc theo danh mục và sắp xếp theo giá
-                    $dssp_dm = getall_sanpham($iddm, 0, $sort); // Thực hiện lấy sản phẩm
-                        if (isset($_GET['act']) && $_GET['act'] == 'search') {
-                            $keyword = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
-                            
-                            // Gọi hàm tìm kiếm trong CSDL (viết trong file model hoặc ngay trong đây)
-                            $dssp_dm = searchProducts($keyword);
-                        
-                            // Gọi view hiển thị danh sách sản phẩm
-                            include "views/search.php";
+                        // Lấy danh sách tất cả danh mục để hiển thị trong sidebar
+                        $dsdm = getall_danhmuc();
+                    
+                        // Lấy id danh mục từ URL nếu có, nếu không thì mặc định là 0 (tức là tất cả)
+                        $iddm = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+                    
+                        // Lấy tham số sắp xếp từ URL, mặc định là 'asc'
+                        $sort = isset($_GET['sort']) ? $_GET['sort'] : 'asc';
+                    
+                        // Lấy từ khóa tìm kiếm nếu có
+                        $keyword = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
+                    
+                        // Nếu có từ khóa tìm kiếm, thực hiện tìm kiếm
+                        if (!empty($keyword)) {
+                            $dssp_dm = searchProducts($keyword); // chỉ tìm theo từ khóa, không cần lọc danh mục ở đây
+                        } else {
+                            // Nếu không có từ khóa, thực hiện lọc theo danh mục và sắp xếp
+                            $dssp_dm = getall_sanpham($iddm, 0, $sort);
                         }
-                        
-                        
+                    
+                        // Gọi view hiển thị danh sách sản phẩm
+                        include "views/search.php";
                         break;
+                        
                     
 
 

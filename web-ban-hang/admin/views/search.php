@@ -231,6 +231,8 @@ $currentProducts = array_slice($dssp_dm, $startIndex, $productsPerPage);
 
         </section>
 
+
+
         <script>
     // Đồng bộ trạng thái checkbox và liên kết danh mục
     function syncCheckboxAndLink(checkbox) {
@@ -265,7 +267,7 @@ $currentProducts = array_slice($dssp_dm, $startIndex, $productsPerPage);
 
         // Điều hướng đến URL mới với danh mục được chọn
         const currentUrl = window.location.href.split('?')[0]; // Lấy URL hiện tại
-        let newUrl = currentUrl + '?act=sanpham_user';
+        let newUrl = currentUrl + '?act=search';
 
         if (selectedCategory) {
             newUrl += '&id=' + selectedCategory; // Thêm ID của checkbox được chọn
@@ -312,5 +314,6 @@ $currentProducts = array_slice($dssp_dm, $startIndex, $productsPerPage);
             window.location.href = newUrl; // Điều hướng đến URL mới
         }
 </script>
+
 </body>
 </html>

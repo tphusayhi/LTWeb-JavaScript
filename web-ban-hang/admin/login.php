@@ -48,7 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn-login'])) {
                 'role' => (int) $user['role']
             ];
 
-        
+            // Tạo cookie quảng cáo ưu đãi
+            setcookie('promo_ad', 'true', time() + 3600, '/'); // Cookie tồn tại trong 1 giờ
+
             // Điều hướng theo role
             if ($_SESSION['role'] == 2) {
                 header("Location: indexs.php");

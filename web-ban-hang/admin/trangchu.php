@@ -412,6 +412,10 @@ ob_start();
                         // Thực hiện đăng xuất
                         session_unset();
                         session_destroy();
+
+                        // Xóa cookie quảng cáo ưu đãi
+                        setcookie('promo_ad', '', time() - 3600, '/'); // Đặt thời gian hết hạn trong quá khứ
+
                         header("Location: trangchu.php");
                         exit();
 

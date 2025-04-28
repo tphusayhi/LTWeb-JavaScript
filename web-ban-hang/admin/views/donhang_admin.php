@@ -136,7 +136,7 @@ select.badge {
                 <td>#<?= htmlspecialchars($order['madh'], ENT_QUOTES, 'UTF-8') ?></td>
                 <td><?= date('d/m/Y', strtotime($order['ngaydat'])) ?></td>
                 <td><?= htmlspecialchars($order['hoten'], ENT_QUOTES, 'UTF-8') ?></td>
-                <td><?= number_format($order['tongtien'], 0, ',', '.') ?> đ</td>
+                <td><?= number_format($order['tongtien'], 0, ',', '.') ?> $</td>
 
                 <td>
                     <form action="indexs.php?act=capnhat_trangthai" method="post" style="margin: 0;">
@@ -168,7 +168,9 @@ select.badge {
 
                 <td>
                     <a href="trangchu.php?act=donhang_ct&iddh=<?=($order['id'])?>" class="btn">Xem chi tiết</a>
+                    
                 </td>
+                
             </tr>
         <?php endforeach; ?>
     <?php else: ?>

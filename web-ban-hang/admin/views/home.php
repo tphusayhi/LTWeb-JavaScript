@@ -126,6 +126,11 @@
 }
   </style>
     <body>
+<?php if (isset($_COOKIE['promo_ad'])): ?>
+    <div class="promo-banner" style="background-color: #ffcc00; padding: 10px; text-align: center;font-size: 18px;color: #333;font-weight: bold;">
+    <marquee direction = "right" behavior = "scroll" loop = -1 scrollamount = 10>🎉 Ưu đãi đặc biệt dành cho bạn! Giảm giá 20% cho đơn hàng đầu tiên! 🎉</marquee>
+    </div>
+<?php endif; ?>
 <!-- slider -->
         <section id="Slider">
         <div class="aspect-ratio-169">

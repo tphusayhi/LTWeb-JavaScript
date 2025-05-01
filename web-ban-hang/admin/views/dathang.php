@@ -41,18 +41,27 @@
                     <div class="delivery-content row">
                         <div class="delivery-content-left">
                             <p>Vui lòng chọn địa chỉ giao hàng</p>
+                            <?php
+                            // Kiểm tra nếu thông tin người dùng đã được lưu trong session
+                            $user_info = isset($_SESSION['user_info']) ? $_SESSION['user_info'] : [
+                                'hoten' => '',
+                                'email' => '',
+                                'sdt' => '',
+                                'diachi' => '',
+                            ];
+                            ?>
                             <div class="delivery-content-left-input-top row">
                                 <div class="delivery-content-left-input-top-item">
                                     <label for="">Họ tên<span style="color:red;">*</span></label>
-                                    <input type="text" name="hoten" required>
+                                    <input type="text" name="hoten" value="<?= htmlspecialchars($user_info['hoten']) ?>" required>
                                 </div>
                                 <div class="delivery-content-left-input-top-item">
                                     <label for="">Điện thoại<span style="color:red;">*</span></label>
-                                    <input type="text" name="sdt" required>
+                                    <input type="text" name="sdt" value="<?= htmlspecialchars($user_info['sdt']) ?>" required>
                                 </div>
                                 <div class="delivery-content-left-input-top-item">
                                     <label for="">Email</label>
-                                    <input type="text" name="email">
+                                    <input type="text" name="email" value="<?= htmlspecialchars($user_info['email']) ?>">
                                 </div>
                                 <div class="delivery-content-left-input-top-item">
                                     <label for="">Ghi chú<span style="color:red;">*</span></label>
@@ -61,7 +70,7 @@
                             </div>
                             <div class="delivery-content-left-input-bottom">
                                 <label for="">Địa chỉ<span style="color:red;">*</span></label>
-                                <input type="text" name="diachi" required>
+                                <input type="text" name="diachi" value="<?= htmlspecialchars($user_info['diachi']) ?>" required>
                             </div>
 
                             <div class="payment-content row">

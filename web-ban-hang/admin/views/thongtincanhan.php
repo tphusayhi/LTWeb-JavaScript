@@ -1,3 +1,19 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start(); // Bắt đầu session nếu chưa được bắt đầu
+}
+
+// Kiểm tra nếu thông tin người dùng đã tồn tại và chưa được lưu vào session
+if (!isset($_SESSION['user_info']) && isset($user)) {
+    $_SESSION['user_info'] = [
+        'hoten' => $user['hoten'] ?? '',
+        'email' => $user['email'] ?? '',
+        'sdt' => $user['sdt'] ?? '',
+        'ngaysinh' => $user['ngaysinh'] ?? '',
+        'diachi' => $user['diachi'] ?? '',
+    ];
+}
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -283,13 +299,37 @@ if (!empty($message)) {
     </div>
   </div>
 </div>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-insert'])) {
+    // Lấy thông tin từ form
+    $hoten = $_POST['hoten'];
+    $email = $_POST['email'];
+    $sdt = $_POST['sdt'];
+    $ngaysinh = $_POST['ngaysinh'];
+    $diachi = $_POST['diachi'];
+
+    // Cập nhật thông tin vào cơ sở dữ liệu (nếu cần)
+    // update_user_info($hoten, $email, $sdt, $ngaysinh, $diachi);
+
+    // Lưu thông tin vào session
+    $_SESSION['user_info'] = [
+        'hoten' => $hoten,
+        'email' => $email,
+        'sdt' => $sdt,
+        'ngaysinh' => $ngaysinh,
+        'diachi' => $diachi,
+    ];
+
+    echo "<script>alert('Cập nhật thông tin thành công!');</script>";
+}
+?>
 <script>
   document.getElementById('avatar-input').addEventListener('change', function () {
     if (this.files && this.files[0]) {
       const reader = new FileReader();
       reader.onload = function (e) {
         document.getElementById('avatar-preview').src = e.target.result;
-        alert("Avatar đã được cập nhật (chỉ preview - không upload).");
+        alert("cập nhật Avatar không thành công!.");
       };
       reader.readAsDataURL(this.files[0]);
     }

@@ -270,7 +270,7 @@ ob_start();
                 
                             // Lấy lại thông tin đã cập nhật
                             $user = get_thongtin($id);
-                            echo "<script>alert('Cập thành công!');</script>";
+                            echo "<script>alert('Cập nhật Avatar thành công!');</script>";
                         }
                     } else {
                         echo "<script>alert('Bạn cần đăng nhập để tải ảnh lên!');</script>";

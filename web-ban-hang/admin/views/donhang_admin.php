@@ -167,7 +167,7 @@ select.badge {
 
 
                 <td>
-                    <a href="trangchu.php?act=donhang_ct&iddh=<?=($order['id'])?>" class="btn">Xem chi tiết</a>
+                    <a href="indexs.php?act=donhang_ct_admin&iddh=<?=($order['id'])?>" class="btn">Xem chi tiết</a>
                     
                 </td>
                 

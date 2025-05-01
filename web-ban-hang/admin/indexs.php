@@ -261,6 +261,19 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
                                 $alldonhang = getall_donhang();
                                 include "views/donhang_admin.php";
                                 break;
+                            case 'donhang_ct_admin':
+                                    // Kiểm tra nếu id đơn hàng hợp lệ
+                                    if (isset($_GET['iddh']) && $_GET['iddh'] > 0) {
+                                        $iddh = $_GET['iddh']; // Lấy id đơn hàng từ URL
+                                        // Lấy chi tiết đơn hàng
+                                        $orderDetails = get_donhang_ct($iddh); // Lấy chi tiết sản phẩm trong đơn hàng
+                                        // Nếu bạn cần thêm thông tin gì khác, có thể gán thêm biến vào đây
+                                        include "views/donhang_ct_admin.php"; // Gọi view để hiển thị chi tiết đơn hàng
+                                    } else {
+                                        // Nếu không có id hoặc id không hợp lệ, thông báo lỗi
+                                        echo "Không có đơn hàng được chọn.";
+                                    }
+                                break; // Đảm bảo thoát khỏi case 'donhang_ct'
                             case 'capnhat_trangthai':
                                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     if (isset($_POST['id_donhang'], $_POST['trangthai'])) {

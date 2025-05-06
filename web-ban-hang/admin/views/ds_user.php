@@ -9,6 +9,8 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             width: 100%;
+            margin: 0;
+            padding: 0;
         }
         .main {
             margin-left: 300px;
@@ -16,10 +18,9 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 1100px;
+            max-width: 1200px;
             margin-top: 80px;
             transition: transform 0.3s ease-in-out;
-
         }
         .main:hover {
             transform: scale(1.02);
@@ -29,7 +30,6 @@
             color: #007bff;
         }
         form {
-            
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -58,13 +58,17 @@
         input[type="submit"]:hover {
             background: #218838;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .table-wrapper {
+            overflow-x: auto;
             margin-top: 20px;
         }
+        table {
+            min-width: 800px;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
         th, td {
-            padding: 10px;
+            padding: 6px 8px;
             border: 1px solid #ddd;
             text-align: center;
         }
@@ -77,7 +81,6 @@
             color: #007bff;
             transition: color 0.3s;
             display: inline-block;
-            
         }
         a:hover {
             color: #0056b3;
@@ -109,47 +112,52 @@
     <div class="main">
         <h2>Quản lý khách hàng</h2>
         <form action="indexs.php?act=them_user" method="post" enctype="multipart/form-data">
-            
             <input type="text" name="username" placeholder="Nhập tên đăng nhập" required>
             <input type="text" name="password" placeholder="Nhập mật khẩu" required>
             <select name="role" required>
                 <option value="">Chọn quyền hạn</option>
                 <option value="2">Admin</option>
                 <option value="1">User</option>
+            </select>
             <input type="submit" name="them" value="Thêm tài khoản">
         </form>
 
-        <table>
-            <tr>
-                <th>STT</th>
-                <th>Tên Đăng Nhập</th>
-                <th>Mật Khẩu</th>
-                <th>Quyền Hạn</th>
-                <th>Thao tác</th>
-            </tr>
-            <?php
-               //var_dump($kq);
-               if(isset($kq_user)&&(count($kq_user)>0)){
-                $i=1;
-                foreach ($kq_user as $users ) {
-                    echo "<tr>";
-                    echo "<td>".($i)."</td>";
-                    echo "<td>".$users['username']."</td>";
-                    echo "<td>".$users['password']."</td>";
-                    echo "<td>" . ($users['role'] == 2 ? "Admin" : "User") . "</td>";
-                    echo "<td>
-                            <a href='indexs.php?act=delete_user&id=" . (int) $users['ID'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa không?\")'>Xóa</a>
-                          </td>";
-                    echo "</tr>";
-                    $i++;
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên Đăng Nhập</th>
+                    <th>Mật Khẩu</th>
+                    <th>Quyền Hạn</th>
+                    <th>Họ Tên</th>
+                    <th>SĐT</th>
+                    <th>Email</th>
+                    <th>Thao Tác</th>
+                </tr>
+                <?php
+                // Giả sử $kq_user là mảng chứa danh sách người dùng
+                if (isset($kq_user) && count($kq_user) > 0) {
+                    $i = 1;
+                    foreach ($kq_user as $users) {
+                        echo "<tr>";
+                        echo "<td>" . $i . "</td>";
+                        echo "<td>" . htmlspecialchars($users['username']) . "</td>";
+                        echo "<td>" . htmlspecialchars($users['password']) . "</td>";
+                        echo "<td>" . ($users['role'] == 2 ? "Admin" : "User") . "</td>";
+                        echo "<td>" . htmlspecialchars($users['hoten']) . "</td>";
+                        echo "<td>" . htmlspecialchars($users['sdt']) . "</td>";
+                        echo "<td>" . htmlspecialchars($users['email']) . "</td>";
+                        echo "<td>
+                                <a href='indexs.php?act=delete_user&id=" . (int)$users['ID'] . "' 
+                                   onclick='return confirm(\"Bạn có chắc chắn muốn xóa không?\")'>Xóa</a>
+                              </td>";
+                        echo "</tr>";
+                        $i++;
+                    }
                 }
-
-               }            ?>
-
-        </table>
+                ?>
+            </table>
+        </div>
     </div>
-  
-
-
 </body>
 </html>

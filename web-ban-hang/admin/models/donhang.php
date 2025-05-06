@@ -1,4 +1,6 @@
 <?php 
+    
+
     function update_trangthai($id_donhang, $trangthai_moi) {
         $conn = connectdb(); // Kết nối cơ sở dữ liệu
         try {

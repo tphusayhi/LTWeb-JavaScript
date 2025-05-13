@@ -335,8 +335,8 @@ if (isset($_SESSION['role']) && ($_SESSION['role'] == 2)) {
                 }
 
                 // Nếu dùng session_unset() + destroy():
-                // session_unset();
-                // session_destroy();
+                session_unset();
+                session_destroy();
 
                 header("Location: login.php");
                 exit();
